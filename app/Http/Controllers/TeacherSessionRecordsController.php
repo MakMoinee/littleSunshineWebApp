@@ -64,8 +64,8 @@ class TeacherSessionRecordsController extends Controller
                 $isSave = $newSession->save();
                 if ($isSave) {
                     session()->put("successAddSession", true);
-                }else{
-                    
+                } else {
+
                     session()->put("errorAddSession", true);
                 }
             }
@@ -102,8 +102,28 @@ class TeacherSessionRecordsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
+
+            if ($request->btnDeleteSession) {
+                $isDelete = DB::table('sessions')->where('id', '=', $id)->delete();
+                if ($isDelete) {
+                    session()->put("successDelete", true);
+                } else {
+
+                    session()->put("errorDelete", true);
+                }
+            }
+
+            return redirect("/teacher_records");
+        }
+        return redirect("/");
     }
 }

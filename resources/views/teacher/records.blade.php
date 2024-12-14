@@ -238,7 +238,8 @@
                                         <option value="Done">Done</option>
                                         <option value="Absent">Absent</option>
                                     </select>
-                                    <button name="btnAddSession" value="yes" type="submit" class="btn btn-primary" class="add-button">Add</button>
+                                    <button name="btnAddSession" value="yes" type="submit" class="btn btn-primary"
+                                        class="add-button">Add</button>
                                 </div>
                             </form>
                         </div>
@@ -272,6 +273,13 @@
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $item->status }}
+                                                </td>
+                                                <td>
+                                                    <button onclick="deleteSess({{ $item->id }})"
+                                                        class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteSessionModal">
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -330,6 +338,33 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        function deleteSess(id) {
+            let recordForm = document.getElementById('recordForm');
+            recordForm.action = `/teacher_records/${id}`;
+        }
+    </script>
+
+    <div class="modal fade " id="deleteSessionModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteSessionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="recordForm" action="/teacher_records" method="post">
+                    @method('delete')
+                    @csrf
+                    <div class="modal-body">
+                        <h5>Are You Sure You Want To Delete This Session?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                        <button type="submit" class="btn btn-danger" name="btnDeleteSession" value="yes"
+                            style="color:white !important;">Proceed Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     @if (session()->pull('errorAddSession'))
         <script>
@@ -346,7 +381,37 @@
         {{ session()->forget('errorAddSession') }}
     @endif
 
+    @if (session()->pull('errorDelete'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Delete Session, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDelete') }}
+    @endif
 
+
+
+    @if (session()->pull('successDelete'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Deleted Session',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successDelete') }}
+    @endif
     @if (session()->pull('successAddSession'))
         <script>
             setTimeout(() => {
