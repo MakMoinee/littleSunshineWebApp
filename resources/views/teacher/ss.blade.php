@@ -227,14 +227,14 @@
                             <form action="/teacher_ss" method="post" autocomplete="off">
                                 @csrf
                                 <div class="form-group">
-                                    <select required class="form-control input-field" name="student-name">
+                                    <select required class="form-control input-field" name="studentID">
                                         <option value="">Student Name...</option>
                                         @foreach ($students as $item)
                                             <option value="{{ $item['id'] }}"> {{ $item['name'] }} </option>
                                         @endforeach
                                     </select>
                                     <input required type="text" class="form-control input-field mt-2"
-                                        name="session-number" placeholder="Session #">
+                                        name="sessionNumber" placeholder="Session #">
 
                                     <div class="form-group mt-2 text-white mt-2">
                                         <label class="d-flex">Class Type</label>
@@ -252,12 +252,14 @@
                                     </div>
 
                                     <input required type="date" class="form-control input-field mt-2" name="date">
-                                    <input required type="time" class="form-control input-field mt-2" name="time">
+                                    <input required type="time" class="form-control input-field mt-2"
+                                        name="time">
 
-                                    <input type="text" class="form-control input-field mt-2" name="meeting-code"
+                                    <input type="text" class="form-control input-field mt-2" name="meetingCode"
                                         placeholder="Meeting Code (If Online Class)">
 
-                                    <button type="submit" class="btn btn-primary set-button mt-2">SET</button>
+                                    <button name="btnSetSchedule" value="yes" type="submit"
+                                        class="btn btn-primary set-button mt-2">SET</button>
                                 </div>
                             </form>
                         </div>
@@ -313,34 +315,34 @@
     @endif
 
 
-    @if (session()->pull('successSaveAss'))
+    @if (session()->pull('successSetSched'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Set Assignment',
+                    title: 'Successfully Set Schedule',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successSaveAss') }}
+        {{ session()->forget('successSetSched') }}
     @endif
 
-    @if (session()->pull('errorEnroll'))
+    @if (session()->pull('errorSetSched'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    title: 'Failed To Set Schedule, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorEnroll') }}
+        {{ session()->forget('errorSetSched') }}
     @endif
 </body>
 
