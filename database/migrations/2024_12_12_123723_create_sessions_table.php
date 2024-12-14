@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('sessionID')->nullable(false);
             $table->integer('studentID')->nullable(false);
             $table->string('details', 255)->nullable(false);
+            $table->string('status', 255)->nullable(false);
             $table->timestamps();
         });
     }

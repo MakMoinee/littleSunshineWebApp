@@ -209,7 +209,7 @@
         <div class="collapse navbar-collapse p-3" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
             </div>
-            <a href="/logout" class="btn btn-primary py-2 px-4 ms-3">Sign Out</a>
+            <a href="/teacher_home" class="btn btn-primary py-2 px-4 ms-3">Back</a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -217,61 +217,89 @@
 
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row g-5">
-                <center>
-                    <div class="col-md-8">
-                        <div class="dashboard">
-                            <div class="icon-container">
-                                <a href="Tprofile.html">
-                                    <div class="icon" id="profile">
-                                        <img src="/img/group (1).png" alt="Teacher Profile Icon">
-                                        <p>Teacher Profile</p>
-                                    </div>
-                                </a>
+            <div class="row g-5" style="margin-bottom: 150px;">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-header bg-white text-dark">
+                            <form action="/teacher_records" method="post">
+                                @csrf
+                                <div class="form-group d-flex">
+                                    <input class="form-control me-2" type="text" id="sessionNumber"
+                                        placeholder="Session #" required name="sessionNumber">
+                                    <input class="form-control me-2" type="text" id="details"
+                                        placeholder="Details (Schedule)" required name="details">
+                                    <select class="form-control me-2 bg-white" id="name" name="student">
+                                        <option value="">Select Student</option>
+                                        @foreach ($students as $item)
+                                            <option value="{{ $item['id'] }}"> {{ $item['name'] }} </option>
+                                        @endforeach
+                                    </select>
+                                    <select class="form-control me-2 bg-white" id="status" name="status">
+                                        <option value="Done">Done</option>
+                                        <option value="Absent">Absent</option>
+                                    </select>
+                                    <button name="btnAddSession" value="yes" type="submit" class="btn btn-primary" class="add-button">Add</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body bg-mbg">
+                            <div class="table-responsive bg-white">
+                                <table class="table border mb-0">
+                                    <thead class="table-light fw-semibold">
+                                        <tr class="align-middle">
+                                            <th>Session #</th>
+                                            <th class="text-center">Details</th>
+                                            <th>Student</th>
+                                            <th class="text-center">Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($sessions as $item)
+                                            <tr class="align-middle">
+                                                <td>
+                                                    {{ $item->sessionID }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $item->details }}
+                                                </td>
+                                                <td>
+                                                    @foreach ($students as $s)
+                                                        @if ($s['id'] == $item->studentID)
+                                                            {{ $s['name'] }}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $item->status }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pagination">
+                                        <ul class="pagination">
+                                            @for ($i = 1; $i <= $sessions->lastPage(); $i++)
+                                                <li class="page-item ">
+                                                    <a class="page-link {{ $sessions->currentPage() == $i ? 'active' : '' }}"
+                                                        href="{{ $sessions->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                            @endfor
+                                        </ul>
 
-                                <a href="teacher grading page.html">
-                                    <div class="icon">
-                                        <img src="/img/bar-graph.png" alt="Student's Grades Icon">
-                                        <p>Student's Grades</p>
                                     </div>
-                                </a>
-
-                                <a href="/teacher_saas">
-                                    <div class="icon">
-                                        <img src="/img/checklist.png" alt="Set Assignment Icon">
-                                        <p>Set Assignment</p>
-                                    </div>
-                                </a>
-
-                                <a href="/teacher_ss">
-                                    <div class="icon">
-                                        <img src="/img/calendar.png" alt="Set Schedule Icon">
-                                        <p>Set Schedule</p>
-                                    </div>
-                                </a>
-
-                                <a href="post module page.html">
-                                    <div class="icon">
-                                        <img src="/img/book.png" alt="Post Modules Icon">
-                                        <p>Free Books</p>
-                                    </div>
-                                </a>
-
-                                <a href="/teacher_records">
-                                    <div class="icon">
-                                        <img src="/img/folder.png" alt="Session Records Icon">
-                                        <p>Session Records</p>
-                                    </div>
-                                </a>
-
+                                </div>
                             </div>
                         </div>
                     </div>
-                </center>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="background position-relative">
         <img src="/img/playground background.png" style="left: 20px;"
             class="background-image position-absolute bottom-0" alt="Left Image">
@@ -290,48 +318,48 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/lib/wow/wow.min.js"></script>
-    <script src="/lib/easing/easing.min.js"></script>
-    <script src="/lib/waypoints/waypoints.min.js"></script>
-    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="/lib/twentytwenty/jquery.event.move.js"></script>
-    <script src="/lib/twentytwenty/jquery.twentytwenty.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    @if (session()->pull('errorExist'))
+    @if (session()->pull('errorAddSession'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Student Already Exist, Please Try Again New Student',
+                    title: 'Failed To Add Session, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorExist') }}
+        {{ session()->forget('errorAddSession') }}
     @endif
 
 
-    @if (session()->pull('successLogin'))
+    @if (session()->pull('successAddSession'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Login Successfully',
+                    title: 'Successfully Added Session',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successLogin') }}
+        {{ session()->forget('successAddSession') }}
     @endif
 
     @if (session()->pull('errorEnroll'))
