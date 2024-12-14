@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="/img/favicon.ico" rel="icon">
+    <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -22,16 +22,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="/lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <style>
         .bg-mbg {
 
@@ -209,7 +209,7 @@
         <div class="collapse navbar-collapse p-3" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
             </div>
-            <a href="/teacher_home" class="btn btn-primary py-2 px-4 ms-3">Back</a>
+            <a href="/logout" class="btn btn-primary py-2 px-4 ms-3">Sign Out</a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -217,47 +217,61 @@
 
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row g-5" style="margin-bottom: 100px;">
-                <div class="col-md-6 mx-auto">
-                    <div class="card">
-                        <div class="card-body bg-mbg">
-                            <h2 class="text-white">
-                                <center>Set Assignment</center>
-                            </h2>
-                            <form action="/teacher_saas" method="post" autocomplete="off">
-                                @csrf
-                                <div class="form-group">
-                                    <select class="form-control input-field" name="studentName">
-                                        <option value="">Student Name...</option>
-                                        @foreach ($students as $item)
-                                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="number" class="form-control input-field" name="sessionNumber"
-                                        placeholder="Session #">
-                                    <input type="text" class="form-control input-field" name="title"
-                                        placeholder="Assignment Title">
-                                    <input type="date" class="form-control input-field" name="date">
-                                    <div class="time-range">
-                                        <input type="time" class="form-control -field" name="startTime">
-                                        <span class="text-white">To</span>
-                                        <input type="time" class="form-control input-field" name="endTime">
+            <div class="row g-5">
+                <center>
+                    <div class="col-md-8">
+                        <div class="dashboard">
+                            <div class="icon-container">
+                                <a href="Tprofile.html">
+                                    <div class="icon" id="profile">
+                                        <img src="/img/group (1).png" alt="Teacher Profile Icon">
+                                        <p>Student Profile</p>
                                     </div>
-                                    <select required class="form-control input-field" name="submissionType">
-                                        <option value="" selected>Submission Type</option>
-                                        <option value="f2f">F2F</option>
-                                        <option value="online">Online</option>
-                                    </select>
-                                    <button name="btnSetAss" value="yes" type="submit"
-                                        class="btn btn-primary set-button mt-2">SET</button>
-                                </div>
-                            </form>
+                                </a>
+
+                                <a href="teacher grading page.html">
+                                    <div class="icon">
+                                        <img src="/img/bar-graph.png" alt="Student's Grades Icon">
+                                        <p>Student's Grades</p>
+                                    </div>
+                                </a>
+
+                                <a href="/teacher_saas">
+                                    <div class="icon">
+                                        <img src="/img/checklist.png" alt="Set Assignment Icon">
+                                        <p>Assignment</p>
+                                    </div>
+                                </a>
+
+                                <a href="set schedule page.html">
+                                    <div class="icon">
+                                        <img src="/img/calendar.png" alt="Set Schedule Icon">
+                                        <p>Schedule</p>
+                                    </div>
+                                </a>
+
+                                <a href="post module page.html">
+                                    <div class="icon">
+                                        <img src="/img/book.png" alt="Post Modules Icon">
+                                        <p>Free Books</p>
+                                    </div>
+                                </a>
+
+                                <a href="session record page.html">
+                                    <div class="icon">
+                                        <img src="img/folder.png" alt="Session Records Icon">
+                                        <p>Session Records</p>
+                                    </div>
+                                </a>
+
+                            </div>
                         </div>
                     </div>
-                </div>
+                </center>
             </div>
         </div>
     </div>
+
     <div class="background position-relative">
         <img src="/img/playground background.png" style="left: 20px;"
             class="background-image position-absolute bottom-0" alt="Left Image">
@@ -289,35 +303,35 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    @if (session()->pull('errorSaveAss'))
+    @if (session()->pull('errorExist'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Set Assignment, Please Try Again Later',
+                    title: 'Student Already Exist, Please Try Again New Student',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorSaveAss') }}
+        {{ session()->forget('errorExist') }}
     @endif
 
 
-    @if (session()->pull('successSaveAss'))
+    @if (session()->pull('successLogin'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Set Assignment',
+                    title: 'Login Successfully',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successSaveAss') }}
+        {{ session()->forget('successLogin') }}
     @endif
 
     @if (session()->pull('errorEnroll'))

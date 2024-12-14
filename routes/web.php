@@ -3,8 +3,10 @@
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\StudentHomeController;
 use App\Http\Controllers\TeacherHomeController;
 use App\Http\Controllers\TeacherSetAssignmentController;
+use App\Http\Controllers\TeachSetScheduleController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +33,7 @@ Route::get('/', function () {
 Route::resource('/login', LoginController::class);
 Route::resource('/enroll', EnrollController::class);
 Route::resource('/teacher_home', TeacherHomeController::class);
+Route::resource('/student_home', StudentHomeController::class);
 Route::resource('/teacher_saas', TeacherSetAssignmentController::class);
+Route::resource('/teacher_ss', TeachSetScheduleController::class);
 Route::get('/logout', [LogoutController::class, 'index']);

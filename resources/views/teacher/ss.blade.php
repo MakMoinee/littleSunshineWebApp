@@ -222,34 +222,42 @@
                     <div class="card">
                         <div class="card-body bg-mbg">
                             <h2 class="text-white">
-                                <center>Set Assignment</center>
+                                <center>Set Schedule</center>
                             </h2>
-                            <form action="/teacher_saas" method="post" autocomplete="off">
+                            <form action="/teacher_ss" method="post" autocomplete="off">
                                 @csrf
                                 <div class="form-group">
-                                    <select class="form-control input-field" name="studentName">
+                                    <select required class="form-control input-field" name="student-name">
                                         <option value="">Student Name...</option>
                                         @foreach ($students as $item)
-                                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                            <option value="{{ $item['id'] }}"> {{ $item['name'] }} </option>
                                         @endforeach
                                     </select>
-                                    <input type="number" class="form-control input-field" name="sessionNumber"
-                                        placeholder="Session #">
-                                    <input type="text" class="form-control input-field" name="title"
-                                        placeholder="Assignment Title">
-                                    <input type="date" class="form-control input-field" name="date">
-                                    <div class="time-range">
-                                        <input type="time" class="form-control -field" name="startTime">
-                                        <span class="text-white">To</span>
-                                        <input type="time" class="form-control input-field" name="endTime">
+                                    <input required type="text" class="form-control input-field mt-2"
+                                        name="session-number" placeholder="Session #">
+
+                                    <div class="form-group mt-2 text-white mt-2">
+                                        <label class="d-flex">Class Type</label>
+                                        <div class="form-check form-check-inline d-flex ml-2">
+                                            <input class="form-check-input" type="radio" name="classType"
+                                                value="online" id="normal" required>
+                                            <label class="form-check-label" for="normal">Online Class</label>
+                                        </div>
+                                        <div class="form-check form-check-inline d-flex ml-2">
+                                            <input class="form-check-input" type="radio" name="classType"
+                                                value="f2f" id="classType">
+                                            <label class="form-check-label" for="special_needs">Face to Face
+                                                Class</label>
+                                        </div>
                                     </div>
-                                    <select required class="form-control input-field" name="submissionType">
-                                        <option value="" selected>Submission Type</option>
-                                        <option value="f2f">F2F</option>
-                                        <option value="online">Online</option>
-                                    </select>
-                                    <button name="btnSetAss" value="yes" type="submit"
-                                        class="btn btn-primary set-button mt-2">SET</button>
+
+                                    <input required type="date" class="form-control input-field mt-2" name="date">
+                                    <input required type="time" class="form-control input-field mt-2" name="time">
+
+                                    <input type="text" class="form-control input-field mt-2" name="meeting-code"
+                                        placeholder="Meeting Code (If Online Class)">
+
+                                    <button type="submit" class="btn btn-primary set-button mt-2">SET</button>
                                 </div>
                             </form>
                         </div>

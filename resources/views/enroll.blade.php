@@ -133,9 +133,16 @@
                                             </div>
                                         </div>
 
-
                                         <textarea name="diagnosed" class="form-control mt-2" rows="3"
                                             placeholder="If diagnosed, please specify the student's condition..."></textarea>
+
+                                        <div class="form-group mt-2">
+                                            <input required placeholder="Username" type="text" name="username"
+                                                id="" class="form-control">
+                                            <input placeholder="Password" required type="password" name="password"
+                                                id="" class="form-control">
+                                        </div>
+
                                         <button name="btnEnroll" value="yes" type="submit"
                                             class="btn btn-primary mt-2 submit-btn">Submit</button>
                                     </div>
@@ -171,6 +178,34 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
+    @if (session()->pull('errorUserCreate'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Create User, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorUserCreate') }}
+    @endif
+    @if (session()->pull('errorUserExist'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Username Already Exist, Please Try Again New Username',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorUserExist') }}
+    @endif
     @if (session()->pull('errorExist'))
         <script>
             setTimeout(() => {

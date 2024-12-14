@@ -16,7 +16,13 @@ class LoginController extends Controller
             $user = session()->pull('users');
             session()->put("users", $user);
 
-            return redirect("/teacher_home");
+            if ($user['userType'] == "teacher") {
+
+                return redirect("/teacher_home");
+            } else {
+
+                return redirect("/logout");
+            }
         }
         return view("login");
     }
@@ -52,7 +58,13 @@ class LoginController extends Controller
             }
 
             if ($isFound) {
-                return redirect("/teacher_home");
+                if ($user['userType'] == "teacher") {
+
+                    return redirect("/teacher_home");
+                } else {
+
+                    return redirect("/student_home");
+                }
             } else {
                 session()->put('errorLogin', true);
             }
