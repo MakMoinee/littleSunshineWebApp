@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('userID')->autoIncrement();
             $table->string('username', 100);
-            $table->string('password', 30);
+            $table->string('password', 255);
             $table->string('userType', 100);
             $table->string('status', 8);
             $table->timestamps();

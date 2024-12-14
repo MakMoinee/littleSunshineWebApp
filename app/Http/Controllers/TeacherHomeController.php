@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class LoginController extends Controller
+class TeacherHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class LoginController extends Controller
             $user = session()->pull('users');
             session()->put("users", $user);
 
-            return redirect("/teacher_home");
+            return view('teacher.home');
         }
-        return view("login");
+        return redirect("/");
     }
 
     /**
@@ -34,30 +33,7 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->btnLogin) {
-            $username = $request->username;
-            $password = $request->password;
-            $user = array();
-
-            $query = json_decode(DB::table('users')->where('username', '=', $username)->get(), true);
-            $isFound = false;
-            foreach ($query as $q) {
-                if (password_verify($password, $q['password'])) {
-                    $user = $q;
-                    session()->put('successLogin', true);
-                    session()->put('users', $user);
-                    $isFound = true;
-                    break;
-                }
-            }
-
-            if ($isFound) {
-                return redirect("/teacher_home");
-            } else {
-                session()->put('errorLogin', true);
-            }
-        }
-        return redirect("/login");
+        //
     }
 
     /**

@@ -96,16 +96,48 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-body">
-                                <h2>Login</h2>
-                                <form action="/login" method="post">
+                                <h2>Enroll</h2>
+                                <form action="/enroll" method="post" autocomplete="off">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="username" name="username" class="form-control" placeholder="Username" required>
-                                        <br>
-                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                        <br>
-                                        <button class="btn btn-primary" name="btnLogin" value="yes" type="submit"
-                                            class="submit-btn">Login</button>
+                                        <select class="form-control" name="course" required>
+                                            <option value="">What Course...</option>
+                                            <option value="course1">Special Education</option>
+                                            <option value="course2">Tele Therapy (Normal Students the needs
+                                                developments)</option>
+                                        </select>
+
+                                        <input class="form-control" type="text" placeholder="Name of Student"
+                                            required name="studentName">
+                                        <input class="form-control" type="text" placeholder="Name of Guardian"
+                                            required name="guardianName">
+                                        <input class="form-control" type="text" placeholder="Contact No." required
+                                            name="contactNumber">
+                                        <input name="guardianEmail" class="form-control" type="email"
+                                            placeholder="Email Address of the Guardian" required>
+                                        <input name="address" class="form-control" type="text"
+                                            placeholder="Home Address" required>
+
+                                        <div class="form-group mt-2">
+                                            <label class="d-flex">Condition</label>
+                                            <div class="form-check form-check-inline d-flex ml-2">
+                                                <input class="form-check-input" type="radio" name="condition"
+                                                    value="normal" id="normal" required>
+                                                <label class="form-check-label" for="normal">Normal</label>
+                                            </div>
+                                            <div class="form-check form-check-inline d-flex ml-2">
+                                                <input class="form-check-input" type="radio" name="condition"
+                                                    value="special_needs" id="special_needs">
+                                                <label class="form-check-label" for="special_needs">Diagnosed with
+                                                    Special Needs</label>
+                                            </div>
+                                        </div>
+
+
+                                        <textarea name="diagnosed" class="form-control mt-2" rows="3"
+                                            placeholder="If diagnosed, please specify the student's condition..."></textarea>
+                                        <button name="btnEnroll" value="yes" type="submit"
+                                            class="btn btn-primary mt-2 submit-btn">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -139,19 +171,50 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    @if (session()->pull('errorLogin'))
+    @if (session()->pull('errorExist'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Wrong Username or Password',
+                    title: 'Student Already Exist, Please Try Again New Student',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorLogin') }}
+        {{ session()->forget('errorExist') }}
+    @endif
+
+
+    @if (session()->pull('successEnroll'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Enrolled Student',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successEnroll') }}
+    @endif
+
+    @if (session()->pull('errorEnroll'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorEnroll') }}
     @endif
 </body>
 
