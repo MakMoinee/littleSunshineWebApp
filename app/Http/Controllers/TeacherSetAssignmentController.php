@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignments;
 use App\Models\Students;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class TeacherSetAssignmentController extends Controller
 {
@@ -139,8 +141,38 @@ class TeacherSetAssignmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
+
+            if ($request->btnDeleteAss) {
+                if ($request->filePath) {
+                    try {
+                        $originalDirectoryPath = $request->filePath;
+                        if ($originalDirectoryPath) {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . $originalDirectoryPath;
+                            File::delete($destinationPath);
+                        }
+                    } catch (Exception $e1) {
+                    }
+                }
+                $deleteCount = DB::table('assignments')->where('assignmentID', '=', $id)->delete();
+                if ($deleteCount > 0) {
+
+                    session()->put("successDeleteAss", true);
+                } else {
+                    session()->put("errorDeleteAss", true);
+                }
+            }
+
+            return redirect("/teacher_saas");
+        }
+        return redirect("/");
     }
 }

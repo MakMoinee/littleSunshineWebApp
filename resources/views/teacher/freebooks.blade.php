@@ -209,7 +209,7 @@
         <div class="collapse navbar-collapse p-3" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
             </div>
-            <a href="/logout" class="btn btn-primary py-2 px-4 ms-3">Sign Out</a>
+            <a href="/teacher_home" class="btn btn-primary py-2 px-4 ms-3">Back</a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -217,61 +217,15 @@
 
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row g-5">
-                <center>
-                    <div class="col-md-8">
-                        <div class="dashboard">
-                            <div class="icon-container">
-                                <a href="Tprofile.html">
-                                    <div class="icon" id="profile">
-                                        <img src="/img/group (1).png" alt="Teacher Profile Icon">
-                                        <p>Teacher Profile</p>
-                                    </div>
-                                </a>
-
-                                <a href="teacher grading page.html">
-                                    <div class="icon">
-                                        <img src="/img/bar-graph.png" alt="Student's Grades Icon">
-                                        <p>Student's Grades</p>
-                                    </div>
-                                </a>
-
-                                <a href="/teacher_saas">
-                                    <div class="icon">
-                                        <img src="/img/checklist.png" alt="Set Assignment Icon">
-                                        <p>Set Assignment</p>
-                                    </div>
-                                </a>
-
-                                <a href="/teacher_ss">
-                                    <div class="icon">
-                                        <img src="/img/calendar.png" alt="Set Schedule Icon">
-                                        <p>Set Schedule</p>
-                                    </div>
-                                </a>
-
-                                <a href="/teacher_books">
-                                    <div class="icon">
-                                        <img src="/img/book.png" alt="Post Modules Icon">
-                                        <p>Free Books</p>
-                                    </div>
-                                </a>
-
-                                <a href="/teacher_records">
-                                    <div class="icon">
-                                        <img src="/img/folder.png" alt="Session Records Icon">
-                                        <p>Session Records</p>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </center>
+            <div class="row g-5" style="margin-bottom: 500px;">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBookModal">
+                        Add
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="background position-relative">
         <img src="/img/playground background.png" style="left: 20px;"
             class="background-image position-absolute bottom-0" alt="Left Image">
@@ -290,48 +244,146 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/lib/wow/wow.min.js"></script>
-    <script src="/lib/easing/easing.min.js"></script>
-    <script src="/lib/waypoints/waypoints.min.js"></script>
-    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="/lib/twentytwenty/jquery.event.move.js"></script>
-    <script src="/lib/twentytwenty/jquery.twentytwenty.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="lib/twentytwenty/jquery.event.move.js"></script>
+    <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
+
+    <div class="modal fade " id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="margin: 0; color: #333;">Add New Book</h3>
+                </div>
+                <form id="assForm" action="/teacher_books" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="bookTitle" placeholder="Book Title">
+                            <input type="file" class="form-control mt-2" id="bookImage" accept="image/*">
+                            <input type="text" class="form-control mt-2" id="bookLink" placeholder="Link URL">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                        <button type="submit" class="btn btn-danger" name="btnDeleteAss" value="yes"
+                            style="color:white !important;">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        function openFile() {
+            document.getElementById('mFile').click();
+        }
 
-    @if (session()->pull('errorExist'))
+        function updateBtn() {
+            let txt = document.getElementById('mFile').value;
+            if (txt) {
+
+                let btnOpen = document.getElementById('btnOpen');
+                btnOpen.innerHTML = txt;
+
+                let btnClear = document.getElementById('btnClear');
+                btnClear.removeAttribute("style");
+            }
+        }
+
+        function clearFile() {
+
+            document.getElementById('mFile').value = null;
+            let btnOpen = document.getElementById('btnOpen');
+            btnOpen.innerHTML = "Choose Interactive File";
+
+            let btnClear = document.getElementById('btnClear');
+            btnClear.setAttribute("style", "display:none;");
+        }
+
+        function deleteAss(id, filePath) {
+
+            let assForm = document.getElementById('assForm');
+            assForm.action = `/teacher_saas/${id}`;
+
+            let deleteFilePath = document.getElementById('deleteFilePath');
+            if (filePath) {
+                deleteFilePath.value = filePath;
+            } else {
+
+                deleteFilePath.value = "";
+            }
+        }
+    </script>
+
+    @if (session()->pull('errorSaveAss'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Student Already Exist, Please Try Again New Student',
+                    title: 'Failed To Set Assignment, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorExist') }}
+        {{ session()->forget('errorSaveAss') }}
+    @endif
+
+    @if (session()->pull('errorDeleteAss'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Delete Assignment, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDeleteAss') }}
     @endif
 
 
-    @if (session()->pull('successLogin'))
+    @if (session()->pull('successDeleteAss'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Login Successfully',
+                    title: 'Successfully Deleted Assignment',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successLogin') }}
+        {{ session()->forget('successDeleteAss') }}
+    @endif
+
+    @if (session()->pull('successSaveAss'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Set Assignment',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successSaveAss') }}
     @endif
 
     @if (session()->pull('errorEnroll'))

@@ -328,6 +328,7 @@
                                             <th class="text-center">
                                                 File
                                             </th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -358,6 +359,13 @@
                                                     @else
                                                         None
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger text-white" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteAssModal"
+                                                        onclick="deleteAss({{ $item->assignmentID }},'{{ $item->filePath }}')">
+                                                        Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -414,6 +422,28 @@
     <script src="lib/twentytwenty/jquery.event.move.js"></script>
     <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
 
+    <div class="modal fade " id="deleteAssModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteAssModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="assForm" action="/teacher_saas" method="post">
+                    @method('delete')
+                    @csrf
+                    <div class="modal-body">
+                        <h5>Are You Sure You Want To Delete This Assignment?</h5>
+                        <input type="hidden" name="filePath" id="deleteFilePath" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                        <button type="submit" class="btn btn-danger" name="btnDeleteAss" value="yes"
+                            style="color:white !important;">Proceed Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
@@ -442,6 +472,20 @@
             let btnClear = document.getElementById('btnClear');
             btnClear.setAttribute("style", "display:none;");
         }
+
+        function deleteAss(id, filePath) {
+
+            let assForm = document.getElementById('assForm');
+            assForm.action = `/teacher_saas/${id}`;
+
+            let deleteFilePath = document.getElementById('deleteFilePath');
+            if (filePath) {
+                deleteFilePath.value = filePath;
+            } else {
+
+                deleteFilePath.value = "";
+            }
+        }
     </script>
 
     @if (session()->pull('errorSaveAss'))
@@ -459,6 +503,36 @@
         {{ session()->forget('errorSaveAss') }}
     @endif
 
+    @if (session()->pull('errorDeleteAss'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Delete Assignment, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDeleteAss') }}
+    @endif
+
+
+    @if (session()->pull('successDeleteAss'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Deleted Assignment',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successDeleteAss') }}
+    @endif
 
     @if (session()->pull('successSaveAss'))
         <script>
