@@ -261,19 +261,25 @@
                 <div class="modal-header">
                     <h3 style="margin: 0; color: #333;">Add New Book</h3>
                 </div>
-                <form id="assForm" action="/teacher_books" method="post">
+                <form id="assForm" action="/teacher_books" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="bookTitle" placeholder="Book Title">
-                            <input type="file" class="form-control mt-2" id="bookImage" accept="image/*">
-                            <input type="text" class="form-control mt-2" id="bookLink" placeholder="Link URL">
+                            <input type="text" name="title" class="form-control" id="bookTitle"
+                                placeholder="Book Title">
+                            <label class="text-dark mt-2" for="thumbnail">Thumbnail</label>
+                            <input type="file" name="thumbnail" class="form-control mt-2" id="bookImage"
+                                accept=".jpg,.jpeg,.png">
+                            <label class="text-dark mt-2" for="book">Book File</label>
+                            <input type="file" name="book" class="form-control mt-2" id="bookFile"
+                                accept=".pdf">
+                            <input type="text" name="bookLink" class="form-control mt-2" id="bookLink" placeholder="Link URL">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             style="color:white !important;">Close</button>
-                        <button type="submit" class="btn btn-danger" name="btnDeleteAss" value="yes"
+                        <button type="submit" class="btn btn-danger" name="btnAddBook" value="yes"
                             style="color:white !important;">Add</button>
                     </div>
                 </form>
@@ -371,34 +377,34 @@
         {{ session()->forget('successDeleteAss') }}
     @endif
 
-    @if (session()->pull('successSaveAss'))
+    @if (session()->pull('successAddBook'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Set Assignment',
+                    title: 'Successfully Added Book',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successSaveAss') }}
+        {{ session()->forget('successAddBook') }}
     @endif
 
-    @if (session()->pull('errorEnroll'))
+    @if (session()->pull('errorAddBook'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    title: 'Failed To Add Book, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorEnroll') }}
+        {{ session()->forget('errorAddBook') }}
     @endif
 </body>
 
