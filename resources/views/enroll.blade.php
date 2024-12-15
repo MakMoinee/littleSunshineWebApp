@@ -136,12 +136,12 @@
                                         <textarea name="diagnosed" class="form-control mt-2" rows="3"
                                             placeholder="If diagnosed, please specify the student's condition..."></textarea>
 
-                                        <div class="form-group mt-2">
+                                        {{-- <div class="form-group mt-2">
                                             <input required placeholder="Username" type="text" name="username"
                                                 id="" class="form-control">
                                             <input placeholder="Password" required type="password" name="password"
                                                 id="" class="form-control">
-                                        </div>
+                                        </div> --}}
 
                                         <button name="btnEnroll" value="yes" type="submit"
                                             class="btn btn-primary mt-2 submit-btn">Submit</button>

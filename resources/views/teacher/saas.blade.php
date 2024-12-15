@@ -263,7 +263,8 @@
                             </center>
                         </div>
                         <div class="card-body">
-                            <form action="/teacher_saas" method="post" autocomplete="off">
+                            <form action="/teacher_saas" method="post" autocomplete="off"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <select class="form-control" name="studentName">
@@ -285,7 +286,7 @@
                                                 type="button" onclick="openFile()">Choose Interactive
                                                 File</button>
 
-                                            <input type="file" style="display: none" name="file"
+                                            <input required type="file" style="display: none" name="file"
                                                 id="mFile" placeholder="Choose File For Interactive"
                                                 onchange="updateBtn()">
 
@@ -293,6 +294,16 @@
                                                 style="display: none" onclick="clearFile()">Clear</button>
                                         </div>
                                     </div>
+
+                                    <input type="date" class="form-control input-field mt-2" name="date">
+                                    <div class="time-range mt-2">
+                                        <input type="time" class="form-control -field" name="startTime">
+                                        <span class="text-white">To</span>
+                                        <input type="time" class="form-control input-field" name="endTime">
+                                    </div>
+
+                                    <button name="btnSetAssWithFile" value="yes" type="submit"
+                                        class="btn btn-primary set-button mt-2">SET</button>
                                 </div>
                             </form>
                         </div>
@@ -314,11 +325,60 @@
                                             <th>Session #</th>
                                             <th class="text-center">Due Date From</th>
                                             <th>Due Date To</th>
-                                            <th></th>
+                                            <th class="text-center">
+                                                File
+                                            </th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+                                        @foreach ($assignments as $item)
+                                            <tr class="align-middle">
+                                                <td>
+                                                    {{ $item->title }}
+                                                </td>
+                                                <td class="text-center">
+                                                    @foreach ($students as $s)
+                                                        @if ($s['id'] == $item->studentID)
+                                                            {{ $s['name'] }}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{ $item->sessionID }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ (new DateTime($item->dueFrom))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                </td>
+                                                <td>
+                                                    {{ (new DateTime($item->dueTo))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                </td>
+                                                <td class="text-center">
+                                                    @if ($item->filePath)
+                                                        <a href="{{ $item->filePath }}">View File</a>
+                                                    @else
+                                                        None
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pagination">
+                                        <ul class="pagination">
+                                            @for ($i = 1; $i <= $assignments->lastPage(); $i++)
+                                                <li class="page-item ">
+                                                    <a class="page-link {{ $assignments->currentPage() == $i ? 'active' : '' }}"
+                                                        href="{{ $assignments->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                            @endfor
+                                        </ul>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

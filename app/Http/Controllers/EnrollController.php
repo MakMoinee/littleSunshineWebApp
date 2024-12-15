@@ -46,40 +46,23 @@ class EnrollController extends Controller
             if (count($query) > 0) {
                 session()->put("errorExist", true);
             } else {
-                $query = json_decode(DB::table('users')
-                    ->whereRaw('LOWER(username) = ?', [strtolower($request->username)])
-                    ->get(), true);
-                if (count($query) > 0) {
-                    session()->put("errorUserExist", true);
+                $newStudent = new Students();
+                $newStudent->userID = 0;
+                $newStudent->name = $request->studentName;
+                $newStudent->studentID = $request->course;
+                $newStudent->guardian = $request->guardianName;
+                $newStudent->contactNumber = $request->contactNumber;
+                $newStudent->guardianEmail = $request->guardianEmail;
+                $newStudent->address = $request->address;
+                $newStudent->type = $request->condition;
+                $newStudent->diagnose_remarks = $request->diagnosed;
+                $newStudent->course = $request->course;
+                $isSave = $newStudent->save();
+                if ($isSave) {
+                    session()->put("successEnroll", true);
                 } else {
-                    $newUser = new Users();
-                    $newUser->username = $request->username;
-                    $newUser->password = Hash::make($request->password);
-                    $newUser->userType = "student";
-                    $newUser->status = "active";
-                    $isSaveUser = $newUser->save();
-                    if ($isSaveUser) {
-                        $newStudent = new Students();
-                        $newStudent->userID = 0;
-                        $newStudent->name = $request->studentName;
-                        $newStudent->studentID = $request->course;
-                        $newStudent->guardian = $request->guardianName;
-                        $newStudent->contactNumber = $request->contactNumber;
-                        $newStudent->guardianEmail = $request->guardianEmail;
-                        $newStudent->address = $request->address;
-                        $newStudent->type = $request->condition;
-                        $newStudent->diagnose_remarks = $request->diagnosed;
-                        $newStudent->course = $request->course;
-                        $isSave = $newStudent->save();
-                        if ($isSave) {
-                            session()->put("successEnroll", true);
-                        } else {
 
-                            session()->put("errorEnroll", true);
-                        }
-                    } else {
-                        session()->put("errorUserCreate", true);
-                    }
+                    session()->put("errorEnroll", true);
                 }
             }
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assignments;
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherSetAssignmentController extends Controller
 {
@@ -22,7 +23,11 @@ class TeacherSetAssignmentController extends Controller
             }
 
             $allStudents = json_decode(Students::all(), true);
-            return view('teacher.saas', ['students' => $allStudents]);
+            $allAss = DB::table('assignments')
+                ->where('teacherID', '=', $user['userID'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            return view('teacher.saas', ['students' => $allStudents, 'assignments' => $allAss]);
         }
         return redirect("/");
     }
@@ -65,7 +70,43 @@ class TeacherSetAssignmentController extends Controller
                 } else {
                     session()->put("errorSaveAss", true);
                 }
+            } else if ($request->btnSetAssWithFile) {
+                // dd($request);
+                $files = $request->file('file');
+                $fileName = "";
+                if ($files) {
+                    $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/assignments';
+                    $fileName = strtotime(now()) . "." . $files->getClientOriginalExtension();
+                    $isFile = $files->move($destinationPath,  $fileName);
+                    chmod($destinationPath, 0755);
+                    if ($fileName != "") {
+                        $fileName = "/data/assignments/" . $fileName;
+
+                        $newAss = new Assignments();
+                        $newAss->title = $request->title;
+                        $newAss->sessionID = $request->sessionNumber;
+                        $newAss->studentID = $request->studentName;
+                        $newAss->teacherID = $user['userID'];
+                        $newAss->dueFrom = date('Y-m-d H:i:s', strtotime($request->date . " " . $request->startTime));
+                        $newAss->dueTo = date('Y-m-d H:i:s', strtotime($request->date . " " . $request->endTime));
+                        $newAss->dueDate = $request->date;
+                        $newAss->submissionType = "online";
+                        $newAss->filePath = $fileName;
+                        $isSave = $newAss->save();
+                        if ($isSave) {
+                            session()->put("successSaveAss", true);
+                        } else {
+                            session()->put("errorSaveAss", true);
+                        }
+                    } else {
+
+                        session()->put("errorSaveAss", true);
+                    }
+                } else {
+                    session()->put("errorSaveAss", true);
+                }
             }
+
             return redirect("/teacher_saas");
         }
         return redirect("/");

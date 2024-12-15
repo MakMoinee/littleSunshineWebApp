@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('dueFrom');
             $table->timestamp('dueTo');
             $table->string('submissionType', 255);
+            $table->string('filePath', 255)->nullable(true);
             $table->timestamps();
         });
     }
