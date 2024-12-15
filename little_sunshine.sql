@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 14/12/2024 13:02:53
+ Date: 16/12/2024 07:51:19
 */
 
 SET NAMES utf8mb4;
@@ -31,15 +31,35 @@ CREATE TABLE `assignments`  (
   `dueFrom` timestamp NOT NULL,
   `dueTo` timestamp NOT NULL,
   `submissionType` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filePath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`assignmentID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of assignments
 -- ----------------------------
-INSERT INTO `assignments` VALUES (1, 1, 3, 1, 'sss', '2024-12-14', '2024-12-14 11:19:00', '2024-12-14 23:19:00', 'f2f', '2024-12-14 03:19:10', '2024-12-14 03:19:10');
+
+-- ----------------------------
+-- Table structure for books
+-- ----------------------------
+DROP TABLE IF EXISTS `books`;
+CREATE TABLE `books`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `userID` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `book` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of books
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for migrations
@@ -50,7 +70,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -60,8 +80,9 @@ INSERT INTO `migrations` VALUES (3, '2024_12_12_123520_create_schedules_table', 
 INSERT INTO `migrations` VALUES (5, '2024_12_12_123914_create_students_table', 5);
 INSERT INTO `migrations` VALUES (6, '2024_12_12_124155_create_teachers_table', 6);
 INSERT INTO `migrations` VALUES (7, '2024_12_12_171120_create_users_table', 6);
-INSERT INTO `migrations` VALUES (9, '2024_12_12_123230_create_assignments_table', 7);
 INSERT INTO `migrations` VALUES (10, '2024_12_12_123723_create_sessions_table', 8);
+INSERT INTO `migrations` VALUES (11, '2024_12_12_123230_create_assignments_table', 9);
+INSERT INTO `migrations` VALUES (12, '2024_12_15_233131_create_books_table', 10);
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -81,7 +102,7 @@ CREATE TABLE `personal_access_tokens`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token` ASC) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type` ASC, `tokenable_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of personal_access_tokens
@@ -149,11 +170,12 @@ CREATE TABLE `students`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of students
 -- ----------------------------
+INSERT INTO `students` VALUES (4, 0, 'course1', 'Kennen C Borbon', 'Leonardo B Borbon', '09090464399', 'sample@gmail.com', 'Door 10, San Jose Extension', 'normal', NULL, 'course1', '2024-12-15 22:39:34', '2024-12-15 22:39:34');
 
 -- ----------------------------
 -- Table structure for teachers
