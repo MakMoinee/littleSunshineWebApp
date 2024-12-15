@@ -218,7 +218,7 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row g-5" style="margin-bottom: 100px;">
-                <div class="col-md-6 mx-auto">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="card-body bg-mbg">
                             <h2 class="text-white">
@@ -227,23 +227,23 @@
                             <form action="/teacher_saas" method="post" autocomplete="off">
                                 @csrf
                                 <div class="form-group">
-                                    <select class="form-control input-field" name="studentName">
+                                    <select class="form-control input-field mt-2" name="studentName">
                                         <option value="">Student Name...</option>
                                         @foreach ($students as $item)
                                             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                                         @endforeach
                                     </select>
-                                    <input type="number" class="form-control input-field" name="sessionNumber"
+                                    <input type="number" class="form-control input-field mt-2" name="sessionNumber"
                                         placeholder="Session #">
-                                    <input type="text" class="form-control input-field" name="title"
+                                    <input type="text" class="form-control input-field mt-2" name="title"
                                         placeholder="Assignment Title">
-                                    <input type="date" class="form-control input-field" name="date">
-                                    <div class="time-range">
+                                    <input type="date" class="form-control input-field mt-2" name="date">
+                                    <div class="time-range mt-2">
                                         <input type="time" class="form-control -field" name="startTime">
                                         <span class="text-white">To</span>
                                         <input type="time" class="form-control input-field" name="endTime">
                                     </div>
-                                    <select required class="form-control input-field" name="submissionType">
+                                    <select required class="form-control input-field mt-2" name="submissionType">
                                         <option value="" selected>Submission Type</option>
                                         <option value="f2f">F2F</option>
                                         <option value="online">Online</option>
@@ -252,6 +252,74 @@
                                         class="btn btn-primary set-button mt-2">SET</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-mbg">
+                        <div class="card-header ">
+                            <center>
+                                <h3 class="text-white">Interactive Assignment</h3>
+                            </center>
+                        </div>
+                        <div class="card-body">
+                            <form action="/teacher_saas" method="post" autocomplete="off">
+                                @csrf
+                                <div class="form-group">
+                                    <select class="form-control" name="studentName">
+                                        <option value="">Student Name...</option>
+                                        @foreach ($students as $item)
+                                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="number" class="form-control mt-2" name="sessionNumber"
+                                        placeholder="Session #">
+
+                                    <input type="text" class="form-control input-field mt-2" name="title"
+                                        placeholder="Assignment Title">
+
+
+                                    <div class="row mt-2">
+                                        <div class="col-md-12 d-flex">
+                                            <button class="btn btn-success text-white me-2" id="btnOpen"
+                                                type="button" onclick="openFile()">Choose Interactive
+                                                File</button>
+
+                                            <input type="file" style="display: none" name="file"
+                                                id="mFile" placeholder="Choose File For Interactive"
+                                                onchange="updateBtn()">
+
+                                            <button type="button" id="btnClear" class="btn btn-danger text-white"
+                                                style="display: none" onclick="clearFile()">Clear</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-5" style="margin-bottom: 500px;">
+                <div class="col-md-12">
+
+                    <div class="card mt-3 bg-mbg">
+                        <div class="card-body">
+                            <div class="table-responsive bg-white">
+                                <table class="table border mb-0">
+                                    <thead class="table-light fw-semibold">
+                                        <tr class="align-middle">
+                                            <th>Title</th>
+                                            <th class="text-center">Student Name</th>
+                                            <th>Session #</th>
+                                            <th class="text-center">Due Date From</th>
+                                            <th>Due Date To</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -288,6 +356,33 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        function openFile() {
+            document.getElementById('mFile').click();
+        }
+
+        function updateBtn() {
+            let txt = document.getElementById('mFile').value;
+            if (txt) {
+
+                let btnOpen = document.getElementById('btnOpen');
+                btnOpen.innerHTML = txt;
+
+                let btnClear = document.getElementById('btnClear');
+                btnClear.removeAttribute("style");
+            }
+        }
+
+        function clearFile() {
+
+            document.getElementById('mFile').value = null;
+            let btnOpen = document.getElementById('btnOpen');
+            btnOpen.innerHTML = "Choose Interactive File";
+
+            let btnClear = document.getElementById('btnClear');
+            btnClear.setAttribute("style", "display:none;");
+        }
+    </script>
 
     @if (session()->pull('errorSaveAss'))
         <script>
