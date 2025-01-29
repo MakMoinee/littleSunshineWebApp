@@ -218,7 +218,7 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row g-5" style="margin-bottom: 100px;">
-                <div class="col-md-6">
+                {{-- <div class="col-md-6 invisible">
                     <div class="card">
                         <div class="card-body bg-mbg">
                             <h2 class="text-white">
@@ -254,12 +254,12 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
+                </div> --}}
+                <div class="col-md-6 mx-auto">
                     <div class="card bg-mbg">
                         <div class="card-header ">
                             <center>
-                                <h3 class="text-white">Interactive Assignment</h3>
+                                <h3 class="text-white">Set Assignment</h3>
                             </center>
                         </div>
                         <div class="card-body">
@@ -283,7 +283,7 @@
                                     <div class="row mt-2">
                                         <div class="col-md-12 d-flex">
                                             <button class="btn btn-success text-white me-2" id="btnOpen"
-                                                type="button" onclick="openFile()">Choose Interactive
+                                                type="button" onclick="openFile()">Upload A
                                                 File</button>
 
                                             <input required type="file" style="display: none" name="file"
@@ -294,6 +294,8 @@
                                                 style="display: none" onclick="clearFile()">Clear</button>
                                         </div>
                                     </div>
+                                    <br>
+                                    <h4 class="text-white">Deadline:</h4>
 
                                     <input type="date" class="form-control input-field mt-2" name="date">
                                     <div class="time-range mt-2">
