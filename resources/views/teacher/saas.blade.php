@@ -213,10 +213,16 @@
         </div>
     </nav>
     <!-- Navbar End -->
-
+    <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
+        <img src="/img/playground background.png" style="left: 20px;"
+            class="background-image position-absolute bottom-0" alt="Left Image">
+        <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
+            alt="Right Image">
+    </div>
 
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
+            
             <div class="row g-5" style="margin-bottom: 100px;">
                 {{-- <div class="col-md-6 invisible">
                     <div class="card">
@@ -395,12 +401,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="background position-relative">
-        <img src="/img/playground background.png" style="left: 20px;"
-            class="background-image position-absolute bottom-0" alt="Left Image">
-        <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
-            alt="Right Image">
     </div>
 
 

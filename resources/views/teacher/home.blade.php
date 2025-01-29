@@ -206,15 +206,16 @@
                 </ul>
             </div>
         </header>
+        <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
+            <img src="/img/playground background.png" style="left: 20px;"
+                class="background-image position-absolute bottom-0" alt="Left Image">
+            <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
+                alt="Right Image">
+        </div>
         <div class="body flex-grow-1 px-3 bg-content">
             <div class="container-lg">
 
-                <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
-                    <img src="/img/playground background.png" style="left: 20px;"
-                        class="background-image position-absolute bottom-0" alt="Left Image">
-                    <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
-                        alt="Right Image">
-                </div>
+
                 <div class="row mt-2" style="margin-left: 100px;">
                     <div class="col-lg-3 mx-auto me-1 mt-1">
                         <a href="/" class="text-decoration-none">
