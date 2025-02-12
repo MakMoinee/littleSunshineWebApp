@@ -228,9 +228,9 @@
                 </ul>
                 <ul class="header-nav ms-3">
                     <li class="nav-item">
-                        <a href="/logout" class="btn"
+                        <a href="/student_home" class="btn"
                             style="background-color: white !important; color: rgb(0, 0, 0) !important;">
-                            Logout
+                            Back
                         </a>
                     </li>
                 </ul>
@@ -275,19 +275,27 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-
-                                        <div class="row d-flex">
-                                            <div class="col-lg-12">
-                                                <button style="margin-left: 20px;"
-                                                    class="btn btn-primary btn-sm">Upload</button>
-                                                <button style="margin-left: 20px;"
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5>Your Answer:</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2 d-flex">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary btn-sm"
+                                                    onclick="document.getElementById('mFile{{ $item['assignmentID'] }}').click();">Upload</button>
+                                                <button style="margin-left: 10px;"
                                                     class="btn btn-success btn-sm">Save</button>
+                                                <input type="file" name="answerFile"
+                                                    id="mFile{{ $item['assignmentID'] }}" style="display: none;"
+                                                    onchange="previewData(event,{{ $item['assignmentID'] }})">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <center>
                                                 <embed style="height: 500px; width: 100%; display: none;"
-                                                    class="embed-responsive mt-2" id="pdfViewer2" src=""
+                                                    class="embed-responsive mt-2"
+                                                    id="pdfViewer2{{ $item['assignmentID'] }}" src=""
                                                     type="application/pdf">
                                             </center>
                                         </div>
@@ -324,6 +332,21 @@
             } else {
                 ass.style = "display:none";
                 activeId = id;
+            }
+        }
+
+        function previewData(event, id) {
+            var files = event.currentTarget.files;
+            if (files && files[0]) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    console.log("here");
+                    var output = document.getElementById(`pdfViewer2${id}`);
+                    output.removeAttribute("style");
+                    output.setAttribute("style", "height: 500px; width: 100%;");
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(files[0]);
             }
         }
     </script>
