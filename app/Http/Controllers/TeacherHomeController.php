@@ -14,7 +14,10 @@ class TeacherHomeController extends Controller
         if (session()->exists('users')) {
             $user = session()->pull('users');
             session()->put("users", $user);
-
+            
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
             return view('teacher.home');
         }
         return redirect("/");

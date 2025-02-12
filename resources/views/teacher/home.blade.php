@@ -207,9 +207,9 @@
             </div>
         </header>
         <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
-            <img src="/img/playground background.png" style="left: 20px;"
+            <img height="150px" src="/img/playground background.png" style="left: 20px;"
                 class="background-image position-absolute bottom-0" alt="Left Image">
-            <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
+            <img height="150px" src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
                 alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
@@ -218,7 +218,7 @@
 
                 <div class="row mt-2" style="margin-left: 100px;">
                     <div class="col-lg-3 mx-auto me-1 mt-1">
-                        <a href="/" class="text-decoration-none">
+                        <a href="/teacher_profile" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
                                     <img src="/img/group (1).png" class="mimage" alt="Teacher Profile Icon"

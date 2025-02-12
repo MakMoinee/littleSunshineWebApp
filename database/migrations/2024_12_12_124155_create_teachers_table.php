@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->integer('userID');
-            $table->string('name', 100);
-            $table->string('contactNumber', 13);
-            $table->string('occupation', 255);
-            $table->string('emailAddress', 100);
+            $table->string('name', 100)->nullable();
+            $table->string('contactNumber', 13)->nullable();
+            $table->string('occupation', 255)->nullable();
+            $table->string('address', 100)->nullable();
+            $table->string('emailAddress', 100)->nullable();
             $table->string('imagePath', 255)->nullable();
             $table->timestamps();
         });
