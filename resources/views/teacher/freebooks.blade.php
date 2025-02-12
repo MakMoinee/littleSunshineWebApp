@@ -216,9 +216,9 @@
 
 
     <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
-        <img src="/img/playground background.png" style="left: 20px;"
+        <img height="150px" src="/img/playground background.png" style="left: 20px;"
             class="background-image position-absolute bottom-0" alt="Left Image">
-        <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
+        <img height="150px" src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
             alt="Right Image">
     </div>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -273,7 +273,8 @@
                             <label class="text-dark mt-2" for="book">Book File</label>
                             <input type="file" name="book" class="form-control mt-2" id="bookFile"
                                 accept=".pdf">
-                            <input type="text" name="bookLink" class="form-control mt-2" id="bookLink" placeholder="Link URL">
+                            <input type="text" name="bookLink" class="form-control mt-2" id="bookLink"
+                                placeholder="Link URL">
                         </div>
                     </div>
                     <div class="modal-footer">

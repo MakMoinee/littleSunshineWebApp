@@ -2,23 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         if (session()->exists('users')) {
             $user = session()->pull('users');
             session()->put("users", $user);
-            
+
             if ($user['userType'] != "teacher") {
                 return redirect("/logout");
             }
-            return view('teacher.home');
+
+            $sched = $request->query('sched');
+            if (!$sched) {
+                $sched = (new DateTime(now()))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
+            } 
+
+
+            $schedules = json_decode(DB::table('schedules')->where('teacherID', '=', $user['userID'])->where('scheduleDate', '=', $sched)->get(), true);
+
+
+            return view('teacher.home', ['schedules' => $schedules]);
         }
         return redirect("/");
     }

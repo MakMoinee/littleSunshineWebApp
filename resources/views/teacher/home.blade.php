@@ -158,13 +158,32 @@
                                 <div class="container mt-3" style="text-decoration: none; height: 350px !important;">
                                     <div id="calendar"></div>
                                 </div>
-                                <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
-                                    <div class="card-body">
-                                        <div class="col-lg-12">
-                                            <h6 class="text-dark">There are no scheduled session for today</h6>
+                                @if ($schedules)
+                                    @foreach ($schedules as $item)
+                                        <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
+                                            <div class="card-body">
+                                                <div class="col-lg-12">
+                                                    <h6 class="text-dark"> You Have Scheduled On
+                                                        {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <div class="card mt-3"
+                                        style="margin-right: 10px; margin-left: 10px; background-color: #d95c5c">
+
+                                    </div>
+                                @else
+                                    <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
+                                        <div class="card-body">
+                                            <div class="col-lg-12">
+                                                <h6 class="text-dark">There are no scheduled session for today</h6>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -209,8 +228,8 @@
         <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
             <img height="150px" src="/img/playground background.png" style="left: 20px;"
                 class="background-image position-absolute bottom-0" alt="Left Image">
-            <img height="150px" src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
-                alt="Right Image">
+            <img height="150px" src="/img/flowerbackground.png"
+                class="background-image position-absolute bottom-0 end-0" alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
             <div class="container-lg">
@@ -328,13 +347,7 @@
                     }
                 ],
                 dateClick: function(info) {
-                    let eventTitle = prompt("Enter event title:");
-                    if (eventTitle) {
-                        calendar.addEvent({
-                            title: eventTitle,
-                            start: info.dateStr
-                        });
-                    }
+                    window.location = `/teacher_home?sched=${info.dateStr}`;
                 },
                 eventClick: function(info) {
                     if (confirm("Delete this event?")) {

@@ -215,9 +215,9 @@
     <!-- Navbar End -->
 
     <div class="background position-relative" style="position: fixed !important; margin-top: 350px;">
-        <img src="/img/playground background.png" style="left: 20px;"
+        <img height="150px" src="/img/playground background.png" style="left: 20px;"
             class="background-image position-absolute bottom-0" alt="Left Image">
-        <img src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
+        <img height="150px" src="/img/flowerbackground.png" class="background-image position-absolute bottom-0 end-0"
             alt="Right Image">
     </div>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
