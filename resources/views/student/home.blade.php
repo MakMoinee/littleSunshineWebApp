@@ -161,7 +161,7 @@
                                 @if ($schedules)
                                     @foreach ($schedules as $item)
                                         <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
-                                            <a class="text-decoration-none" href="/student_view_sched?id={{ $item['id'] }}" target="_blank">
+                                            <a class="text-decoration-none" href="/student_ss" target="_blank">
                                                 <div class="card-body">
                                                     <div class="col-lg-12">
                                                         <h6 class="text-dark"> You Have Schedule On
@@ -172,10 +172,6 @@
                                             </a>
                                         </div>
                                     @endforeach
-                                    <div class="card mt-3"
-                                        style="margin-right: 10px; margin-left: 10px; background-color: #d95c5c">
-
-                                    </div>
                                 @else
                                     <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
                                         <div class="card-body">
@@ -185,6 +181,26 @@
                                         </div>
                                     </div>
                                 @endif
+
+                                <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
+                                    <div class="card-body">
+                                        <div class="table-responsive bg-white">
+                                            <table class="table border mb-0">
+                                                <thead class="table-light fw-semibold">
+                                                    <tr class="align-middle">
+                                                        <th>Assignments</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mt-3"
+                                    style="margin-right: 10px; margin-left: 10px; background-color: #d95c5c">
+
+                                </div>
 
                             </div>
                         </div>
@@ -339,7 +355,7 @@
                     }
                 ],
                 dateClick: function(info) {
-                    window.location = `/teacher_home?sched=${info.dateStr}`;
+                    window.location = `/student_home?sched=${info.dateStr}`;
                 },
                 eventClick: function(info) {
                     if (confirm("Delete this event?")) {
