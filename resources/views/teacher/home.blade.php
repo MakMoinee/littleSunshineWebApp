@@ -163,7 +163,7 @@
                                         <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
                                             <div class="card-body">
                                                 <div class="col-lg-12">
-                                                    <h6 class="text-dark"> You Have Scheduled On
+                                                    <h6 class="text-dark"> You Have Schedule On
                                                         {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                     </h6>
                                                 </div>
