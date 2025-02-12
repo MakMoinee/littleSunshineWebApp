@@ -3,6 +3,7 @@
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\StudentAssignmentController;
 use App\Http\Controllers\StudentHomeController;
 use App\Http\Controllers\StudentSchedules;
 use App\Http\Controllers\TeacherFreeBooksController;
@@ -44,4 +45,5 @@ Route::resource('/teacher_records', TeacherSessionRecordsController::class);
 Route::resource('/teacher_books', TeacherFreeBooksController::class);
 Route::resource('/teacher_profile', TeacherProfileController::class);
 Route::resource('/student_ss', StudentSchedules::class);
+Route::resource('/student_saas', StudentAssignmentController::class);
 Route::get('/logout', [LogoutController::class, 'index']);
