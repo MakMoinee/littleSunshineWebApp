@@ -192,6 +192,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($assignments as $item)
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                <a href="/student_saas" class="text-decoration-none">
+                                                                    {{ $item['title'] }}
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

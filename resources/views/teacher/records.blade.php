@@ -240,6 +240,7 @@
                                         @endforeach
                                     </select>
                                     <select class="form-control me-2 bg-white" id="status" name="status">
+                                        <option value="Active">Active</option>
                                         <option value="Done">Done</option>
                                         <option value="Absent">Absent</option>
                                     </select>

@@ -30,9 +30,15 @@
     <link href="/assets/examples.css" rel="stylesheet">
     <script type="text/javascript" async src="/assets/js"></script>
     <script src="/assets/667090843876081" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs"></script>
     <style>
         .bg-mbg {
             background-color: #1b2e3d !important;
+            color: white !important;
+        }
+
+        .bg-gred {
+            background-color: #d95c5c !important;
             color: white !important;
         }
 
@@ -163,25 +169,31 @@
                                             </center>
                                         </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-12 mx-auto">
-                                            <div class="card">
-                                                <div class="card-body text-dark">
-                                                    <h5>Reading #1</h5>
-                                                    <p style="font-size: 12px;">Deadline -
-                                                        January</p>
-                                                    <p style="font-size: 10px;margin-top: -10px;">Status: </p>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <button style="float: right;" class="btn btn-dark btn-sm">
-                                                                View
-                                                            </button>
+                                    @foreach ($assignments as $item)
+                                        <div class="row mt-2">
+                                            <div class="col-md-12 mx-auto">
+                                                <div class="card">
+                                                    <div class="card-body text-dark">
+                                                        <h5>{{ $item['title'] }}</h5>
+                                                        <p style="font-size: 12px;">Deadline -
+                                                            {{ (new DateTime($item['dueTo']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                        </p>
+                                                        <p style="font-size: 11px;margin-top: -10px;">Status: To Do</p>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <button style="float: right;"
+                                                                    class="btn btn-dark btn-sm"
+                                                                    onclick="viewAss({{ $item['assignmentID'] }})">
+                                                                    View
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -231,8 +243,60 @@
                 class="background-image position-absolute bottom-0 end-0" alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
-            <div class="container-md" id="">
+            <div class="container-md">
+                @foreach ($assignments as $item)
+                    <div class="align-middle" id="ass{{ $item['assignmentID'] }}" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3> {{ $item['title'] }} </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-dark">
+                                <h3>Instruction:</h3>
+                                <p> Please open the given booklet last session, and take a video of the student reading
+                                    the
+                                    booklet.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bg-gred">
+                                    <div class="card-body">
+                                        <center>
+                                            <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2"
+                                                id="pdfViewer" src="{{ $item['filePath'] }}" type="application/pdf">
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-4">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
 
+                                        <div class="row d-flex">
+                                            <div class="col-lg-12">
+                                                <button style="margin-left: 20px;"
+                                                    class="btn btn-primary btn-sm">Upload</button>
+                                                <button style="margin-left: 20px;"
+                                                    class="btn btn-success btn-sm">Save</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <center>
+                                                <embed style="height: 500px; width: 100%; display: none;"
+                                                    class="embed-responsive mt-2" id="pdfViewer2" src=""
+                                                    type="application/pdf">
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -245,32 +309,23 @@
     <script src="/assets/main.js.download"></script>
     <script></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
+        let activeId;
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Show month view by default
-                selectable: true, // Allow date selection
-                editable: true, // Enable drag & drop
-                events: [ // Sample Events
-                    {
-                        title: 'Sample Event',
-                        start: '2024-02-01',
-                        end: '2024-02-03'
-                    }
-                ],
-                dateClick: function(info) {
-                    window.location = `/student_home?sched=${info.dateStr}`;
-                },
-                eventClick: function(info) {
-                    if (confirm("Delete this event?")) {
-                        info.event.remove();
-                    }
-                }
-            });
 
-            calendar.render();
-        });
+        function viewAss(id) {
+            if (activeId && activeId != id) {
+                let oldAss = document.getElementById(`ass${activeId}`);
+                oldAss.style = "display:none";
+            }
+            let ass = document.getElementById(`ass${id}`);
+            if (ass.getAttribute("style")) {
+                ass.removeAttribute('style');
+                activeId = id;
+            } else {
+                ass.style = "display:none";
+                activeId = id;
+            }
+        }
     </script>
 
     @if (session()->pull('errorExist'))

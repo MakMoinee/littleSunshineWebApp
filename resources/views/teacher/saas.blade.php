@@ -222,7 +222,7 @@
 
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            
+
             <div class="row g-5" style="margin-bottom: 100px;">
                 {{-- <div class="col-md-6 invisible">
                     <div class="card">

@@ -306,10 +306,10 @@
                     </div>
                 </div>
 
-                <div class="row mt-2 d-flex mb-3" style="margin-left: 100px;">
-                    <div class="col-lg-3 mx-auto me-1">
+                <div class="row mt-2 mb-3" style="margin-left: 160px;">
+                    <div class="col-lg-3 mx-auto" style="width: 240px; margin-left: 10px;">
                         <a href="/teacher_eval" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px; padding-right: 10px;">
                                 <div class="card-body micon">
                                     <img src="/postModule.png" class="mimage" alt="Post Evaluation Icon"
                                         style="margin-left: -10px;">

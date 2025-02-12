@@ -24,7 +24,9 @@ class StudentHomeController extends Controller
                     $sched = (new DateTime(now()))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
                 }
                 $schedules = json_decode(DB::table('vwstudentschedules')->where('userID', '=', $user['userID'])->where('scheduleDate', '=', $sched)->get(), true);
-                return view('student.home', ['schedules' => $schedules]);
+                $assignments = json_decode(DB::table('vwstudentassignments')->where('userID', '=', $user['userID'])->orderBy('created_at', 'desc')->get(), true);
+
+                return view('student.home', ['schedules' => $schedules, 'assignments' => $assignments]);
             } else {
                 return redirect("/logout");
             }

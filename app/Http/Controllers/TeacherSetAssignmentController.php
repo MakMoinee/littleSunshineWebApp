@@ -29,7 +29,9 @@ class TeacherSetAssignmentController extends Controller
                 ->where('teacherID', '=', $user['userID'])
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            return view('teacher.saas', ['students' => $allStudents, 'assignments' => $allAss]);
+
+            $mySessions = json_decode(DB::table('sessions')->where('teacherID', '=', $user['userID'])->get(), true);
+            return view('teacher.saas', ['mySessions' => $mySessions, 'students' => $allStudents, 'assignments' => $allAss]);
         }
         return redirect("/");
     }

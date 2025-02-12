@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentAssignmentController extends Controller
 {
@@ -16,7 +17,9 @@ class StudentAssignmentController extends Controller
             session()->put("users", $user);
 
             if ($user['userType'] == "student") {
-               return view('student.saas');
+                $assignments = json_decode(DB::table('vwstudentassignments')->where('userID', '=', $user['userID'])->orderBy('created_at', 'desc')->get(), true);
+
+                return view('student.saas', ['assignments' => $assignments]);
             } else {
                 return redirect("/logout");
             }
