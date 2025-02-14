@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 16/12/2024 07:51:19
+ Date: 15/02/2025 02:41:27
 */
 
 SET NAMES utf8mb4;
@@ -35,11 +35,13 @@ CREATE TABLE `assignments`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`assignmentID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of assignments
 -- ----------------------------
+INSERT INTO `assignments` VALUES (3, 1, 4, 1, 'Sample Assignment', '2025-02-13', '2025-02-13 06:12:00', '2025-02-13 23:12:00', 'online', '/data/assignments/1739398362.pdf', '2025-02-12 22:12:42', '2025-02-12 22:12:42');
+INSERT INTO `assignments` VALUES (4, 1, 4, 1, 'Assignment 2', '2025-02-13', '2025-02-13 06:12:00', '2025-02-13 23:12:00', 'online', '/data/assignments/1739398362.pdf', '2025-02-12 22:12:42', '2025-02-12 22:12:42');
 
 -- ----------------------------
 -- Table structure for books
@@ -70,7 +72,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -78,11 +80,11 @@ CREATE TABLE `migrations`  (
 INSERT INTO `migrations` VALUES (1, '2019_12_14_000001_create_personal_access_tokens_table', 1);
 INSERT INTO `migrations` VALUES (3, '2024_12_12_123520_create_schedules_table', 3);
 INSERT INTO `migrations` VALUES (5, '2024_12_12_123914_create_students_table', 5);
-INSERT INTO `migrations` VALUES (6, '2024_12_12_124155_create_teachers_table', 6);
 INSERT INTO `migrations` VALUES (7, '2024_12_12_171120_create_users_table', 6);
 INSERT INTO `migrations` VALUES (10, '2024_12_12_123723_create_sessions_table', 8);
 INSERT INTO `migrations` VALUES (11, '2024_12_12_123230_create_assignments_table', 9);
 INSERT INTO `migrations` VALUES (12, '2024_12_15_233131_create_books_table', 10);
+INSERT INTO `migrations` VALUES (14, '2024_12_12_124155_create_teachers_table', 11);
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -124,12 +126,13 @@ CREATE TABLE `schedules`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of schedules
 -- ----------------------------
 INSERT INTO `schedules` VALUES (1, 1, 1, 3, 'f2f', '2024-12-14', '2024-12-14 11:45:00', NULL, '2024-12-14 03:45:10', '2024-12-14 03:45:10');
+INSERT INTO `schedules` VALUES (2, 1, 1, 4, 'f2f', '2025-02-13', '2025-02-13 08:00:00', NULL, '2025-02-12 20:18:21', '2025-02-12 20:18:21');
 
 -- ----------------------------
 -- Table structure for sessions
@@ -145,11 +148,12 @@ CREATE TABLE `sessions`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
+INSERT INTO `sessions` VALUES (3, 1, 1, 4, 'First Session', 'Active', '2025-02-12 22:03:26', '2025-02-12 22:03:26');
 
 -- ----------------------------
 -- Table structure for students
@@ -175,7 +179,7 @@ CREATE TABLE `students`  (
 -- ----------------------------
 -- Records of students
 -- ----------------------------
-INSERT INTO `students` VALUES (4, 0, 'course1', 'Kennen C Borbon', 'Leonardo B Borbon', '09090464399', 'sample@gmail.com', 'Door 10, San Jose Extension', 'normal', NULL, 'course1', '2024-12-15 22:39:34', '2024-12-15 22:39:34');
+INSERT INTO `students` VALUES (4, 2, 'course1', 'Kennen C Borbon', 'Leonardo B Borbon', '09090464399', 'sample@gmail.com', 'Door 10, San Jose Extension', 'normal', NULL, 'course1', '2024-12-15 22:39:34', '2024-12-15 22:39:34');
 
 -- ----------------------------
 -- Table structure for teachers
@@ -184,19 +188,21 @@ DROP TABLE IF EXISTS `teachers`;
 CREATE TABLE `teachers`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contactNumber` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `occupation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `emailAddress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `contactNumber` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `occupation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `emailAddress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `imagePath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of teachers
 -- ----------------------------
+INSERT INTO `teachers` VALUES (1, 1, 'Sample Teacher', '123', NULL, 'sadasd', 'sample@gmail.com', NULL, '2025-02-12 20:09:42', '2025-02-12 20:09:42');
 
 -- ----------------------------
 -- Table structure for users
@@ -218,5 +224,17 @@ CREATE TABLE `users`  (
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 'teacher', '$2y$12$VZXrDcvbpwnkfmdDW5veB.SqLZk2yIyONA33wTm2P2Bl7mL/WjU7q', 'teacher', 'active', '2024-12-14 09:32:51', '2024-12-14 09:32:55');
 INSERT INTO `users` VALUES (2, 'sample', '$2y$12$h1JxES8KxoNrkBZL1WoV0.3uX2o24Dxe2CsVr89gxpXUnhEk3olBy', 'student', 'active', '2024-12-14 02:36:30', '2024-12-14 02:36:30');
+
+-- ----------------------------
+-- View structure for vwstudentassignments
+-- ----------------------------
+DROP VIEW IF EXISTS `vwstudentassignments`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwstudentassignments` AS select `assignments`.`assignmentID` AS `assignmentID`,`assignments`.`teacherID` AS `teacherID`,`assignments`.`studentID` AS `studentID`,`assignments`.`sessionID` AS `sessionID`,`assignments`.`title` AS `title`,`assignments`.`dueDate` AS `dueDate`,`assignments`.`dueFrom` AS `dueFrom`,`assignments`.`dueTo` AS `dueTo`,`assignments`.`submissionType` AS `submissionType`,`assignments`.`filePath` AS `filePath`,`assignments`.`created_at` AS `created_at`,`assignments`.`updated_at` AS `updated_at`,`users`.`userID` AS `userID` from ((`users` join `students` on((`users`.`userID` = `students`.`userID`))) join `assignments` on((`students`.`id` = `assignments`.`studentID`)));
+
+-- ----------------------------
+-- View structure for vwstudentschedules
+-- ----------------------------
+DROP VIEW IF EXISTS `vwstudentschedules`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwstudentschedules` AS select `schedules`.`id` AS `id`,`schedules`.`sessionID` AS `sessionID`,`schedules`.`teacherID` AS `teacherID`,`schedules`.`studentID` AS `studentID`,`schedules`.`classType` AS `classType`,`schedules`.`scheduleDate` AS `scheduleDate`,`schedules`.`scheduleTime` AS `scheduleTime`,`schedules`.`meeting` AS `meeting`,`schedules`.`created_at` AS `created_at`,`schedules`.`updated_at` AS `updated_at`,`students`.`userID` AS `userID` from ((`users` join `students` on((`users`.`userID` = `students`.`userID`))) join `schedules` on((`students`.`id` = `schedules`.`studentID`)));
 
 SET FOREIGN_KEY_CHECKS = 1;
