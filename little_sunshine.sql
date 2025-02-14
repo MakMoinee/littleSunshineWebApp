@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 15/02/2025 02:41:27
+ Date: 15/02/2025 02:46:01
 */
 
 SET NAMES utf8mb4;
@@ -179,7 +179,7 @@ CREATE TABLE `students`  (
 -- ----------------------------
 -- Records of students
 -- ----------------------------
-INSERT INTO `students` VALUES (4, 2, 'course1', 'Kennen C Borbon', 'Leonardo B Borbon', '09090464399', 'sample@gmail.com', 'Door 10, San Jose Extension', 'normal', NULL, 'course1', '2024-12-15 22:39:34', '2024-12-15 22:39:34');
+INSERT INTO `students` VALUES (4, 2, 'course1', 'Juan Dela Cruz', 'Leonardo Dela Cruz', '09090464399', 'sample@gmail.com', 'Door 10, San Jose Extension', 'normal', NULL, 'course1', '2024-12-15 22:39:34', '2024-12-15 22:39:34');
 
 -- ----------------------------
 -- Table structure for teachers
