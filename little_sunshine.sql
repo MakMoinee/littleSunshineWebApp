@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 20/02/2025 17:08:28
+ Date: 20/02/2025 18:05:03
 */
 
 SET NAMES utf8mb4;
@@ -74,12 +74,12 @@ CREATE TABLE `evaluations`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of evaluations
 -- ----------------------------
-INSERT INTO `evaluations` VALUES (1, 3, 'Good', '2025-02-20 09:01:41', '2025-02-20 09:01:41');
+INSERT INTO `evaluations` VALUES (3, 3, 'Good', '2025-02-20 09:50:20', '2025-02-20 09:50:20');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -198,7 +198,7 @@ CREATE TABLE `students`  (
 -- ----------------------------
 -- Records of students
 -- ----------------------------
-INSERT INTO `students` VALUES (1, 6, 'course1', 'Kennen C Borbon', 'Kennen C Borbon', '09090464399', 'makmoinee@gmail.com', 'Door 10, San Jose Extension', '/data/evaluations/1740032272.pdf', '', 'course1', '2025-02-20 06:17:52', '2025-02-20 06:17:52');
+INSERT INTO `students` VALUES (1, 2, 'course1', 'Kennen C Borbon', 'Kennen C Borbon', '09090464399', 'makmoinee@gmail.com', 'Door 10, San Jose Extension', '/data/evaluations/1740032272.pdf', '', 'course1', '2025-02-20 06:17:52', '2025-02-20 06:17:52');
 
 -- ----------------------------
 -- Table structure for teachers
@@ -250,6 +250,12 @@ INSERT INTO `users` VALUES (6, 'user1740032272', '$2y$12$FM6VLm7LqBTDQprnyR1d6eH
 -- ----------------------------
 DROP VIEW IF EXISTS `vweval`;
 CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vweval` AS select `evaluations`.`id` AS `id`,`evaluations`.`sessionID` AS `sessionID`,`evaluations`.`evaluation` AS `evaluation`,`evaluations`.`created_at` AS `created_at`,`evaluations`.`updated_at` AS `updated_at`,`sessions`.`studentID` AS `studentID` from (`evaluations` join `sessions` on((`evaluations`.`sessionID` = `sessions`.`id`)));
+
+-- ----------------------------
+-- View structure for vwmyeval
+-- ----------------------------
+DROP VIEW IF EXISTS `vwmyeval`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwmyeval` AS select `evaluations`.`id` AS `id`,`evaluations`.`sessionID` AS `sessionID`,`evaluations`.`evaluation` AS `evaluation`,`evaluations`.`created_at` AS `created_at`,`evaluations`.`updated_at` AS `updated_at`,`sessions`.`details` AS `details`,`students`.`userID` AS `userID`,`students`.`name` AS `name` from ((`evaluations` join `sessions` on((`evaluations`.`sessionID` = `sessions`.`id`))) join `students` on((`sessions`.`studentID` = `students`.`id`)));
 
 -- ----------------------------
 -- View structure for vwstudentassignments

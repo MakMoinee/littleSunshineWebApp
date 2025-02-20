@@ -30,9 +30,15 @@
     <link href="/assets/examples.css" rel="stylesheet">
     <script type="text/javascript" async src="/assets/js"></script>
     <script src="/assets/667090843876081" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs"></script>
     <style>
         .bg-mbg {
             background-color: #1b2e3d !important;
+            color: white !important;
+        }
+
+        .bg-gred {
+            background-color: #d95c5c !important;
             color: white !important;
         }
 
@@ -155,60 +161,43 @@
                             aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
 
                             <div class="simplebar-content" style="padding: 0px;">
-                                <div class="container mt-3" style="text-decoration: none; height: 350px !important;">
-                                    <div id="calendar"></div>
-                                </div>
-                                @if ($schedules)
-                                    @foreach ($schedules as $item)
-                                        <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
-                                            <a class="text-decoration-none" href="/student_ss" target="_blank">
-                                                <div class="card-body">
-                                                    <div class="col-lg-12">
-                                                        <h6 class="text-dark"> You Have Schedule On
-                                                            {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                <div class="container-lg">
+                                    <div class="row">
+                                        <div style="background-color: rgb(63, 63, 63); ">
+                                            <center>
+                                                List Of Sessions
+                                            </center>
                                         </div>
-                                    @endforeach
-                                @else
-                                    <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
+                                    </div>
+                                    <div class="card mt-3">
                                         <div class="card-body">
-                                            <div class="col-lg-12">
-                                                <h6 class="text-dark">There are no scheduled session for today</h6>
+                                            <div class="table-responsive bg-white">
+                                                <table class="table border mb-0">
+                                                    <thead class="table-light fw-semibold">
+                                                        <tr class="align-middle">
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (count($evaluations) > 0)
+                                                            @foreach ($evaluations as $item)
+                                                                <tr class="align-middle">
+                                                                    <td class="text-center" style="cursor: pointer"
+                                                                        onclick="viewData({{ $item['id'] }})">
+                                                                        {{ $item['details'] }} </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @else
+                                                            <tr class="align-middle">
+                                                                <td class="text-center">
+                                                                    No Sessions Yet
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-
-                                <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
-                                    <div class="card-body">
-                                        <div class="table-responsive bg-white">
-                                            <table class="table border mb-0">
-                                                <thead class="table-light fw-semibold">
-                                                    <tr class="align-middle">
-                                                        <th>Assignments</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($assignments as $item)
-                                                        <tr class="align-middle">
-                                                            <td>
-                                                                <a href="/student_saas" class="text-decoration-none">
-                                                                    {{ $item['title'] }}
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card mt-3"
-                                    style="margin-right: 10px; margin-left: 10px; background-color: #d95c5c">
-
                                 </div>
 
                             </div>
@@ -244,9 +233,9 @@
                 </ul>
                 <ul class="header-nav ms-3">
                     <li class="nav-item">
-                        <a href="/logout" class="btn"
+                        <a href="/student_home" class="btn"
                             style="background-color: white !important; color: rgb(0, 0, 0) !important;">
-                            Logout
+                            Back
                         </a>
                     </li>
                 </ul>
@@ -259,85 +248,40 @@
                 class="background-image position-absolute bottom-0 end-0" alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
-            <div class="container-md">
-
-
-                <div class="row mt-2">
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_profile" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/group (1).png" class="mimage" alt="Teacher Profile Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Student Profile</p>
+            @foreach ($evaluations as $item)
+                <div class="container-lg" style="display: none" id="cont{{ $item['id'] }}">
+                    <div class="row mt-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive bg-white">
+                                    <table class="table border mb-0">
+                                        <thead class="table-light fw-semibold ">
+                                            <tr class="align-middle">
+                                                <th>Session #</th>
+                                                <th>Evaluation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($evaluations as $item)
+                                                <tr class="align-middle" id="evals{{ $item['id'] }}"
+                                                    style="display: none;">
+                                                    <td>
+                                                        {{ $item['details'] }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item['evaluation'] }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_grades" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/bar-graph.png" class="mimage" alt="Grading Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Grades / Statistics</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_saas" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/checklist.png" class="mimage" alt="Set Assignment Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Assignment</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_ss" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/calendar.png" class="mimage" alt="Set Schedule Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Meeting Schedules</p>
-                                </div>
-                            </div>
-                        </a>
+                            <br>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_books" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/book.png" class="mimage" alt="Upload Story Book Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Free Story Books</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_eval" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/postModule.png" class="mimage" alt="Post Evaluation Icon"
-                                        style="margin-left: -10px;">
-                                    <p>Post Evaluation</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -349,32 +293,18 @@
     <script src="/assets/main.js.download"></script>
     <script></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
+        let activeId;
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Show month view by default
-                selectable: true, // Allow date selection
-                editable: true, // Enable drag & drop
-                events: [ // Sample Events
-                    {
-                        title: 'Sample Event',
-                        start: '2024-02-01',
-                        end: '2024-02-03'
-                    }
-                ],
-                dateClick: function(info) {
-                    window.location = `/student_home?sched=${info.dateStr}`;
-                },
-                eventClick: function(info) {
-                    if (confirm("Delete this event?")) {
-                        info.event.remove();
-                    }
-                }
-            });
-
-            calendar.render();
-        });
+        function viewData(id) {
+            let cont = document.getElementById(`cont${id}`);
+            if (cont.getAttribute("style")) {
+                cont.removeAttribute('style');
+            } else {
+                cont.setAttribute('style', "display:none;");
+            }
+            let evalsss = document.getElementById(`evals${id}`);
+            evalsss.removeAttribute("style");
+        }
     </script>
 
     @if (session()->pull('errorExist'))
