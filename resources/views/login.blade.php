@@ -92,26 +92,26 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row g-5">
-                <center>
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2>Login</h2>
-                                <form action="/login" method="post">
-                                    @csrf
-                                    <div class="form-group">
-                                        <input type="username" name="username" class="form-control" placeholder="Username" required>
-                                        <br>
-                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                        <br>
-                                        <button class="btn btn-primary" name="btnLogin" value="yes" type="submit"
-                                            class="submit-btn">Login</button>
-                                    </div>
-                                </form>
-                            </div>
+                <div class="col-md-5 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2>Login</h2>
+                            <form action="/login" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="username" name="username" class="form-control" placeholder="Username"
+                                        required>
+                                    <br>
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        required>
+                                    <br>
+                                    <button class="btn btn-primary" name="btnLogin" value="yes" type="submit"
+                                        class="submit-btn">Login</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </center>
+                </div>
             </div>
         </div>
     </div>
