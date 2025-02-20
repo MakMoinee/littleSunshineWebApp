@@ -25,7 +25,7 @@ class TeacherEvaluationController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
 
-           
+
 
             $allSessions = json_decode(DB::table('sessions')->where('teacherID', '=', $user['userID'])->get(), true);
             $datas = array();
@@ -114,8 +114,26 @@ class TeacherEvaluationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
+
+            if ($request->btnDeleteEvaluation) {
+                $deleteCount = DB::table('evaluations')->where('id', '=', $id)->delete();
+                if ($deleteCount > 0) {
+                    session()->put("successDeleteEval", true);
+                } else {
+                    session()->put("errorDeleteEval", true);
+                }
+            }
+            return redirect("/teacher_eval");
+        }
+        return redirect("/");
     }
 }

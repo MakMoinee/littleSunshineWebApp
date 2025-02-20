@@ -252,6 +252,7 @@
                                             <tr class="align-middle">
                                                 <th>Session #</th>
                                                 <th>Evaluation</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -262,6 +263,11 @@
                                                     </td>
                                                     <td>
                                                         {{ $ss['evaluation'] }}
+                                                    </td>
+                                                    <td>
+                                                        <button data-coreui-toggle="modal"
+                                                            data-coreui-target="#deleteModal" class="btn btn-danger"
+                                                            onclick="deleteThis({{ $ss['id'] }})">Delete</button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -325,6 +331,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Evaluation</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="/teacher_eval" method="post" id="deleteEvalForm">
+                        @method('delete')
+                        @csrf
+                        <div class="form-group">
+                            <h6>Are You Sure You Want To Delete This Evaluation</h6>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="btnDeleteEvaluation" value="yes">Yes,
+                        Proceed</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="/assets/coreui.bundle.min.js.download"></script>
     <script src="/assets/simplebar.min.js.download"></script>
 
@@ -344,6 +376,11 @@
                 studData.setAttribute("style", "display:none;");
             }
         }
+
+        function deleteThis(id) {
+            let deleteEvalForm = document.getElementById('deleteEvalForm');
+            deleteEvalForm.action = `/teacher_eval/${id}`;
+        }
     </script>
 
     @if (session()->pull('errorAddEval'))
@@ -361,6 +398,21 @@
         {{ session()->forget('errorAddEval') }}
     @endif
 
+
+    @if (session()->pull('successDeleteEval'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Deleted Evaluation',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successDeleteEval') }}
+    @endif
 
     @if (session()->pull('successAddEval'))
         <script>
@@ -390,6 +442,22 @@
             }, 500);
         </script>
         {{ session()->forget('errorEnroll') }}
+    @endif
+
+
+    @if (session()->pull('errorDeleteEval'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Delete Evaluation, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDeleteEval') }}
     @endif
 </body>
 
