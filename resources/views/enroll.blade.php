@@ -97,7 +97,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2>Enroll</h2>
-                                <form action="/enroll" method="post" autocomplete="off">
+                                <form action="/enroll" method="post" autocomplete="off" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
                                         <select class="form-control" name="course" required>
@@ -118,23 +118,15 @@
                                         <input name="address" class="form-control" type="text"
                                             placeholder="Home Address" required>
 
-                                        <div class="form-group mt-2">
-                                            <label class="d-flex">Condition</label>
-                                            <div class="form-check form-check-inline d-flex ml-2">
-                                                <input class="form-check-input" type="radio" name="condition"
-                                                    value="normal" id="normal" required>
-                                                <label class="form-check-label" for="normal">Normal</label>
-                                            </div>
-                                            <div class="form-check form-check-inline d-flex ml-2">
-                                                <input class="form-check-input" type="radio" name="condition"
-                                                    value="special_needs" id="special_needs">
-                                                <label class="form-check-label" for="special_needs">Diagnosed with
-                                                    Special Needs</label>
-                                            </div>
+                                        <div class="form-group mt-2 d-flex">
+                                            <label class="me-2">Doctor's Evaluation:</label>
+                                            <button type="button" class="btn btn-primary btn-sm me-2"
+                                                onclick="uploadFile()" id="btnUpload">Upload File</button>
+                                            <button id="btnClear" type="button" class="btn btn-danger btn-sm"
+                                                style="display: none" onclick="clearUpload()">Clear</button>
+                                            <input required type="file" name="evaluation" id="evaluationFile"
+                                                class="invisible" onchange="updateBtn()">
                                         </div>
-
-                                        <textarea name="diagnosed" class="form-control mt-2" rows="3"
-                                            placeholder="If diagnosed, please specify the student's condition..."></textarea>
 
                                         {{-- <div class="form-group mt-2">
                                             <input required placeholder="Username" type="text" name="username"
@@ -144,7 +136,7 @@
                                         </div> --}}
 
                                         <button name="btnEnroll" value="yes" type="submit"
-                                            class="btn btn-primary mt-2 submit-btn">Submit</button>
+                                            class="btn btn-primary mt-3 submit-btn">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -177,6 +169,31 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        function uploadFile() {
+            let evaluationFile = document.getElementById('evaluationFile');
+            evaluationFile.click();
+        }
+
+        function updateBtn() {
+            let evaluationFile = document.getElementById('evaluationFile').value;
+            let btnUpload = document.getElementById('btnUpload');
+            btnUpload.innerHTML = evaluationFile;
+
+            let btnClear = document.getElementById('btnClear');
+            btnClear.removeAttribute("style");
+
+        }
+
+        function clearUpload() {
+            let evaluationFile = document.getElementById('evaluationFile');
+            evaluationFile.value = "";
+            let btnClear = document.getElementById('btnClear');
+            btnClear.setAttribute("style", "display:none;");
+            let btnUpload = document.getElementById('btnUpload');
+            btnUpload.innerHTML = "Upload File";
+        }
+    </script>
 
     @if (session()->pull('errorUserCreate'))
         <script>
