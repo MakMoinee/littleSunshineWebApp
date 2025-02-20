@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 15/02/2025 02:46:01
+ Date: 20/02/2025 17:08:28
 */
 
 SET NAMES utf8mb4;
@@ -64,6 +64,24 @@ CREATE TABLE `books`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for evaluations
+-- ----------------------------
+DROP TABLE IF EXISTS `evaluations`;
+CREATE TABLE `evaluations`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `sessionID` int NOT NULL,
+  `evaluation` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of evaluations
+-- ----------------------------
+INSERT INTO `evaluations` VALUES (1, 3, 'Good', '2025-02-20 09:01:41', '2025-02-20 09:01:41');
+
+-- ----------------------------
 -- Table structure for migrations
 -- ----------------------------
 DROP TABLE IF EXISTS `migrations`;
@@ -72,7 +90,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -85,6 +103,7 @@ INSERT INTO `migrations` VALUES (10, '2024_12_12_123723_create_sessions_table', 
 INSERT INTO `migrations` VALUES (11, '2024_12_12_123230_create_assignments_table', 9);
 INSERT INTO `migrations` VALUES (12, '2024_12_15_233131_create_books_table', 10);
 INSERT INTO `migrations` VALUES (14, '2024_12_12_124155_create_teachers_table', 11);
+INSERT INTO `migrations` VALUES (15, '2025_02_20_085510_create_evaluations_table', 12);
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -104,7 +123,7 @@ CREATE TABLE `personal_access_tokens`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token` ASC) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type` ASC, `tokenable_id` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of personal_access_tokens
@@ -153,7 +172,7 @@ CREATE TABLE `sessions`  (
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES (3, 1, 1, 4, 'First Session', 'Active', '2025-02-12 22:03:26', '2025-02-12 22:03:26');
+INSERT INTO `sessions` VALUES (3, 1, 1, 1, 'First Session', 'Active', '2025-02-12 22:03:26', '2025-02-12 22:03:26');
 
 -- ----------------------------
 -- Table structure for students
@@ -174,12 +193,12 @@ CREATE TABLE `students`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of students
 -- ----------------------------
-INSERT INTO `students` VALUES (4, 2, 'course1', 'Juan Dela Cruz', 'Leonardo Dela Cruz', '09090464399', 'sample@gmail.com', 'Door 10, San Jose Extension', 'normal', NULL, 'course1', '2024-12-15 22:39:34', '2024-12-15 22:39:34');
+INSERT INTO `students` VALUES (1, 6, 'course1', 'Kennen C Borbon', 'Kennen C Borbon', '09090464399', 'makmoinee@gmail.com', 'Door 10, San Jose Extension', '/data/evaluations/1740032272.pdf', '', 'course1', '2025-02-20 06:17:52', '2025-02-20 06:17:52');
 
 -- ----------------------------
 -- Table structure for teachers
@@ -217,13 +236,20 @@ CREATE TABLE `users`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`userID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 'teacher', '$2y$12$VZXrDcvbpwnkfmdDW5veB.SqLZk2yIyONA33wTm2P2Bl7mL/WjU7q', 'teacher', 'active', '2024-12-14 09:32:51', '2024-12-14 09:32:55');
 INSERT INTO `users` VALUES (2, 'sample', '$2y$12$h1JxES8KxoNrkBZL1WoV0.3uX2o24Dxe2CsVr89gxpXUnhEk3olBy', 'student', 'active', '2024-12-14 02:36:30', '2024-12-14 02:36:30');
+INSERT INTO `users` VALUES (6, 'user1740032272', '$2y$12$FM6VLm7LqBTDQprnyR1d6eHivSCxQBz1y0oKe63aVstC4C79bTmU.', 'student', 'active', '2025-02-20 06:17:52', '2025-02-20 06:17:52');
+
+-- ----------------------------
+-- View structure for vweval
+-- ----------------------------
+DROP VIEW IF EXISTS `vweval`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vweval` AS select `evaluations`.`id` AS `id`,`evaluations`.`sessionID` AS `sessionID`,`evaluations`.`evaluation` AS `evaluation`,`evaluations`.`created_at` AS `created_at`,`evaluations`.`updated_at` AS `updated_at`,`sessions`.`studentID` AS `studentID` from (`evaluations` join `sessions` on((`evaluations`.`sessionID` = `sessions`.`id`)));
 
 -- ----------------------------
 -- View structure for vwstudentassignments
