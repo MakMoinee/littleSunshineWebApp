@@ -10,6 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,
       shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin
+      Template">
+    <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
     <title>Little Sunshine</title>
     <link rel="manifest" href="https://coreui.io/demos/bootstrap/4.2/free/assets/favicon/manifest.json">
@@ -92,7 +95,7 @@
             color: white !important;
             background-color: white !important;
             padding: 5px;
-            height: 450px !important;
+            height: 350px !important;
         }
 
         .fc-daygrid-day-number {
@@ -152,35 +155,37 @@
                             aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
 
                             <div class="simplebar-content" style="padding: 0px;">
-                                <div class="container mt-3" style="text-decoration: none; height: 450px !important;">
-                                    <div id="calendar"></div>
-                                </div>
-                                @if ($schedules)
-                                    @foreach ($schedules as $item)
-                                        <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
-                                            <div class="card-body">
-                                                <div class="col-lg-12">
-                                                    <h6 class="text-dark"> You Have Schedule On
-                                                        {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
-                                                    </h6>
-                                                </div>
-                                            </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div style="background-color: rgb(63, 63, 63); ">
+                                            <center>
+                                                List Of Students
+                                            </center>
                                         </div>
-                                    @endforeach
-                                    <div class="card mt-3"
-                                        style="margin-right: 10px; margin-left: 10px; background-color: #d95c5c">
-
                                     </div>
-                                @else
-                                    <div class="card mt-2" style="margin-right: 10px; margin-left: 10px;">
+                                    <div class="card mt-2">
                                         <div class="card-body">
-                                            <div class="col-lg-12">
-                                                <h6 class="text-dark">There are no scheduled session for today</h6>
+                                            <div class="table-responsive bg-white">
+                                                <table class="table border mb-0">
+                                                    <thead class="table-light fw-semibold">
+                                                        <tr class="align-middle">
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($students as $item)
+                                                            <tr class="align-middle">
+                                                                <td class="text-center" style="cursor: pointer"
+                                                                    onclick="viewData({{ $item->id }})">
+                                                                    {{ $item->name }} </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
+
                                         </div>
                                     </div>
-                                @endif
-
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -214,9 +219,9 @@
                 </ul>
                 <ul class="header-nav ms-3">
                     <li class="nav-item">
-                        <a href="/logout" class="btn"
+                        <a href="/" class="btn"
                             style="background-color: white !important; color: rgb(0, 0, 0) !important;">
-                            Logout
+                            Back
                         </a>
                     </li>
                 </ul>
@@ -230,98 +235,77 @@
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
             <div class="container-lg">
-                <div class="row mt-3">
-                    <div class="col-lg-2 mx-auto mt-3">
-                        <a href="/teacher_profile" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/img/group (1).png" class="mimage" alt="Teacher Profile Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Teacher Profile</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 mx-auto mt-3">
-                        <a href="/teacher_grading" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/img/bar-graph.png" class="mimage" alt="Grading Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Grading</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 mx-auto mt-3">
-                        <a href="/teacher_saas" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/img/checklist.png" class="mimage" alt="Set Assignment Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Set Assignment</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addEvalModal" tabindex="-1" role="dialog" aria-labelledby="addEvalModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEvalModalLabel">Add Evaluation</h5>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-lg-2 mx-auto mt-3">
-                        <a href="/teacher_ss" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/img/calendar.png" class="mimage" alt="Set Schedule Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Set Schedule</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 mx-auto mt-3">
-                        <a href="/teacher_books" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/img/book.png" class="mimage" alt="Upload Story Book Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Upload Story Book</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 mx-auto mt-3">
-                        <a href="/teacher_records" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/img/folder.png" class="mimage" alt="Session Records Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Session Records</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div class="modal-body">
+                    <form action="/teacher_eval" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label class="text-dark" for="sessionNum">Session:<span class="text-danger">*</span>
+                            </label>
+                            <br>
+                            @foreach ($students as $item)
+                                <select required name="sessionNum" id="sess{{ $item->id }}"
+                                    class="form-control mt-1" style="display: none;">
+                                    <option value="">Select Session</option>
+                                    @foreach ($mSessions as $s)
+                                        @if ($item->id == $s['studentID'])
+                                            <option value="{{ $s['id'] }}">{{ $s['details'] }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            @endforeach
+
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="evaluation">Evaluation:<span class="text-danger">*</span> </label>
+                            <br>
+                            <textarea required name="evaluation" id="" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-lg-2 mx-auto"></div>
-                    <div class="col-lg-2 mx-auto">
-                        <a href="/teacher_eval" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
-                                <div class="card-body micon">
-                                    <img src="/postModule.png" class="mimage" alt="Post Evaluation Icon"
-                                        style="margin-left: -10px;">
-                                    <p>Post Evaluation</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 mx-auto"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="btnAddEvaluation"
+                        value="yes">Save</button>
                 </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Evaluation</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="/teacher_eval" method="post" id="deleteEvalForm">
+                        @method('delete')
+                        @csrf
+                        <div class="form-group">
+                            <h6>Are You Sure You Want To Delete This Evaluation</h6>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="btnDeleteEvaluation" value="yes">Yes,
+                        Proceed</button>
+                </div>
+
+                </form>
             </div>
         </div>
     </div>
@@ -334,63 +318,68 @@
     <script src="/assets/main.js.download"></script>
     <script></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
+        function viewData(id) {
+            let sess = document.getElementById(`sess${id}`);
+            sess.removeAttribute("style");
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Show month view by default
-                selectable: true, // Allow date selection
-                editable: true, // Enable drag & drop
-                events: [ // Sample Events
-                    {
-                        title: 'Sample Event',
-                        start: '2024-02-01',
-                        end: '2024-02-03'
-                    }
-                ],
-                dateClick: function(info) {
-                    window.location = `/teacher_home?sched=${info.dateStr}`;
-                },
-                eventClick: function(info) {
-                    if (confirm("Delete this event?")) {
-                        info.event.remove();
-                    }
-                }
-            });
+            let studData = document.getElementById(`stud${id}`);
+            if (studData.getAttribute("style")) {
+                studData.removeAttribute("style");
+            } else {
+                studData.setAttribute("style", "display:none;");
+            }
+        }
 
-            calendar.render();
-        });
+        function deleteThis(id) {
+            let deleteEvalForm = document.getElementById('deleteEvalForm');
+            deleteEvalForm.action = `/teacher_eval/${id}`;
+        }
     </script>
 
-    @if (session()->pull('errorExist'))
+    @if (session()->pull('errorAddEval'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Student Already Exist, Please Try Again New Student',
+                    title: 'Failed To Add Evaluation, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorExist') }}
+        {{ session()->forget('errorAddEval') }}
     @endif
 
 
-    @if (session()->pull('successLogin'))
+    @if (session()->pull('successDeleteEval'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Login Successfully',
+                    title: 'Successfully Deleted Evaluation',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successLogin') }}
+        {{ session()->forget('successDeleteEval') }}
+    @endif
+
+    @if (session()->pull('successAddEval'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Added Evaluation',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successAddEval') }}
     @endif
 
     @if (session()->pull('errorEnroll'))
@@ -406,6 +395,22 @@
             }, 500);
         </script>
         {{ session()->forget('errorEnroll') }}
+    @endif
+
+
+    @if (session()->pull('errorDeleteEval'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Delete Evaluation, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDeleteEval') }}
     @endif
 </body>
 

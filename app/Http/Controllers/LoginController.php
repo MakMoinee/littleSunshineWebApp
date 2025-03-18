@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -16,6 +18,8 @@ class LoginController extends Controller
             $user = session()->pull('users');
             session()->put("users", $user);
 
+
+
             if ($user['userType'] == "teacher") {
 
                 return redirect("/teacher_home");
@@ -23,6 +27,15 @@ class LoginController extends Controller
 
                 return redirect("/logout");
             }
+        }
+        $count = DB::table('users')->where('userType', '=', "teacher")->count();
+        if ($count == 0) {
+            $newUser = new Users();
+            $newUser->username = "teacher";
+            $newUser->password = Hash::make("teacher");
+            $newUser->userType = "teacher";
+            $newUser->status = "active";
+            $newUser->save();
         }
         return view("login");
     }
