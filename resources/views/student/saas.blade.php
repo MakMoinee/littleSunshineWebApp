@@ -282,13 +282,20 @@
                                         </div>
                                         <div class="row mt-2 d-flex">
                                             <div class="col-md-12">
-                                                <button class="btn btn-primary btn-sm"
-                                                    onclick="document.getElementById('mFile{{ $item['assignmentID'] }}').click();">Upload</button>
-                                                <button style="margin-left: 10px;"
-                                                    class="btn btn-success btn-sm">Save</button>
-                                                <input type="file" name="answerFile"
-                                                    id="mFile{{ $item['assignmentID'] }}" style="display: none;"
-                                                    onchange="previewData(event,{{ $item['assignmentID'] }})">
+                                                <form action="/student_saas" method="post"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <button type="button" class="btn btn-primary btn-sm"
+                                                        onclick="document.getElementById('mFile{{ $item['assignmentID'] }}').click();">Upload</button>
+                                                    <button name="btnSubmission" value="yes" type="submit"
+                                                        style="margin-left: 10px;"
+                                                        class="btn btn-success btn-sm">Save</button>
+                                                    <input type="hidden" name="assID"
+                                                        value="{{ $item['assignmentID'] }}">
+                                                    <input required type="file" name="answerFile"
+                                                        id="mFile{{ $item['assignmentID'] }}" style="display: none;"
+                                                        onchange="previewData(event,{{ $item['assignmentID'] }})">
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -351,50 +358,50 @@
         }
     </script>
 
-    @if (session()->pull('errorExist'))
+    @if (session()->pull('errorSubmit'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Student Already Exist, Please Try Again New Student',
+                    title: 'Failed To Submit Answer, Please Try Again ',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorExist') }}
+        {{ session()->forget('errorSubmit') }}
     @endif
 
 
-    @if (session()->pull('successLogin'))
+    @if (session()->pull('successSubmit'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Login Successfully',
+                    title: 'Successfully Submitted Answer',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successLogin') }}
+        {{ session()->forget('successSubmit') }}
     @endif
 
-    @if (session()->pull('errorEnroll'))
+    @if (session()->pull('errorAnswerExist'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    title: 'You Have Already Answered This Assignment, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorEnroll') }}
+        {{ session()->forget('errorAnswerExist') }}
     @endif
 </body>
 

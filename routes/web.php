@@ -56,4 +56,4 @@ Route::resource('/teacher_eval', TeacherEvaluationController::class);
 Route::resource('/student_eval', StudentEvaluationController::class);
 Route::get('/logout', [LogoutController::class, 'index']);
 Route::resource('/teacher_grading', TeacherGradingController::class);
-Route::resource('/student_grading', StudentGradingController::class);
+Route::resource('/student_grades', StudentGradingController::class);

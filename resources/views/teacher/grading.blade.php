@@ -240,50 +240,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addEvalModal" tabindex="-1" role="dialog" aria-labelledby="addEvalModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addEvalModalLabel">Add Evaluation</h5>
-                </div>
-                <div class="modal-body">
-                    <form action="/teacher_eval" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label class="text-dark" for="sessionNum">Session:<span class="text-danger">*</span>
-                            </label>
-                            <br>
-                            @foreach ($students as $item)
-                                <select required name="sessionNum" id="sess{{ $item->id }}"
-                                    class="form-control mt-1" style="display: none;">
-                                    <option value="">Select Session</option>
-                                    @foreach ($mSessions as $s)
-                                        @if ($item->id == $s['studentID'])
-                                            <option value="{{ $s['id'] }}">{{ $s['details'] }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            @endforeach
-
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="evaluation">Evaluation:<span class="text-danger">*</span> </label>
-                            <br>
-                            <textarea required name="evaluation" id="" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="btnAddEvaluation"
-                        value="yes">Save</button>
-                </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

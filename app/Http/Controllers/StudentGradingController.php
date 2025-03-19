@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentGradingController extends Controller
 {
@@ -15,7 +16,25 @@ class StudentGradingController extends Controller
             $user = session()->pull('users');
             session()->put("users", $user);
 
-            return view('student.grading');
+            if ($user['userType'] == "student") {
+                $assignments = json_decode(DB::table('vwstudentassignments')->where('userID', '=', $user['userID'])->orderBy('created_at', 'desc')->get(), true);
+
+                $allSubmissions = json_decode(DB::table("submissions")->where('userID', '=', $user['userID'])->get(), true);
+                $myAnswers = array();
+                $count = 0;
+                foreach ($assignments as $a) {
+                    foreach ($allSubmissions as $as) {
+                        if ($as['assignmentID'] == $a['assignmentID']) {
+                            $myAnswers[$as['assignmentID']] = $as;
+                        }
+                    }
+                    unset($assignments[$count]);
+                    $count++;
+                }
+                return view('student.grading', ['assignments' => $assignments, 'answers' => $myAnswers]);
+            } else {
+                return redirect("/logout");
+            }
         }
         return redirect("/");
     }

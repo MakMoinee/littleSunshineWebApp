@@ -231,10 +231,10 @@
         <div class="body flex-grow-1 px-3 bg-content">
             <div class="container-lg">
                 <div class="row mt-3">
-                    <div class="col-lg-2 mx-auto mt-3">
+                    <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_profile" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/group (1).png" class="mimage" alt="Teacher Profile Icon"
                                         style="margin-left: -20px;">
@@ -243,10 +243,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-2 mx-auto mt-3">
+                    <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_grading" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/bar-graph.png" class="mimage" alt="Grading Icon"
                                         style="margin-left: -20px;">
@@ -255,10 +255,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-2 mx-auto mt-3">
+                    <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_saas" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/checklist.png" class="mimage" alt="Set Assignment Icon"
                                         style="margin-left: -20px;">
@@ -269,10 +269,10 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-lg-2 mx-auto mt-3">
+                    <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_ss" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px; ">
                                 <div class="card-body micon">
                                     <img src="/img/calendar.png" class="mimage" alt="Set Schedule Icon"
                                         style="margin-left: -20px;">
@@ -281,10 +281,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-2 mx-auto mt-3">
+                    <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_books" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px; ">
                                 <div class="card-body micon">
                                     <img src="/img/book.png" class="mimage" alt="Upload Story Book Icon"
                                         style="margin-left: -20px;">
@@ -293,10 +293,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-2 mx-auto mt-3">
+                    <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_records" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/folder.png" class="mimage" alt="Session Records Icon"
                                         style="margin-left: -20px;">
@@ -307,11 +307,11 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-lg-2 mx-auto"></div>
-                    <div class="col-lg-2 mx-auto">
+                    <div class="col-lg-4 mx-auto"></div>
+                    <div class="col-lg-4 mx-auto">
                         <a href="/teacher_eval" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px; width:230px;">
+                                style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/postModule.png" class="mimage" alt="Post Evaluation Icon"
                                         style="margin-left: -10px;">
@@ -320,7 +320,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-2 mx-auto"></div>
+                    <div class="col-lg-4 mx-auto"></div>
                 </div>
             </div>
         </div>
