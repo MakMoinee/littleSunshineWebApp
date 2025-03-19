@@ -48,7 +48,7 @@
 
         <p>Please ensure that these credentials are kept safe. If you have any questions, feel free to contact us.</p>
 
-        <p class="footer">Best regards,<br>Your Team Name</p>
+        <p class="footer">Best regards,<br>Little Sunshine Team</p>
     </div>
 </body>
 </html>

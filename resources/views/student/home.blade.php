@@ -95,7 +95,7 @@
             color: white !important;
             background-color: white !important;
             padding: 5px;
-            height: 350px !important;
+            height: 450px !important;
         }
 
         .fc-daygrid-day-number {
@@ -131,6 +131,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body>
@@ -155,7 +156,7 @@
                             aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
 
                             <div class="simplebar-content" style="padding: 0px;">
-                                <div class="container mt-3" style="text-decoration: none; height: 350px !important;">
+                                <div class="container mt-3" style="text-decoration: none; height: 450px !important;">
                                     <div id="calendar"></div>
                                 </div>
                                 @if ($schedules)
@@ -259,78 +260,67 @@
                 class="background-image position-absolute bottom-0 end-0" alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
-            <div class="container-md">
+            <div class="container-lg">
 
-
-                <div class="row mt-2">
-                    <div class="col-md-5 mx-auto me-1 mt-1">
+                <div class="row mt-4">
+                    <div class="col-lg-4 mt-2">
                         <a href="/student_profile" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/group (1).png" class="mimage" alt="Teacher Profile Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Student Profile</p>
+                                <div class="card-body">
+                                    <img src="/img/studentProfile.png" class="mimage" alt="Student Profile Icon"
+                                        style="margin-left: -20px; height: 180px; width: 180px;">
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-5 mx-auto me-1 mt-1">
+                    <div class="col-lg-4 mt-2">
                         <a href="/student_grades" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
-                                    <img src="/img/bar-graph.png" class="mimage" alt="Grading Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Grades / Statistics</p>
+                                    <img src="/img/studentGrading.png" class="mimage" alt="Grading Icon"
+                                        style="margin-left: -50px; height: 180px; width: 180px">
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-5 mx-auto me-1 mt-1">
+                    <div class="col-lg-4 mt-2">
                         <a href="/student_saas" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
-                                    <img src="/img/checklist.png" class="mimage" alt="Set Assignment Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Assignment</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_ss" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
-                                <div class="card-body micon">
-                                    <img src="/img/calendar.png" class="mimage" alt="Set Schedule Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Meeting Schedules</p>
+                                    <img src="/img/studentAssignments.png" class="mimage" alt="Set Assignment Icon"
+                                        style="margin-left: -20px; height: 180px; width: 180px">
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-
-                <div class="row mt-2">
-                    <div class="col-md-5 mx-auto me-1 mt-1">
-                        <a href="/student_books" class="text-decoration-none">
+                <div class="row mt-3">
+                    <div class="col-lg-4 mt-2">
+                        <a href="/student_ss" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
-                                    <img src="/img/book.png" class="mimage" alt="Upload Story Book Icon"
-                                        style="margin-left: -20px;">
-                                    <p>Free Story Books</p>
+                                    <img src="/img/studentSchedules.png" class="mimage" alt="Set Schedule Icon"
+                                        style="margin-left: -50px; height: 180px; width: 180px">
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-5 mx-auto me-1 mt-1">
+                    <div class="col-lg-4 mt-2">
+                        <a href="/student_books" class="text-decoration-none">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
+                                <div class="card-body micon">
+                                    <img src="/img/studentBook.png" class="mimage" alt="Upload Story Book Icon"
+                                        style="margin-left: -50px; height: 180px; width: 180px">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mt-2">
                         <a href="/student_eval" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
-                                    <img src="/postModule.png" class="mimage" alt="Post Evaluation Icon"
-                                        style="margin-left: -10px;">
-                                    <p>Post Evaluation</p>
+                                    <img src="/studentEvaluation.png" class="mimage" alt="Post Evaluation Icon"
+                                        style="margin-left: -20px;height: 180px; width: 180px">
                                 </div>
                             </div>
                         </a>

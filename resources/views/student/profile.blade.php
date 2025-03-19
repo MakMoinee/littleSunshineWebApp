@@ -230,7 +230,7 @@
                 </ul>
                 <ul class="header-nav ms-3">
                     <li class="nav-item">
-                        <a href="/teacher_home" class="btn"
+                        <a href="/student_home" class="btn"
                             style="background-color: white !important; color: rgb(0, 0, 0) !important;">
                             Back
                         </a>
