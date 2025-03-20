@@ -24,8 +24,27 @@ class TeacherGradingController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
 
+            $sortedStudents = json_decode(DB::table('students')
+                ->orderBy('created_at', 'desc')->get(), true);
 
-            return view('teacher.grading', ['students' => $allStudents]);
+            $studentAss = array();
+            foreach ($sortedStudents as $s) {
+                $data = json_decode(DB::table('assignments')->where("studentID", '=', $s['id'])->get(), true);
+                if (count($data) > 0) {
+                    if (array_key_exists($s['id'], $studentAss)) {
+                        $tmpArray = $studentAss[$s['id']];
+                        array_push($tmpArray,  $data);
+                        $studentAss[$s['id']] = $s;
+                    } else {
+                        $tmpArray = array();
+                        array_push($tmpArray, $s);
+                        $studentAss[$s['id']] =  $data;
+                    }
+                }
+            }
+
+
+            return view('teacher.grading', ['students' => $allStudents, 'studentAss' => $studentAss]);
         }
         return redirect("/");
     }

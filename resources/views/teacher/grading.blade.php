@@ -234,9 +234,19 @@
                 class="background-image position-absolute bottom-0 end-0" alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
-            <div class="container-lg">
-
-            </div>
+            @foreach ($studentAss as $assItems)
+                <div class="row mt-3">
+                    @foreach ($assItems as $ass)
+                        <div class="col-lg-2">
+                            <div class="card">
+                                <div class="card-bodty">
+                                    <h5>{{ $ass['title'] }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
         </div>
     </div>
 
