@@ -282,7 +282,12 @@
                                         </div>
                                         <div class="row mt-2 d-flex">
                                             <div class="col-md-12">
-                                                <button class="btn btn-secondary">Grade: None</button>
+                                                @if (array_key_exists($item['assignmentID'], $answers))
+                                                    <button class="btn btn-primary">Grade:
+                                                        {{ $answers[$item['assignmentID']]['rating'] }}</button>
+                                                @else
+                                                    <button class="btn btn-secondary">Grade: None</button>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="row">

@@ -28,7 +28,6 @@ class StudentGradingController extends Controller
                             $myAnswers[$as['assignmentID']] = $as;
                         }
                     }
-                    unset($assignments[$count]);
                     $count++;
                 }
                 return view('student.grading', ['assignments' => $assignments, 'answers' => $myAnswers]);
