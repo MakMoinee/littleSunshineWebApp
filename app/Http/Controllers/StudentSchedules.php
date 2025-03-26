@@ -53,7 +53,7 @@ class StudentSchedules extends Controller
                 $scheds = array();
                 foreach ($allScheds as $ss) {
                     $ss['no'] = $count;
-                    $scheds = $ss;
+                    array_push($scheds, $ss);
                 }
 
                 return view('student.ss', ['schedules' => $newSched, 'events' => $events, 'mSched' =>  $scheds]);
