@@ -180,8 +180,83 @@
                 width: 120px;
             }
         }
+
+        /* .fc-col-header-cell-cushion */
+        :root {
+            --fc-border-color: black;
+            --fc-daygrid-event-dot-width: 5px;
+            --fc-col-header-cell-cushion: black;
+        }
+
+        .micon {
+            width: 140px;
+            height: 140px;
+        }
+
+        .mimage {
+
+            width: 140px;
+            height: 140px;
+        }
+
+        .fc-event {
+            text-decoration: none !important;
+            /* Ensures no underlines or strikethroughs */
+            color: white !important;
+            /* Makes event text white */
+        }
+
+        .fc-col-header-cell {
+            color: rgb(0, 0, 0) !important;
+        }
+
+        .fc .fc-toolbar-title {
+            color: rgb(0, 0, 0) !important;
+            font-size: 15px !important;
+
+        }
+
+        .fc .fc-toolbar-title,
+        .fc .fc-button-primary:disabled,
+        .fc .fc-button:not(:disabled) {
+            font-size: 15px !important;
+        }
+
+        .fc-button-group {
+            margin-top: 10px !important;
+        }
+
+
+
+        #calendar {
+            color: white !important;
+            background-color: white !important;
+            padding: 5px;
+            height: 550px !important;
+        }
+
+        .fc-daygrid-day-number {
+            color: rgb(0, 0, 0) !important;
+            text-decoration: none !important;
+            font-size: 11px !important;
+        }
+
+        .fc-col-header-cell-cushion {
+            color: rgb(0, 0, 0) !important;
+            text-decoration: none !important;
+            font-size: 11px !important;
+        }
+
+        .fc-day-today {
+            background-color: #d95c5c !important;
+            /* Change this to any color you want */
+            color: white !important;
+            /* Ensures text remains readable */
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
 </head>
 
 <body>
@@ -227,39 +302,15 @@
     </div>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row g-5" style="margin-bottom: 100px;">
-                <div class="col-md-8 mx-auto">
+            <div class="row g-5" style="margin-bottom: 20px;">
+                <div class="col-md-12 mx-auto">
                     <div class="card">
-                        <div class="card-body bg-red">
-                            <div class="table-responsive bg-white">
-                                <table class="table border mb-0">
-                                    <thead class="table-light fw-semibold">
-                                        <tr class="align-middle">
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($schedules as $item)
-                                            <tr class="align-middle">
-                                                <td class="text-dark">Session {{ $item['no'] }} Schedule -
-                                                    {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
-                                                </td>
-                                                <td class="text-dark">
-                                                    {{ $item['classType'] }}
-                                                </td>
-                                                <td>
-                                                    @if ($item['meeting'])
-                                                        <a href="{{ $item['meeting'] }}"></a>
-                                                    @else
-                                                        {{ $item['meeting'] }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                        <div class="card-header bg-red ">
+                            <h5 class="text-white">Calendar</h5>
+                        </div>
+                        <div class="card-body bg-white">
+                            <div class="container mt-3" style=" height: 550px !important;">
+                                <div id="calendar"></div>
                             </div>
                         </div>
                     </div>
@@ -274,6 +325,59 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i
             class="bi bi-arrow-up"></i></a>
+
+    <button class="btn" id="showModal" style="display: none" data-bs-target="#showDetailsModal"
+        data-bs-toggle="modal"></button>
+
+    <div class="modal fade " id="showDetailsModal" tabindex="-1" role="dialog" aria-labelledby="showDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="margin: 0; color: #333;">Your Schedule</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="table-responsive bg-white">
+                            <table class="table border mb-0">
+                                <thead class="table-light fw-semibold">
+                                    <tr class="align-middle">
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($schedules as $item)
+                                        <tr class="align-middle" id="t{{ $item['id'] }}" style="display: none">
+                                            <td class="text-dark">Session {{ $item['no'] }} Schedule -
+                                                {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                            </td>
+                                            <td class="text-dark">
+                                                {{ $item['classType'] }}
+                                            </td>
+                                            <td>
+                                                @if ($item['meeting'])
+                                                    <a href="{{ $item['meeting'] }}"></a>
+                                                @else
+                                                    {{ $item['meeting'] }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        style="color:white !important;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- JavaScript Libraries -->
@@ -337,6 +441,32 @@
         </script>
         {{ session()->forget('errorSetSched') }}
     @endif
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var mData = @json($events);
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // Show month view by default
+                selectable: true, // Allow date selection
+                editable: true, // Enable drag & drop
+                events: mData,
+                dateClick: function(info) {
+                    window.location = `/student_home?sched=${info.dateStr}`;
+                },
+                eventClick: function(info) {
+                    let showModal = document.getElementById('showModal');
+                    showModal.click();
+
+                    let id = info.event.id;
+                    let t = document.getElementById(`t${id}`);
+                    t.removeAttribute("style");
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
 </body>
 
 </html>
