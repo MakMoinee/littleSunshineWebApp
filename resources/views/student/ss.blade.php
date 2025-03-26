@@ -331,7 +331,7 @@
 
     <div class="modal fade " id="showDetailsModal" tabindex="-1" role="dialog" aria-labelledby="showDetailsModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 style="margin: 0; color: #333;">Your Schedule</h3>
@@ -358,8 +358,9 @@
                                                 {{ $item['classType'] }}
                                             </td>
                                             <td>
-                                                @if ($item['meeting'])
-                                                    <a href="{{ $item['meeting'] }}"></a>
+                                                @if ($item['meeting'] != '')
+                                                    <a href="{{ $item['meeting'] }}"
+                                                        class="text-decoration-none">Meeting Link Here</a>
                                                 @else
                                                     {{ $item['meeting'] }}
                                                 @endif
