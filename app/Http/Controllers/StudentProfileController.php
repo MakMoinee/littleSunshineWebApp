@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudentProfileController extends Controller
 {
@@ -61,13 +62,20 @@ class StudentProfileController extends Controller
                     $pass = $request->password;
                     $confirm = $request->confirm;
                     if ($pass == $confirm) {
-                        $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
-                            "contactNumber" => $request->contactNumber,
-                            "guardianEmail" => $request->email,
-                            "address" => $request->address,
+                        $updateUser = DB::table('users')->where('userID', '=', $user['userID'])->update([
+                            "password" => Hash::make($pass),
                         ]);
-                        if ($updateCount > 0) {
-                            session()->put("successUpdate", true);
+                        if ($updateUser > 0) {
+                            $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
+                                "contactNumber" => $request->contactNumber,
+                                "guardianEmail" => $request->email,
+                                "address" => $request->address,
+                            ]);
+                            if ($updateCount > 0) {
+                                session()->put("successUpdate", true);
+                            } else {
+                                session()->put("errorUpdate", $user);
+                            }
                         } else {
                             session()->put("errorUpdate", $user);
                         }
