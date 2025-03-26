@@ -27,24 +27,22 @@ class TeacherGradingController extends Controller
             $sortedStudents = json_decode(DB::table('students')
                 ->orderBy('created_at', 'desc')->get(), true);
 
+            $sortedSub = json_decode(DB::table('submissions')
+                ->orderBy('created_at', 'desc')->get(), true);
             $studentAss = array();
+            $studentSub = array();
             foreach ($sortedStudents as $s) {
                 $data = json_decode(DB::table('assignments')->where("studentID", '=', $s['id'])->get(), true);
                 if (count($data) > 0) {
-                    if (array_key_exists($s['id'], $studentAss)) {
-                        $tmpArray = $studentAss[$s['id']];
-                        array_push($tmpArray,  $data);
-                        $studentAss[$s['id']] = $s;
-                    } else {
-                        $tmpArray = array();
-                        array_push($tmpArray, $s);
-                        $studentAss[$s['id']] =  $data;
+                    $studentAss[$s['id']] =  $data;
+                    foreach ($sortedSub as $ss) {
+                        $studentSub[$s['id']] = $ss;
                     }
                 }
             }
 
 
-            return view('teacher.grading', ['students' => $allStudents, 'studentAss' => $studentAss]);
+            return view('teacher.grading', ['students' => $allStudents, 'studentAss' => $studentAss, 'submissions' => $studentSub]);
         }
         return redirect("/");
     }
@@ -62,7 +60,26 @@ class TeacherGradingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
+            if ($request->btnRating) {
+                $updateCount = DB::table('submissions')->where('id', '=', $request->id)->update([
+                    "rating" => $request->rating,
+                ]);
+                if ($updateCount > 0) {
+                    session()->put("successUpdateSubmit", true);
+                } else {
+                    session()->put("errorUpdateSubmit", true);
+                }
+            }
+            return redirect("/teacher_grading");
+        }
+        return redirect("/");
     }
 
     /**

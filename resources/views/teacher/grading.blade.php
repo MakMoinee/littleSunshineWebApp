@@ -239,14 +239,71 @@
                     @foreach ($assItems as $ass)
                         <div class="col-lg-2">
                             <div class="card">
-                                <div class="card-bodty">
+                                <div class="card-body">
                                     <h5>{{ $ass['title'] }}</h5>
+                                    <button data-coreui-target="#previewModal" data-coreui-toggle="modal"
+                                        class="btn btn-primary mt-3"
+                                        onclick="previewAns({{ $ass['assignmentID'] }},'{{ $ass['filePath'] }}')">Preview
+                                        Answer</button>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endforeach
+        </div>
+    </div>
+
+    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="previewModalLabel">Student Assignment Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label for="docu">Assignment Document:<span class="text-danger"></span></label>
+                            <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer2"
+                                src="" type="application/pdf">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label for="docu">Student Answer:<span class="text-danger"></span></label>
+                            <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer3"
+                                src="" type="application/pdf">
+                        </div>
+                    </div>
+                    <form action="/teacher_grading" method="post">
+                        @csrf
+
+                        <div class="row mt-3">
+                            <div class="form-group">
+                                <label for="rating">Rating:<span class="text-danger">*</span></label>
+                                <select required name="rating" id="myRating" class="form-control mt-2">
+                                    <option value="">Select Rating</option>
+                                    <option value="good">Good</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                                <input style="display: none;" type="text" name="" id="myRating2"
+                                    class="form-control">
+                                <input type="hidden" name="id" id="subID">
+                            </div>
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="btnRating" value="yes"
+                        id="btnRating">Yes,
+                        Proceed</button>
+                </div>
+
+                </form>
+            </div>
         </div>
     </div>
 
@@ -284,6 +341,42 @@
     <script src="/assets/main.js.download"></script>
     <script></script>
     <script>
+        let submissions = @json($submissions);
+
+        function previewAns(id, filePath) {
+            let pdfViewer2 = document.getElementById('pdfViewer2');
+            pdfViewer2.src = filePath;
+            let sub = submissions[id];
+            if (sub) {
+                let pdfViewer3 = document.getElementById('pdfViewer3');
+                pdfViewer3.src = sub['document'];
+
+                let subID = document.getElementById('subID');
+                subID.setAttribute("value", sub['id']);
+
+                if (sub['rating']) {
+                    let btnRating = document.getElementById('btnRating');
+                    btnRating.setAttribute("style", "display:none");
+                    let myRating = document.getElementById("myRating");
+                    myRating.setAttribute("style", "display:none");
+                    let myRating2 = document.getElementById("myRating2");
+                    myRating2.removeAttribute("style");
+                    myRating2.setAttribute("value", sub["rating"]);
+                } else {
+
+                    let btnRating = document.getElementById('btnRating');
+                    btnRating.removeAttribute("style");
+
+                    let myRating = document.getElementById("myRating");
+                    myRating.removeAttribute("style");
+
+                    let myRating2 = document.getElementById('myRating2');
+                    myRating2.setAttribute("style", "display:none");
+                }
+
+            }
+        }
+
         function viewData(id) {
             let sess = document.getElementById(`sess${id}`);
             sess.removeAttribute("style");
@@ -333,34 +426,34 @@
         {{ session()->forget('successDeleteEval') }}
     @endif
 
-    @if (session()->pull('successAddEval'))
+    @if (session()->pull('successUpdateSubmit'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Added Evaluation',
+                    title: 'Successfully Rated Assignment',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successAddEval') }}
+        {{ session()->forget('successUpdateSubmit') }}
     @endif
 
-    @if (session()->pull('errorEnroll'))
+    @if (session()->pull('errorUpdateSubmit'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    title: 'Failed To Rate Student\'s Assignment, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorEnroll') }}
+        {{ session()->forget('errorUpdateSubmit') }}
     @endif
 
 
