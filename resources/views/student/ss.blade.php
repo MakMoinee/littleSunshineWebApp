@@ -349,7 +349,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($schedules as $item)
+                                    @foreach ($mSched as $item)
                                         <tr class="align-middle" id="t{{ $item['id'] }}" style="display: none">
                                             <td class="text-dark">Session {{ $item['no'] }} Schedule -
                                                 {{ (new DateTime($item['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}

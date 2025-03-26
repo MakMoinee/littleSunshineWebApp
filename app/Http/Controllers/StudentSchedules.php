@@ -49,7 +49,7 @@ class StudentSchedules extends Controller
                     array_push($events, $data);
                 }
 
-                return view('student.ss', ['schedules' => $newSched, 'events' => $events]);
+                return view('student.ss', ['schedules' => $newSched, 'events' => $events, 'mSched' => $allScheds]);
             } else {
 
                 return redirect("/logout");
