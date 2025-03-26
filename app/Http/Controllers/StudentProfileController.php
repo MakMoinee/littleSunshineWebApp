@@ -22,7 +22,7 @@ class StudentProfileController extends Controller
                 $students = array();
             }
 
-            return view('student.profile', ['student' => $students]);
+            return view('student.profile', ['student' => $students, 'user' => $user]);
         }
         return redirect("/");
     }
@@ -40,7 +40,46 @@ class StudentProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($request->btnEditStudentName) {
+                $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
+                    "name" => $request->name,
+                ]);
+                if ($updateCount > 0) {
+                    session()->put("successUpdate", true);
+                } else {
+                    session()->put("errorUpdate", $user);
+                }
+            } else if ($request->btnSaveProfile) {
+
+                $students = json_decode(DB::table('students')->where('userID', '=', $user['userID'])->get(), true);
+                if (count($students) > 0) {
+
+                    $pass = $request->password;
+                    $confirm = $request->confirm;
+                    if ($pass == $confirm) {
+                        $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
+                            "contactNumber" => $request->contactNumber,
+                            "guardianEmail" => $request->email,
+                            "address" => $request->address,
+                        ]);
+                        if ($updateCount > 0) {
+                            session()->put("successUpdate", true);
+                        } else {
+                            session()->put("errorUpdate", $user);
+                        }
+                    } else {
+                        session()->put("errorPasswordNotMatch", $user);
+                    }
+                }
+            }
+
+            return redirect("/student_profile");
+        }
+        return redirect("/");
     }
 
     /**

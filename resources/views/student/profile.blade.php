@@ -184,7 +184,7 @@
                                         <div class="row mt-3">
                                             <div class="col-lg-4 mx-auto d-flex">
                                                 <button type="submit" class="invisible" style="display: none;"
-                                                    name="btnEditTeacherName" id="btnEditTeacherName"
+                                                    name="btnEditStudentName" id="btnEditStudentName"
                                                     value="yes">Sample</button>
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="editName()">Edit</button>
@@ -260,7 +260,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="/teacher_profile" method="post">
+                            <form action="/student_profile" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row d-flex">
@@ -298,6 +298,26 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <div class="row d-flex mt-3">
+                                        <div class="col-md-4  form-group">
+                                            <label for="email" class="text-dark"><b>Username:</b></label>
+                                            <input style="cursor: not-allowed" disabled type="text"
+                                                name="username" id="" class="form-control"
+                                                value="{{ $user['username'] }}">
+                                        </div>
+                                        <div class="col-md-4  form-group">
+                                            <label for="email" class="text-dark"><b>Password:</b><span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="password" name="password" id=""
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-md-4  form-group">
+                                            <label for="email" class="text-dark"><b>Confirm Password:</b><span
+                                                    class="text-danger">*</span> </label>
+                                            <input type="password" name="confirm" id=""
+                                                class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="container-md">
@@ -327,19 +347,19 @@
     <script></script>
     <script></script>
 
-    @if (session()->pull('errorExist'))
+    @if (session()->pull('errorPasswordNotMatch'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Student Already Exist, Please Try Again New Student',
+                    title: 'Password Don\'t Match, Please Make Sure It Matches',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorExist') }}
+        {{ session()->forget('errorPasswordNotMatch') }}
     @endif
 
     @if (session()->pull('successUpdateTeacher'))
@@ -372,34 +392,34 @@
         {{ session()->forget('errorUpdateTeacher') }}
     @endif
 
-    @if (session()->pull('successUpdateTeacherName'))
+    @if (session()->pull('successUpdate'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Updated Teacher Name',
+                    title: 'Successfully Updated Student Profile',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successUpdateTeacherName') }}
+        {{ session()->forget('successUpdate') }}
     @endif
 
-    @if (session()->pull('errorUpdateTeacherName'))
+    @if (session()->pull('errorUpdate'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Update Teacher Name, Please Try Again Later',
+                    title: 'Failed To Update Student Profile, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorUpdateTeacherName') }}
+        {{ session()->forget('errorUpdate') }}
     @endif
 
     <script>
@@ -418,8 +438,8 @@
             } else {
                 let studentNameForm = document.getElementById('studentNameForm');
                 studentNameForm.removeAttribute("onsubmit");
-                let btnEditTeacherName = document.getElementById('btnEditTeacherName');
-                btnEditTeacherName.click();
+                let btnEditStudentName = document.getElementById('btnEditStudentName');
+                btnEditStudentName.click();
 
             }
         }
