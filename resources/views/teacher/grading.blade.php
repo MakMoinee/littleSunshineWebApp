@@ -26,14 +26,27 @@
 
     <link href="/assets/style.css" rel="stylesheet">
 
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/prism.css">
     <link href="/assets/examples.css" rel="stylesheet">
     <script type="text/javascript" async src="/assets/js"></script>
     <script src="/assets/667090843876081" async></script>
     <style>
+        body {
+            font-family: "Nunito", sans-serif !important;
+            background-color: #d95c5c !important;
+
+        }
+
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+
         .bg-mbg {
-            background-color: #1b2e3d !important;
-            color: white !important;
+            background-color: #ffffff !important;
+            color: rgb(0, 0, 0) !important;
         }
 
         .color-mbg {
@@ -95,7 +108,7 @@
             color: white !important;
             background-color: white !important;
             padding: 5px;
-            height: 350px !important;
+            height: 450px !important;
         }
 
         .fc-daygrid-day-number {
@@ -127,6 +140,16 @@
             width: 80%;
             height: 550px;
         }
+
+        .text-primary {
+            color: #d95c5c !important;
+        }
+
+        .btn-primary,
+        .bg-primary {
+
+            background-color: #d95c5c !important;
+        }
     </style>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
@@ -135,13 +158,17 @@
 
 <body>
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-        <div class="sidebar-brand d-none d-md-flex bg-mbg">
+        <div class="sidebar-brand d-none d-md-flex bg-mbg "
+            style="font-size: 30px;
+        font-weight: 700 !important;">
 
             <a href="/" class="sidebar-brand-full text-decoration-none">
-                <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
+                <span class="text-primary">Little <span style="color:black !important;">Sunshine</span>
+                </span>
             </a>
-            <a href="/" class="sidebar-brand-narrow text-decoration-none">
-                <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
+            <a href="/" class="sidebar-brand-narrow text-decoration-none font-weight-bold">
+                <span class="text-primary">Little <span style="color:black !important;">Sunshine</span>
+                </span>
             </a>
         </div>
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="init">
@@ -219,10 +246,7 @@
                 </ul>
                 <ul class="header-nav ms-3">
                     <li class="nav-item">
-                        <a href="/" class="btn"
-                            style="background-color: white !important; color: rgb(0, 0, 0) !important;">
-                            Back
-                        </a>
+                        <a href="/teacher_home" class="btn btn-primary text-white px-4">Go Back</a>
                     </li>
                 </ul>
             </div>

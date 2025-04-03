@@ -20,6 +20,11 @@
     <link href="/img/favicon.ico" rel="icon">
     <link rel="stylesheet" href="/assets/simplebar.css">
     <link rel="stylesheet" href="/assets/simplebar(1).css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
 
     <link href="/assets/style.css" rel="stylesheet">
 
@@ -28,9 +33,19 @@
     <script type="text/javascript" async src="/assets/js"></script>
     <script src="/assets/667090843876081" async></script>
     <style>
+        body {
+            font-family: "Nunito", sans-serif !important;
+            background-color: #d95c5c !important;
+
+        }
+
+        .font-weight-bold {
+            font-weight: 700 !important;
+        }
+
         .bg-mbg {
-            background-color: #1b2e3d !important;
-            color: white !important;
+            background-color: #ffffff !important;
+            color: rgb(0, 0, 0) !important;
         }
 
         .color-mbg {
@@ -124,6 +139,16 @@
             width: 80%;
             height: 550px;
         }
+
+        .text-primary {
+            color: #d95c5c !important;
+        }
+
+        .btn-primary,
+        .bg-primary {
+
+            background-color: #d95c5c !important;
+        }
     </style>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
@@ -132,13 +157,16 @@
 
 <body>
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-        <div class="sidebar-brand d-none d-md-flex bg-mbg">
+        <div class="sidebar-brand d-none d-md-flex bg-mbg " style="font-size: 30px;
+    font-weight: 700 !important;">
 
             <a href="/" class="sidebar-brand-full text-decoration-none">
-                <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
+                <span class="text-primary">Little <span style="color:black !important;">Sunshine</span>
+                </span>
             </a>
-            <a href="/" class="sidebar-brand-narrow text-decoration-none">
-                <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
+            <a href="/" class="sidebar-brand-narrow text-decoration-none font-weight-bold">
+                <span class="text-primary">Little <span style="color:black !important;">Sunshine</span>
+                </span>
             </a>
         </div>
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="init">
@@ -214,10 +242,7 @@
                 </ul>
                 <ul class="header-nav ms-3">
                     <li class="nav-item">
-                        <a href="/logout" class="btn"
-                            style="background-color: white !important; color: rgb(0, 0, 0) !important;">
-                            Logout
-                        </a>
+                        <a href="/logout" class="btn btn-primary text-white px-4">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -233,8 +258,7 @@
                 <div class="row mt-3">
                     <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_profile" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px;">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/group (1).png" class="mimage" alt="Teacher Profile Icon"
                                         style="margin-left: -20px;">
@@ -245,8 +269,7 @@
                     </div>
                     <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_grading" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px;">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/bar-graph.png" class="mimage" alt="Grading Icon"
                                         style="margin-left: -20px;">
@@ -257,8 +280,7 @@
                     </div>
                     <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_saas" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px;">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/checklist.png" class="mimage" alt="Set Assignment Icon"
                                         style="margin-left: -20px;">
@@ -295,8 +317,7 @@
                     </div>
                     <div class="col-lg-4 mx-auto mt-3">
                         <a href="/teacher_records" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px;">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/img/folder.png" class="mimage" alt="Session Records Icon"
                                         style="margin-left: -20px;">
@@ -310,8 +331,7 @@
                     <div class="col-lg-4 mx-auto"></div>
                     <div class="col-lg-4 mx-auto">
                         <a href="/teacher_eval" class="text-decoration-none">
-                            <div class="card bg-mbg justify-content-center align-items-center"
-                                style="height: 230px;">
+                            <div class="card bg-mbg justify-content-center align-items-center" style="height: 230px;">
                                 <div class="card-body micon">
                                     <img src="/postModule.png" class="mimage" alt="Post Evaluation Icon"
                                         style="margin-left: -10px;">
