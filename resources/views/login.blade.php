@@ -32,8 +32,12 @@
             color: #d95c5c !important;
         }
 
+        body {
+            background-color: #d95c5c !important;
+        }
+
         .btn-primary,
-        .bg-primary, body {
+        .bg-primary {
             background-color: #d95c5c !important;
         }
     </style>
@@ -60,9 +64,9 @@
     <!-- Navbar End -->
 
     <!-- Header Start -->
-    <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+    <div class="container-fluid bg-primary px-0 px-md-5 ">
         <div class="row align-items-center px-3">
-            <div class="col-md-4 mx-auto mt-5 mb-5">
+            <div class="col-md-4 mx-auto mt-5" style="margin-bottom: 150px;">
                 <div class="card">
                     <div class="card-body">
                         <h2>Login</h2>

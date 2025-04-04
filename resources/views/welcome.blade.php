@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Little Sunshine</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords" />
     <meta content="Free HTML Templates" name="description" />
 
@@ -32,9 +32,14 @@
             color: #d95c5c !important;
         }
 
-        .btn-primary,
-        .bg-primary,
         body {
+            background-color: #f8f9fa !important;
+            height: auto;
+            margin: 0;
+        }
+
+        .btn-primary,
+        .bg-primary {
             background-color: #d95c5c !important;
         }
     </style>
@@ -61,7 +66,7 @@
     <!-- Navbar End -->
 
     <!-- Header Start -->
-    <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+    <div class="container-fluid bg-primary px-0 px-md-5" style="background-color: #d95c5c !important;">
         <div class="row align-items-center px-3">
             <div class="col-lg-6 text-center text-lg-left">
                 <h4 class="text-white mb-4 mt-5 mt-lg-0">Little Sunshine</h4>
@@ -78,7 +83,6 @@
             </div>
         </div>
     </div>
-    <!-- Header End -->
 
 
 
