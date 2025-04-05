@@ -197,7 +197,7 @@
                                     <div class="col-lg-5 mx-auto d-flex">
                                         <button type="button" class="btn btn-success text-white btn-sm"
                                             data-coreui-toggle="modal" data-coreui-target="#viewBookModal"
-                                            onclick="viewBook('{{ $item['book'] }}')">View</button>
+                                            onclick="viewBook('{{ $item['book'] }}','{{ $item['link'] }}')">View</button>
                                     </div>
                                 </div>
 
@@ -252,6 +252,12 @@
     function viewBook(filePath) {
         let pdfViewer = document.getElementById('pdfViewer');
         pdfViewer.src = filePath;
+
+        if (filePath) {
+            pdfViewer.src = filePath;
+        } else {
+            pdfViewer.src = linkFilePath;
+        }
 
     }
 

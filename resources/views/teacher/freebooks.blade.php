@@ -85,7 +85,7 @@
                                             <input type="hidden" name="book" value="{{ $item['book'] }}">
                                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                                 data-target="#viewBookModal"
-                                                onclick="viewBook('{{ $item['book'] }}')">View</button>
+                                                onclick="viewBook('{{ $item['book'] }}','{{ $item['link'] }}')">View</button>
                                             <button type="submit" class="btn btn-primary btn-sm"
                                                 style="margin-left: 10px;" name="btnDeleteBook"
                                                 value="yes">Delete</button>
@@ -186,9 +186,15 @@
     </div>
 
     <script>
-        function viewBook(filePath) {
+        function viewBook(filePath, linkFilePath) {
             let pdfViewer = document.getElementById('pdfViewer');
             pdfViewer.src = filePath;
+            if (filePath) {
+                pdfViewer.src = filePath;
+            } else {
+                pdfViewer.src = linkFilePath;
+            }
+
 
         }
 
