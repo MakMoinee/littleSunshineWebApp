@@ -153,6 +153,7 @@
     <!-- Template Javascript -->
     <script src="/new/js/main.js"></script>
 
+
     @if (session()->pull('errorSaveAss'))
         <script>
             setTimeout(() => {
@@ -168,65 +169,35 @@
         {{ session()->forget('errorSaveAss') }}
     @endif
 
-    @if (session()->pull('errorDeleteAss'))
-        <script>
-            setTimeout(() => {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Failed To Delete Assignment, Please Try Again Later',
-                    showConfirmButton: false,
-                    timer: 800
-                });
-            }, 500);
-        </script>
-        {{ session()->forget('errorDeleteAss') }}
-    @endif
 
-
-    @if (session()->pull('successDeleteAss'))
+    @if (session()->pull('successSetSched'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Deleted Assignment',
+                    title: 'Successfully Set Schedule',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successDeleteAss') }}
+        {{ session()->forget('successSetSched') }}
     @endif
 
-    @if (session()->pull('successSaveAss'))
-        <script>
-            setTimeout(() => {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully Set Assignment',
-                    showConfirmButton: false,
-                    timer: 800
-                });
-            }, 500);
-        </script>
-        {{ session()->forget('successSaveAss') }}
-    @endif
-
-    @if (session()->pull('errorEnroll'))
+    @if (session()->pull('errorSetSched'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    title: 'Failed To Set Schedule, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorEnroll') }}
+        {{ session()->forget('errorSetSched') }}
     @endif
 </body>
 
