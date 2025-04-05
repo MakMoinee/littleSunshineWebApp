@@ -225,6 +225,12 @@
                         <center>
                             <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer"
                                 src="" type="application/pdf">
+
+                            <iframe style="height: 500px; width: 100%; display:none;" id="linkViewer" width="560"
+                                height="315" src="" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
                         </center>
                     </div>
                 </div>
@@ -251,15 +257,57 @@
 
     function viewBook(filePath) {
         let pdfViewer = document.getElementById('pdfViewer');
+        let linkViewer = document.getElementById('linkViewer');
+        let myLink = document.getElementById('myLink');
         pdfViewer.src = filePath;
-
         if (filePath) {
+            linkViewer.setAttribute("style", "display:none");
+            pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
             pdfViewer.src = filePath;
-        } else {
-            pdfViewer.src = linkFilePath;
+            myLink.href = filePath;
+        }
+        if (linkFilePath) {
+            pdfViewer.setAttribute("style", "display:none");
+            linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+            linkViewer.src = getEmbedUrl(linkFilePath);
+            myLink.href = linkFilePath;
+        }
+    }
+
+    function getEmbedUrl(url) {
+        // YouTube
+        if (url.includes("youtube.com/watch") || url.includes("youtu.be")) {
+            let videoId = '';
+            if (url.includes("youtube.com")) {
+                const urlParams = new URLSearchParams(new URL(url).search);
+                videoId = urlParams.get("v");
+            } else if (url.includes("youtu.be")) {
+                videoId = url.split("youtu.be/")[1];
+            }
+            return `https://www.youtube.com/embed/${videoId}`;
         }
 
+        // Vimeo
+        if (url.includes("vimeo.com")) {
+            const match = url.match(/vimeo\.com\/(\d+)/);
+            if (match) {
+                return `https://player.vimeo.com/video/${match[1]}`;
+            }
+        }
+
+        // Facebook (requires Facebook SDK, so just return null here)
+        if (url.includes("facebook.com")) {
+            return null; // Facebook embedding is complex and requires SDK
+        }
+
+        // Self-hosted (e.g., .mp4 files)
+        if (url.endsWith(".mp4")) {
+            return url; // You can use <video> tag for this
+        }
+
+        return null; // Unknown or unsupported format
     }
+
 
     function viewAss(id) {
         if (activeId && activeId != id) {
