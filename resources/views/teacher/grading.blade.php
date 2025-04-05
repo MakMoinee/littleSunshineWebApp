@@ -296,7 +296,7 @@
                                                             <button class="btn btn-primary text-white"
                                                                 data-coreui-target="#previewModal"
                                                                 data-coreui-toggle="modal"
-                                                                onclick="previewAns({{ $ass['assignmentID'] }},'{{ $ass['filePath'] }}')">Preview</button>
+                                                                onclick="previewAns({{ $ass['studentID'] }},'{{ $ass['filePath'] }}')">Preview</button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -407,6 +407,7 @@
             pdfViewer2.src = filePath;
             let sub = submissions[id];
             if (sub) {
+                console.log(sub);
                 let pdfViewer3 = document.getElementById('pdfViewer3');
                 pdfViewer3.src = sub['document'];
 
