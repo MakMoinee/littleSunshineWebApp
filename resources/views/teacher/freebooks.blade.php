@@ -180,7 +180,7 @@
                                     allowfullscreen>
                                 </iframe>
 
-                                <a id="myLink" href="http://" class="text-decoration-none">If File Or Link is
+                                <a id="myLink" target="_blank" href="" class="text-decoration-none">If File Or Link is
                                     broken, please click this</a>
                             </center>
                         </div>
@@ -204,13 +204,13 @@
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "height: 500px; width: 100%;");
                 pdfViewer.src = filePath;
-                myLink.src = filePath;
+                myLink.href = filePath;
             }
             if (linkFilePath) {
                 pdfViewer.setAttribute("style", "display:none");
                 linkViewer.setAttribute("style", "height: 500px; width: 100%;");
                 linkViewer.src = linkFilePath;
-                myLink.src = linkFilePath;
+                myLink.href = linkFilePath;
             }
 
 
