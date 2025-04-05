@@ -71,7 +71,7 @@ class StudentProfileController extends Controller
                                 "guardianEmail" => $request->email,
                                 "address" => $request->address,
                             ]);
-                            if ($updateCount > 0) {
+                            if ($updateCount > 0 || ($updateCount == 0 && $updateUser > 0)) {
                                 session()->put("successUpdate", true);
                             } else {
                                 session()->put("errorUpdate", $user);
