@@ -210,8 +210,8 @@
             if (linkFilePath) {
                 pdfViewer.setAttribute("style", "display:none");
                 linkViewer.setAttribute("style", "height: 500px; width: 100%;");
-                linkViewer.src = linkFilePath;
-                myLink.href = getEmbedUrl(linkFilePath);
+                linkViewer.src = getEmbedUrl(linkFilePath);
+                myLink.href = linkFilePath;
             }
 
         }
