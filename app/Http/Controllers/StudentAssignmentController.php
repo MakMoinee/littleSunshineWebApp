@@ -68,7 +68,12 @@ class StudentAssignmentController extends Controller
                     $file = $request->file('answerFile');
                     $fileName = "";
                     if ($file) {
-                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/submissions';
+                        $env = env('APP_ENV');
+                        if ($env == "stage") {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/submissions';
+                        } else {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/submissions';
+                        }
                         $fileName = strtotime(now()) . "." . $file->getClientOriginalExtension();
                         $isFile = $file->move($destinationPath,  $fileName);
                         chmod($destinationPath, 0755);
