@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grades;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +31,31 @@ class StudentGradingController extends Controller
                     }
                     $count++;
                 }
-                return view('student.grading', ['assignments' => $assignments, 'answers' => $myAnswers]);
+
+                $grades = array();
+
+                $student = json_decode(DB::table('students')
+                    ->where('userID', '=', $user['userID'])
+                    ->orderBy('created_at', 'desc')
+                    ->get(), true);
+
+                foreach ($student as $s) {
+                    $gCount = DB::table('grades')->where("studentID", '=', $s['id'])->count();
+                    if ($gCount == 0) {
+                        $newGrades = new Grades();
+                        $newGrades->studentID = $s['id'];
+                        $newGrades->workBehavior = null;
+                        $newGrades->socialSkills = null;
+                        $newGrades->cognitiveSkills = null;
+                        $newGrades->fms = null;
+                        $newGrades->gms = null;
+                        $newGrades->adls = null;
+                        $newGrades->save();
+                    }
+
+                    $grades = json_decode(DB::table('grades')->where("studentID", '=', $s['id'])->get(), true);
+                }
+                return view('student.grading', ['assignments' => $assignments, 'answers' => $myAnswers, 'grades' => $grades]);
             } else {
                 return redirect("/logout");
             }

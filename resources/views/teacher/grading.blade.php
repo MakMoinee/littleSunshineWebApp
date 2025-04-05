@@ -620,33 +620,11 @@
                                 src="" type="application/pdf">
                         </div>
                     </div>
-                    <form action="/teacher_grading" method="post">
-                        @csrf
-
-                        <div class="row mt-3">
-                            <div class="form-group">
-                                <label for="rating">Rating:<span class="text-danger">*</span></label>
-                                <select required name="rating" id="myRating" class="form-control mt-2">
-                                    <option value="">Select Rating</option>
-                                    <option value="good">Good</option>
-                                    <option value="fair">Fair</option>
-                                    <option value="poor">Poor</option>
-                                </select>
-                                <input style="display: none;" type="text" name="" id="myRating2"
-                                    class="form-control">
-                                <input type="hidden" name="id" id="subID">
-                            </div>
-                        </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger" name="btnRating" value="yes"
-                        id="btnRating">Yes,
-                        Proceed</button>
                 </div>
-
-                </form>
             </div>
         </div>
     </div>
