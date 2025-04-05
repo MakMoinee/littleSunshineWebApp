@@ -214,19 +214,17 @@
                 myLink.href = getEmbedUrl(linkFilePath);
             }
 
-
-
         }
 
         function getEmbedUrl($url) {
             if (strpos($url, 'youtube.com') !== false) {
                 preg_match("/(?:v=|\/)([0-9A-Za-z_-]{11})/", $url, $matches);
-                return 'https://www.youtube.com/embed/'.($matches[1] ?? '');
+                return 'https://www.youtube.com/embed/' + ($matches[1] ?? '');
             }
 
             if (strpos($url, 'vimeo.com') !== false) {
                 preg_match("/vimeo\.com\/(\d+)/", $url, $matches);
-                return 'https://player.vimeo.com/video/'.($matches[1] ?? '');
+                return 'https://player.vimeo.com/video/' + ($matches[1] ?? '');
             }
 
             // Add other sources as needed
