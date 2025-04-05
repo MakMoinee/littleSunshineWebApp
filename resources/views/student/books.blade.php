@@ -231,6 +231,11 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
+
+
+                            <a id="myLink" target="_blank" href="" class="text-decoration-none">If
+                                File Or Link is
+                                broken, please click this</a>
                         </center>
                     </div>
                 </div>
