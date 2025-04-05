@@ -179,6 +179,9 @@
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                                 </iframe>
+
+                                <a id="myLink" href="http://" class="text-decoration-none">If File Or Link is
+                                    broken, please click this</a>
                             </center>
                         </div>
                     </div>
@@ -195,16 +198,19 @@
         function viewBook(filePath, linkFilePath) {
             let pdfViewer = document.getElementById('pdfViewer');
             let linkViewer = document.getElementById('linkViewer');
+            let myLink = document.getElementById('myLink');
             pdfViewer.src = filePath;
             if (filePath) {
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "height: 500px; width: 100%;");
                 pdfViewer.src = filePath;
+                myLink.src = filePath;
             }
             if (linkFilePath) {
                 pdfViewer.setAttribute("style", "display:none");
                 linkViewer.setAttribute("style", "height: 500px; width: 100%;");
                 linkViewer.src = linkFilePath;
+                myLink.src = linkFilePath;
             }
 
 
