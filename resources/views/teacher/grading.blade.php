@@ -467,11 +467,15 @@
 
             }
 
-            let studData = document.getElementById(`myData${id}`);
-            if (studData.getAttribute("style")) {
-                studData.removeAttribute("style");
-            } else {
-                studData.setAttribute("style", "display:none;");
+            try {
+                let studData = document.getElementById(`myData${id}`);
+                if (studData.getAttribute("style")) {
+                    studData.removeAttribute("style");
+                } else {
+                    studData.setAttribute("style", "display:none;");
+                }
+            } catch (e) {
+
             }
         }
 
