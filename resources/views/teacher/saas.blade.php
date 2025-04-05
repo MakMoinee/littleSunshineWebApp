@@ -151,7 +151,8 @@
                                     </div>
 
                                     <button name="btnSetAssWithFile" value="yes" type="submit"
-                                        class="btn btn-primary set-button mt-2" style="background-color:#00394f !important;"> SET</button>
+                                        class="btn btn-primary set-button mt-2"
+                                        style="background-color:#00394f !important;"> SET</button>
                                 </div>
                             </form>
                         </div>
@@ -263,6 +264,47 @@
 
     <!-- Template Javascript -->
     <script src="/new/js/main.js"></script>
+    <script>
+        function openFile() {
+            document.getElementById('mFile').click();
+        }
+
+        function updateBtn() {
+            let txt = document.getElementById('mFile').value;
+            if (txt) {
+
+                let btnOpen = document.getElementById('btnOpen');
+                btnOpen.innerHTML = txt;
+
+                let btnClear = document.getElementById('btnClear');
+                btnClear.removeAttribute("style");
+            }
+        }
+
+        function clearFile() {
+
+            document.getElementById('mFile').value = null;
+            let btnOpen = document.getElementById('btnOpen');
+            btnOpen.innerHTML = "Choose Interactive File";
+
+            let btnClear = document.getElementById('btnClear');
+            btnClear.setAttribute("style", "display:none;");
+        }
+
+        function deleteAss(id, filePath) {
+
+            let assForm = document.getElementById('assForm');
+            assForm.action = `/teacher_saas/${id}`;
+
+            let deleteFilePath = document.getElementById('deleteFilePath');
+            if (filePath) {
+                deleteFilePath.value = filePath;
+            } else {
+
+                deleteFilePath.value = "";
+            }
+        }
+    </script>
 
     @if (session()->pull('errorSaveAss'))
         <script>
