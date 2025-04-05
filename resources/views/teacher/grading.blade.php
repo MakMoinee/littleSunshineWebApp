@@ -453,7 +453,7 @@
                 latestOpenId = id;
             } else {
 
-                let studData = document.getElementById(`myData${id}`);
+                let studData = document.getElementById(`myData${latestOpenId}`);
                 if (studData.getAttribute("style")) {} else {
                     latestOpenId = id;
                     studData.setAttribute("style", "display:none;");
