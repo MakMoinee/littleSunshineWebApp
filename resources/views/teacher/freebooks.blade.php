@@ -191,9 +191,11 @@
             pdfViewer.src = filePath;
             if (filePath) {
                 pdfViewer.src = filePath;
-            } else {
+            }
+            if (linkFilePath) {
                 pdfViewer.src = linkFilePath;
             }
+
 
 
         }
