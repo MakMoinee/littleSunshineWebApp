@@ -24,6 +24,7 @@ class TeacherSetAssignmentController extends Controller
                 return redirect("/logout");
             }
 
+
             $allStudents = json_decode(Students::all(), true);
             $allAss = DB::table('assignments')
                 ->where('teacherID', '=', $user['userID'])
@@ -79,7 +80,13 @@ class TeacherSetAssignmentController extends Controller
                 $files = $request->file('file');
                 $fileName = "";
                 if ($files) {
-                    $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/assignments';
+
+                    $env = env('APP_ENV');
+                    if ($env == "stage") {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/assignments';
+                    } else {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/assignments';
+                    }
                     $fileName = strtotime(now()) . "." . $files->getClientOriginalExtension();
                     $isFile = $files->move($destinationPath,  $fileName);
                     chmod($destinationPath, 0755);
@@ -158,7 +165,12 @@ class TeacherSetAssignmentController extends Controller
                     try {
                         $originalDirectoryPath = $request->filePath;
                         if ($originalDirectoryPath) {
-                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . $originalDirectoryPath;
+                            $env = env('APP_ENV');
+                            if ($env == "stage") {
+                                $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . $originalDirectoryPath;
+                            } else {
+                                $destinationPath = $_SERVER['DOCUMENT_ROOT'] . $originalDirectoryPath;
+                            }
                             File::delete($destinationPath);
                         }
                     } catch (Exception $e1) {
