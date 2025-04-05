@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BooksController;
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -57,3 +58,4 @@ Route::resource('/student_eval', StudentEvaluationController::class);
 Route::get('/logout', [LogoutController::class, 'index']);
 Route::resource('/teacher_grading', TeacherGradingController::class);
 Route::resource('/student_grades', StudentGradingController::class);
+Route::resource('/student_books', BooksController::class);
