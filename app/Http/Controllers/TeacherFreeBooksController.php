@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class TeacherFreeBooksController extends Controller
 {
@@ -55,16 +57,25 @@ class TeacherFreeBooksController extends Controller
 
                 $book = $request->file('book');
                 $bookFileName = "";
+                $env = env('APP_ENV');
 
                 if ($thumbnail) {
-                    $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/thumbnails';
+                    if ($env == "stage") {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/thumbnails';
+                    } else {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/thumbnails';
+                    }
                     $thumbnailFileName = strtotime(now()) . "." . $thumbnail->getClientOriginalExtension();
                     $isFile = $thumbnail->move($destinationPath,  $thumbnailFileName);
                     chmod($destinationPath, 0755);
                 }
 
                 if ($book) {
-                    $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/books';
+                    if ($env == "stage") {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/books';
+                    } else {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/books';
+                    }
                     $bookFileName = strtotime(now()) . "." . $book->getClientOriginalExtension();
                     $isFile = $book->move($destinationPath,  $bookFileName);
                     chmod($destinationPath, 0755);
@@ -74,8 +85,8 @@ class TeacherFreeBooksController extends Controller
                     $newBook = new Books();
                     $newBook->userID = $user['userID'];
                     $newBook->title = $request->title;
-                    $newBook->thumbnail = "/data/thumbnails" . $thumbnailFileName;
-                    $newBook->book = "/data/books" . $bookFileName;
+                    $newBook->thumbnail = "/data/thumbnails/" . $thumbnailFileName;
+                    $newBook->book = "/data/books/" . $bookFileName;
                     $newBook->link = $request->bookLink;
                     $isSave = $newBook->save();
                     if ($isSave) {
@@ -122,8 +133,44 @@ class TeacherFreeBooksController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
+
+            if ($request->btnDeleteBook) {
+                if ($request->book) {
+                    try {
+                        $originalDirectoryPath = $request->book;
+                        if ($originalDirectoryPath) {
+                            $env = env('APP_ENV');
+                            if ($env == "stage") {
+                                $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . $originalDirectoryPath;
+                            } else {
+                                $destinationPath = $_SERVER['DOCUMENT_ROOT'] . $originalDirectoryPath;
+                            }
+                            File::delete($destinationPath);
+                        }
+                    } catch (Exception $e1) {
+                    }
+                }
+
+                $deleteCount = DB::table('books')->where('id', '=', $id)->delete();
+                if ($deleteCount > 0) {
+
+                    session()->put("successDeleteBook", true);
+                } else {
+                    session()->put("errorDeleteBook", true);
+                }
+            }
+
+            return redirect("/teacher_books");
+        }
+        return redirect("/");
     }
 }
