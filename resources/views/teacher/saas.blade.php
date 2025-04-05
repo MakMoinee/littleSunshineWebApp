@@ -119,8 +119,8 @@
                                             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                                         @endforeach
                                     </select>
-                                    <input type="number" class="form-control mt-2" name="sessionNumber"
-                                        placeholder="Session #">
+                                    <input type="hidden" class="form-control mt-2" name="sessionNumber"
+                                        placeholder="Session #" style="display:none" value="0">
 
                                     <input type="text" class="form-control input-field mt-2" name="title"
                                         placeholder="Assignment Title">
@@ -171,13 +171,12 @@
                                         <tr class="align-middle">
                                             <th>Title</th>
                                             <th class="text-center">Student Name</th>
-                                            <th>Session #</th>
-                                            <th class="text-center">Due Date From</th>
-                                            <th>Due Date To</th>
-                                            <th class="text-center">
+                                            <th>Due Date From</th>
+                                            <th class="text-center">Due Date To</th>
+                                            <th>
                                                 File
                                             </th>
-                                            <th>Action</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -193,23 +192,20 @@
                                                         @endif
                                                     @endforeach
                                                 </td>
-                                                <td>
-                                                    {{ $item->sessionID }}
-                                                </td>
-                                                <td class="text-center">
+                                                <td >
                                                     {{ (new DateTime($item->dueFrom))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ (new DateTime($item->dueTo))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
-                                                <td class="text-center">
+                                                <td >
                                                     @if ($item->filePath)
                                                         <a href="{{ $item->filePath }}">View File</a>
                                                     @else
                                                         None
                                                     @endif
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <button class="btn btn-danger text-white"
                                                         data-target="#deleteAssModal" data-toggle="modal"
                                                         onclick="deleteAss({{ $item->assignmentID }},'{{ $item->filePath }}')">

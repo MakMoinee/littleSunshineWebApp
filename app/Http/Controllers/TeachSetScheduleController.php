@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedules;
 use App\Models\Students;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeachSetScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         if (session()->exists('users')) {
             $user = session()->pull('users');
@@ -24,7 +27,49 @@ class TeachSetScheduleController extends Controller
 
             $allStudents = json_decode(Students::all(), true);
 
-            return view('teacher.ss', ['students' => $allStudents]);
+            $sched = (new DateTime(now()))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
+            if ($request->query('sched')) {
+                $sched = (new DateTime($request->query('sched')))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
+            }
+
+            $schedules = json_decode(DB::table('vwstudentschedules')
+                ->where('scheduleDate', '=', $sched)
+                ->orderBy('created_at', 'desc')
+                ->get(), true);
+            $newSched = array();
+            $count = 1;
+            foreach ($schedules as $s) {
+                $s['no'] = $count;
+                $count++;
+                array_push($newSched, $s);
+            }
+
+            $allScheds = json_decode(DB::table('vwstudentschedules')
+                ->orderBy('created_at', 'desc')
+                ->get(), true);
+
+            $events = array();
+            foreach ($allScheds as $as) {
+                $idd = $as['id'];
+                $type = $as['classType'];
+                $startDet = (new DateTime($as['scheduleDate']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
+                $endDet = (new DateTime($as['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
+                $data = array();
+                $data = ["id" => $idd, "title" => $type, "start" => $startDet, "end" => $endDet];
+                array_push($events, $data);
+            }
+
+
+            $count = 1;
+            $scheds = array();
+            foreach ($allScheds as $ss) {
+                $ss['no'] = $count;
+                array_push($scheds, $ss);
+            }
+
+
+
+            return view('teacher.ss', ['students' => $allStudents, 'events' => $events, 'mSched' =>  $scheds]);
         }
         return redirect("/");
     }
