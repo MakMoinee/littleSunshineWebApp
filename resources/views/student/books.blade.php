@@ -260,7 +260,7 @@
 <script>
     let activeId;
 
-    function viewBook(filePath) {
+    function viewBook(filePath, linkFilePath) {
         let pdfViewer = document.getElementById('pdfViewer');
         let linkViewer = document.getElementById('linkViewer');
         let myLink = document.getElementById('myLink');
