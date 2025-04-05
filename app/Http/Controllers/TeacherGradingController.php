@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grades;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,6 +32,7 @@ class TeacherGradingController extends Controller
                 ->orderBy('created_at', 'desc')->get(), true);
             $studentAss = array();
             $studentSub = array();
+            $grades = array();
             foreach ($sortedStudents as $s) {
                 $data = json_decode(DB::table('assignments')->where("studentID", '=', $s['id'])->get(), true);
                 if (count($data) > 0) {
@@ -39,10 +41,27 @@ class TeacherGradingController extends Controller
                         $studentSub[$s['id']] = $ss;
                     }
                 }
+
+                $gCount = DB::table('grades')->where("studentID", '=', $s['id'])->count();
+                if ($gCount == 0) {
+                    $newGrades = new Grades();
+                    $newGrades->studentID = $s['id'];
+                    $newGrades->workBehavior = null;
+                    $newGrades->socialSkills = null;
+                    $newGrades->cognitiveSkills = null;
+                    $newGrades->fms = null;
+                    $newGrades->gms = null;
+                    $newGrades->adls = null;
+                    $newGrades->save();
+                }
+
+                $grades = json_decode(DB::table('grades')->where("studentID", '=', $s['id'])->get(), true);
             }
 
 
-            return view('teacher.grading', ['students' => $allStudents, 'studentAss' => $studentAss, 'submissions' => $studentSub]);
+
+
+            return view('teacher.grading', ['students' => $allStudents, 'studentAss' => $studentAss, 'submissions' => $studentSub, 'grades' => $grades]);
         }
         return redirect("/");
     }
@@ -75,6 +94,21 @@ class TeacherGradingController extends Controller
                     session()->put("successUpdateSubmit", true);
                 } else {
                     session()->put("errorUpdateSubmit", true);
+                }
+            } else if ($request->btnSave) {
+                $updateCount = DB::table('grades')->where('studentID', '=', $request->sid)->update([
+                    "workBehavior" => $request->workBehavior,
+                    "socialSkills" =>  $request->socialSkills,
+                    "cognitiveSkills" =>  $request->cognitiveSkills,
+                    "fms" =>  $request->fms,
+                    "gms" =>  $request->gms,
+                    "adls" =>  $request->adls,
+                ]);
+
+                if ($updateCount > 0) {
+                    session()->put("successUpdateGrade", true);
+                } else {
+                    session()->put("errorUpdateGrade", true);
                 }
             }
             return redirect("/teacher_grading");
