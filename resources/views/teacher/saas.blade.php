@@ -250,6 +250,29 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary p-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+    
+    <div class="modal fade " id="deleteAssModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteAssModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="assForm" action="/teacher_saas" method="post">
+                    @method('delete')
+                    @csrf
+                    <div class="modal-body">
+                        <h5>Are You Sure You Want To Delete This Assignment?</h5>
+                        <input type="hidden" name="filePath" id="deleteFilePath" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                        <button type="submit" class="btn btn-danger" name="btnDeleteAss" value="yes"
+                            style="color:white !important;">Proceed Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
