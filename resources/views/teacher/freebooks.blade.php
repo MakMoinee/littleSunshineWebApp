@@ -171,7 +171,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <center>
-                                <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2"
+                                <embed style="height: 800px; width: 100%;" class="embed-responsive mt-2"
                                     id="pdfViewer" src="" type="application/pdf">
 
                                 <iframe style="height: 500px; width: 100%; display:none;" id="linkViewer"
@@ -202,7 +202,7 @@
             pdfViewer.src = filePath;
             if (filePath) {
                 linkViewer.setAttribute("style", "display:none");
-                pdfViewer.setAttribute("style", "height: 500px; width: 100%;");
+                pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
                 pdfViewer.src = filePath;
                 myLink.href = filePath;
             }
