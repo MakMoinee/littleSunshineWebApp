@@ -173,6 +173,12 @@
                             <center>
                                 <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2"
                                     id="pdfViewer" src="" type="application/pdf">
+
+                                <iframe style="height: 500px; width: 100%; display:none;" id="linkViewer"
+                                    width="560" height="315" src="" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
                             </center>
                         </div>
                     </div>
@@ -188,12 +194,17 @@
     <script>
         function viewBook(filePath, linkFilePath) {
             let pdfViewer = document.getElementById('pdfViewer');
+            let linkViewer = document.getElementById('linkViewer');
             pdfViewer.src = filePath;
             if (filePath) {
+                linkViewer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "height: 500px; width: 100%;");
                 pdfViewer.src = filePath;
             }
             if (linkFilePath) {
-                pdfViewer.src = linkFilePath;
+                pdfViewer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+                linkViewer.src = linkFilePath;
             }
 
 
