@@ -307,7 +307,7 @@
                                     <option value="">Select Session</option>
                                     @foreach ($mSessions as $s)
                                         @if ($item->id == $s['studentID'])
-                                            <option value="{{ $s['id'] }}">{{ $s['details'] }}</option>
+                                            <option value="{{ $s['id'] }}" selected>{{ $s['details'] }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -365,7 +365,17 @@
     <script src="/assets/main.js.download"></script>
     <script></script>
     <script>
+        let lastSessId = 0;
+
         function viewData(id) {
+            if (lastSessId == 0) {
+                lastSessId = id;
+            } else {
+
+                let sess2 = document.getElementById(`sess${lastSessId}`);
+                sess2.setAttribute("style", "display:none");
+
+            }
             let sess = document.getElementById(`sess${id}`);
             sess.removeAttribute("style");
 
