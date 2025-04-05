@@ -150,6 +150,10 @@
 
             background-color: #d95c5c !important;
         }
+
+        .table-light {
+            --cui-table-bg: #d95c5c !important;
+        }
     </style>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
@@ -259,20 +263,50 @@
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
             @foreach ($studentAss as $assItems)
-                <div class="row mt-3">
-                    @foreach ($assItems as $ass)
-                        <div class="col-lg-2">
+                <div class="container" id="myData{{ $assItems[0]['studentID'] }}" style="display: none;">
+                    <div class="row mt-3">
+                        <div class="col-lg-12 d-flex">
+                            <button class="btn btn-white "
+                                onclick="showSubmittedAss({{ $assItems[0]['studentID'] }})">View Submitted
+                                Assignments</button>
+                            <button class="btn btn-white ">Submit Grade</button>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5" id="viewSubmittedAss{{ $assItems[0]['studentID'] }}"
+                        style="display: none;">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5>{{ $ass['title'] }}</h5>
-                                    <button data-coreui-target="#previewModal" data-coreui-toggle="modal"
-                                        class="btn btn-primary mt-3"
-                                        onclick="previewAns({{ $ass['assignmentID'] }},'{{ $ass['filePath'] }}')">Preview
-                                        Answer</button>
+                                    <div class="table-responsive bg-white">
+                                        <table class="table border mb-0">
+                                            <thead class="table-light fw-semibold">
+                                                <tr class="align-middle">
+                                                    <th></th>
+                                                    <th class="text-center"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($assItems as $ass)
+                                                    <tr class="align-middle">
+                                                        <td>
+                                                            <h5>{{ $ass['title'] }}</h5>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-primary text-white"
+                                                                data-coreui-target="#previewModal"
+                                                                data-coreui-toggle="modal"
+                                                                onclick="previewAns({{ $ass['assignmentID'] }},'{{ $ass['filePath'] }}')">Preview</button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -401,11 +435,24 @@
             }
         }
 
-        function viewData(id) {
-            let sess = document.getElementById(`sess${id}`);
-            sess.removeAttribute("style");
+        function showSubmittedAss(id) {
 
-            let studData = document.getElementById(`stud${id}`);
+            let assignments = document.getElementById(`viewSubmittedAss${id}`);
+            if (assignments.getAttribute("style")) {
+
+                assignments.removeAttribute("style");
+            } else {
+
+                assignments.setAttribute("style", "display:none");
+            }
+        }
+
+        function viewData(id) {
+
+            let assignments = document.getElementById(`viewSubmittedAss${id}`);
+            assignments.setAttribute("style", "display:none");
+
+            let studData = document.getElementById(`myData${id}`);
             if (studData.getAttribute("style")) {
                 studData.removeAttribute("style");
             } else {
