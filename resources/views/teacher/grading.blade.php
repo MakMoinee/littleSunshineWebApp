@@ -460,8 +460,12 @@
                 }
             }
 
-            let assignments = document.getElementById(`viewSubmittedAss${id}`);
-            assignments.setAttribute("style", "display:none");
+            try {
+                let assignments = document.getElementById(`viewSubmittedAss${id}`);
+                assignments.setAttribute("style", "display:none");
+            } catch (e) {
+
+            }
 
             let studData = document.getElementById(`myData${id}`);
             if (studData.getAttribute("style")) {
