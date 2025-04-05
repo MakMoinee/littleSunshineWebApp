@@ -400,6 +400,7 @@
     <script></script>
     <script>
         let submissions = @json($submissions);
+        let latestOpenId = 0;
 
         function previewAns(id, filePath) {
             let pdfViewer2 = document.getElementById('pdfViewer2');
@@ -448,6 +449,16 @@
         }
 
         function viewData(id) {
+            if (latestOpenId == 0) {
+                latestOpenId = id;
+            } else {
+
+                let studData = document.getElementById(`myData${id}`);
+                if (studData.getAttribute("style")) {} else {
+                    latestOpenId = id;
+                    studData.setAttribute("style", "display:none;");
+                }
+            }
 
             let assignments = document.getElementById(`viewSubmittedAss${id}`);
             assignments.setAttribute("style", "display:none");
