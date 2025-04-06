@@ -301,17 +301,7 @@
                             <label class="text-dark" for="sessionNum">Session:<span class="text-danger">*</span>
                             </label>
                             <br>
-                            @foreach ($students as $item)
-                                <select required name="sessionNum" id="sess{{ $item->id }}"
-                                    class="form-control mt-1" style="display: none;">
-                                    <option value="">Select Session</option>
-                                    @foreach ($mSessions as $s)
-                                        @if ($item->id == $s['studentID'])
-                                            <option value="{{ $s['id'] }}" selected>{{ $s['details'] }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            @endforeach
+                            <input type="text" class="form-control" name="sessionNum">
 
                         </div>
                         <div class="form-group mt-2">
@@ -368,16 +358,6 @@
         let lastSessId = 0;
 
         function viewData(id) {
-            if (lastSessId == 0) {
-                lastSessId = id;
-            } else {
-
-                let sess2 = document.getElementById(`sess${lastSessId}`);
-                sess2.setAttribute("style", "display:none");
-
-            }
-            let sess = document.getElementById(`sess${id}`);
-            sess.removeAttribute("style");
 
             let studData = document.getElementById(`stud${id}`);
             if (studData.getAttribute("style")) {
