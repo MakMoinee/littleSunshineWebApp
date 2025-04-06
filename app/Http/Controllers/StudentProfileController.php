@@ -46,13 +46,44 @@ class StudentProfileController extends Controller
             session()->put("users", $user);
 
             if ($request->btnEditStudentName) {
-                $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
-                    "name" => $request->name,
-                ]);
-                if ($updateCount > 0) {
-                    session()->put("successUpdate", true);
+                $files = $request->file('profilePic');
+                $fileName = "";
+                $filePrefix = "";
+                if ($files) {
+                    $mimeType = $files->getMimeType();
+                    if ($mimeType == "image/png" || $mimeType == "image/jpg" || $mimeType == "image/JPG" || $mimeType == "image/JPEG" || $mimeType == "image/jpeg" || $mimeType == "image/PNG") {
+                        $fileName = strtotime(now()) . "." . $files->getClientOriginalExtension();
+                        $env = env('APP_ENV');
+                        if ($env == "stage") {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/profiles';
+                            $filePrefix = "/public";
+                        } else {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/profiles';
+                            $filePrefix = "";
+                        }
+                        $isFile = $files->move($destinationPath,  $fileName);
+                        chmod($destinationPath, 0755);
+                    }
+                }
+                if ($fileName) {
+                    $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
+                        "name" => $request->name,
+                        "imagePath" => $filePrefix . $fileName,
+                    ]);
+                    if ($updateCount > 0) {
+                        session()->put("successUpdate", true);
+                    } else {
+                        session()->put("errorUpdate", $user);
+                    }
                 } else {
-                    session()->put("errorUpdate", $user);
+                    $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
+                        "name" => $request->name,
+                    ]);
+                    if ($updateCount > 0) {
+                        session()->put("successUpdate", true);
+                    } else {
+                        session()->put("errorUpdate", $user);
+                    }
                 }
             } else if ($request->btnSaveProfile) {
 

@@ -156,13 +156,25 @@
 
                             <div class="simplebar-content" style="padding: 0px;">
                                 <form action="/student_profile" method="post" id="studentNameForm"
-                                    onsubmit="return false;">
+                                    onsubmit="return false;" enctype="multipart/form-data">
                                     @csrf
                                     <div class="container mt-3">
                                         <div class="row">
                                             <div class="col-lg-6 mx-auto">
-                                                <img style="height: 100px;" src="/account.svg" alt=""
-                                                    srcset="">
+                                                <a style="cursor:pointer;"
+                                                    onclick="document.getElementById('profilePic').click()"
+                                                    class="text-decoration-none">
+                                                    @if ($student && $student['imagePath'])
+                                                        <img style="height: 100px;" src="{{ $teacher['imagePath'] }}"
+                                                            id="profileAccount" alt="" srcset="">
+                                                    @else
+                                                        <img style="height: 100px;" src="/account.svg"
+                                                            id="profileAccount" alt="" srcset="">
+                                                    @endif
+                                                </a>
+
+                                                <input type="file" name="profilePic" style="display: none;"
+                                                    id="profilePic" accept=".jpg, .png" onchange="previewImage(event)">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -188,8 +200,9 @@
                                                     value="yes">Sample</button>
                                                 <button type="button" class="btn btn-primary"
                                                     onclick="editName()">Edit</button>
-                                                <button type="reset" class="btn btn-danger text-white" id="btnClear"
-                                                    style="display: none;" onclick="clearMe()">Clear</button>
+                                                <button type="reset" class="btn btn-danger text-white"
+                                                    id="btnClear" style="display: none;"
+                                                    onclick="clearMe()">Clear</button>
                                             </div>
                                         </div>
                                         <div class="row mt-2">
@@ -345,7 +358,22 @@
     <script src="/assets/coreui-utils.js.download"></script>
     <script src="/assets/main.js.download"></script>
     <script></script>
-    <script></script>
+    <script>
+        function previewImage(event) {
+            var files = event.currentTarget.files;
+            if (files && files[0]) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var output = document.getElementById('profilePic');
+                    if (output) {
+                        output.src = reader.result;
+                        profileAccount.src = reader.result;
+                    }
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        }
+    </script>
 
     @if (session()->pull('errorPasswordNotMatch'))
         <script>

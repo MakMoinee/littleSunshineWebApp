@@ -59,35 +59,21 @@ class EnrollController extends Controller
                     chmod($destinationPath, 0755);
                 }
 
-                $newUser = new Users();
-                $newUser->username = "user" . strtotime(now());
-                $pass = strtotime(now());
-                $newUser->password = Hash::make($pass);
-                $newUser->userType = "student";
-                $newUser->status = "active";
-                $isSave = $newUser->save();
+                $newStudent = new Students();
+                $newStudent->userID = 0;
+                $newStudent->name = $request->studentName;
+                $newStudent->studentID = $request->course;
+                $newStudent->guardian = $request->guardianName;
+                $newStudent->contactNumber = $request->contactNumber;
+                $newStudent->guardianEmail = $request->guardianEmail;
+                $newStudent->address = $request->address;
+                $newStudent->type = '/data/evaluations/' . $evaluationFilename;
+                $newStudent->diagnose_remarks = "";
+                $newStudent->course = $request->course;
+                $isSave = $newStudent->save();
                 if ($isSave) {
-                    $studentUser = json_decode(DB::table('users')->where('username', '=', $newUser->username)->get(), true);
-                    $studentUser = $studentUser[0];
-                    $newStudent = new Students();
-                    $newStudent->userID = $studentUser['userID'];
-                    $newStudent->name = $request->studentName;
-                    $newStudent->studentID = $request->course;
-                    $newStudent->guardian = $request->guardianName;
-                    $newStudent->contactNumber = $request->contactNumber;
-                    $newStudent->guardianEmail = $request->guardianEmail;
-                    $newStudent->address = $request->address;
-                    $newStudent->type = '/data/evaluations/' . $evaluationFilename;
-                    $newStudent->diagnose_remarks = "";
-                    $newStudent->course = $request->course;
-                    $isSave = $newStudent->save();
-                    if ($isSave) {
-                        $this->sendEmail("littlesunshineschool6@gmail.com", "Account Information",  $newStudent->name, $newStudent->course, $newStudent->guardian, $newStudent->contactNumber, $newStudent->guardianEmail, $newStudent->address, $newStudent->type);
-                        session()->put("successEnroll", true);
-                    } else {
-
-                        session()->put("errorEnroll", true);
-                    }
+                    $this->sendEmail("littlesunshineschool6@gmail.com", "Account Information",  $newStudent->name, $newStudent->course, $newStudent->guardian, $newStudent->contactNumber, $newStudent->guardianEmail, $newStudent->address, $newStudent->type);
+                    session()->put("successEnroll", true);
                 } else {
 
                     session()->put("errorEnroll", true);
