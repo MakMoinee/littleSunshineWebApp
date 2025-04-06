@@ -165,7 +165,7 @@
                                                     onclick="document.getElementById('profilePic').click()"
                                                     class="text-decoration-none">
                                                     @if ($student && $student['imagePath'])
-                                                        <img style="height: 100px;" src="{{ $teacher['imagePath'] }}"
+                                                        <img style="height: 100px;" src="{{ $student['imagePath'] }}"
                                                             id="profileAccount" alt="" srcset="">
                                                     @else
                                                         <img style="height: 100px;" src="/account.svg"

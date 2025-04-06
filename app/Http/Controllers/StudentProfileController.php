@@ -68,7 +68,7 @@ class StudentProfileController extends Controller
                 if ($fileName) {
                     $updateCount = DB::table('students')->where('userID', '=', $user['userID'])->update([
                         "name" => $request->name,
-                        "imagePath" => $filePrefix . $fileName,
+                        "imagePath" =>  $filePrefix . "/data/profiles/" . $fileName,
                     ]);
                     if ($updateCount > 0) {
                         session()->put("successUpdate", true);
