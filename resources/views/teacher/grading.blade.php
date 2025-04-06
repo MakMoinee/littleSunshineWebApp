@@ -328,28 +328,34 @@
                                                         @csrf
                                                         <tr class="align-middle">
                                                             <td>
-                                                                Work Behavior
+                                                                <h4>Work Behavior</h4>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Attention
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($item['workBehavior'])
-                                                                    <select name="workBehavior" id=""
+                                                                @if ($workBehavior['attention'])
+                                                                    <select name="attention" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($item['workBehavior'] == 'good')
+                                                                        @if ($workBehavior['attention'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($item['workBehavior'] == 'poor')
+                                                                        @if ($workBehavior['attention'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($item['workBehavior'] == 'fair')
+                                                                        @if ($workBehavior['attention'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -357,7 +363,7 @@
                                                                         @endif
                                                                     </select>
                                                                 @else
-                                                                    <select name="workBehavior" id=""
+                                                                    <select name="attention" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
                                                                         <option value="good">Good</option>
@@ -369,28 +375,28 @@
                                                         </tr>
                                                         <tr class="align-middle">
                                                             <td>
-                                                                Social Skills
+                                                                Concentration
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($item['socialSkills'])
-                                                                    <select name="socialSkills" id=""
+                                                                @if ($workBehavior['concentration'])
+                                                                    <select name="concentration" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($item['socialSkills'] == 'good')
+                                                                        @if ($workBehavior['concentration'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($item['socialSkills'] == 'poor')
+                                                                        @if ($workBehavior['concentration'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($item['socialSkills'] == 'fair')
+                                                                        @if ($workBehavior['concentration'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -398,7 +404,7 @@
                                                                         @endif
                                                                     </select>
                                                                 @else
-                                                                    <select name="socialSkills" id=""
+                                                                    <select name="concentration" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
                                                                         <option value="good">Good</option>
@@ -410,28 +416,28 @@
                                                         </tr>
                                                         <tr class="align-middle">
                                                             <td>
-                                                                Cognitive Skills
+                                                                Frustration Tolerance
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($item['cognitiveSkills'])
-                                                                    <select name="cognitiveSkills" id=""
+                                                                @if ($workBehavior['tolerance'])
+                                                                    <select name="tolerance" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($item['cognitiveSkills'] == 'good')
+                                                                        @if ($workBehavior['tolerance'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($item['cognitiveSkills'] == 'poor')
+                                                                        @if ($workBehavior['tolerance'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($item['cognitiveSkills'] == 'fair')
+                                                                        @if ($workBehavior['tolerance'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -439,7 +445,7 @@
                                                                         @endif
                                                                     </select>
                                                                 @else
-                                                                    <select name="cognitiveSkills" id=""
+                                                                    <select name="tolerance" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
                                                                         <option value="good">Good</option>
@@ -451,28 +457,28 @@
                                                         </tr>
                                                         <tr class="align-middle">
                                                             <td>
-                                                                FMS
+                                                                Impulse Control
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($item['fms'])
-                                                                    <select name="fms" id=""
+                                                                @if ($workBehavior['impulse'])
+                                                                    <select name="impulse" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($item['fms'] == 'good')
+                                                                        @if ($workBehavior['impulse'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($item['fms'] == 'poor')
+                                                                        @if ($workBehavior['impulse'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($item['fms'] == 'fair')
+                                                                        @if ($workBehavior['impulse'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -480,7 +486,7 @@
                                                                         @endif
                                                                     </select>
                                                                 @else
-                                                                    <select name="fms" id=""
+                                                                    <select name="impulse" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
                                                                         <option value="good">Good</option>
@@ -492,28 +498,28 @@
                                                         </tr>
                                                         <tr class="align-middle">
                                                             <td>
-                                                                GMS
+                                                                Sitting Quality
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($item['gms'])
-                                                                    <select name="gms" id=""
+                                                                @if ($workBehavior['sitting'])
+                                                                    <select name="sitting" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($item['gms'] == 'good')
+                                                                        @if ($workBehavior['sitting'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($item['gms'] == 'poor')
+                                                                        @if ($workBehavior['sitting'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($item['gms'] == 'fair')
+                                                                        @if ($workBehavior['sitting'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -521,7 +527,55 @@
                                                                         @endif
                                                                     </select>
                                                                 @else
-                                                                    <select name="gms" id=""
+                                                                    <select name="sitting" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                <h4>Social Skills</h4>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Name Calling
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['name'])
+                                                                    <select name="name" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['name'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['name'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['name'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="name" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
                                                                         <option value="good">Good</option>
@@ -533,28 +587,28 @@
                                                         </tr>
                                                         <tr class="align-middle">
                                                             <td>
-                                                                ADLs
+                                                                Eye Contact
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($item['adls'])
-                                                                    <select name="adls" id=""
+                                                                @if ($socialSkills['eye'])
+                                                                    <select name="eye" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($item['adls'] == 'good')
+                                                                        @if ($socialSkills['eye'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($item['adls'] == 'poor')
+                                                                        @if ($socialSkills['eye'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($item['adls'] == 'fair')
+                                                                        @if ($socialSkills['eye'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -562,7 +616,7 @@
                                                                         @endif
                                                                     </select>
                                                                 @else
-                                                                    <select name="adls" id=""
+                                                                    <select name="eye" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
                                                                         <option value="good">Good</option>
@@ -572,6 +626,1396 @@
                                                                 @endif
                                                             </td>
                                                         </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Joint Attention
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['joint'])
+                                                                    <select name="joint" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['joint'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['joint'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['joint'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="joint" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Verbal Communication
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['verbal'])
+                                                                    <select name="verbal" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['verbal'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['verbal'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['verbal'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="verbal" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Cooperation
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['cooperation'])
+                                                                    <select name="cooperation" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['cooperation'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['cooperation'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['cooperation'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="cooperation" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Active Listening
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['activeListening'])
+                                                                    <select name="activeListening" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['activeListening'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['activeListening'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['activeListening'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="activeListening" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Flexibility
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['flexibility'])
+                                                                    <select name="flexibility" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['flexibility'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['flexibility'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['flexibility'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="flexibility" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Following Decision
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['decision'])
+                                                                    <select name="decision" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['decision'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['decision'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['decision'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="decision" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Manners
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($socialSkills['manners'])
+                                                                    <select name="manners" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($socialSkills['manners'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['manners'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($socialSkills['manners'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="manners" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                <h4>Cognitive Skills</h4>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Match
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($cognitiveSkills['match'])
+                                                                    <select name="match" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($cognitiveSkills['match'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['match'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['match'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="match" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Sort
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($cognitiveSkills['sort'])
+                                                                    <select name="sort" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($cognitiveSkills['sort'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['sort'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['sort'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="sort" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Recognize
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($cognitiveSkills['recognize'])
+                                                                    <select name="recognize" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($cognitiveSkills['recognize'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['recognize'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['recognize'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="recognize" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Identify
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($cognitiveSkills['identify'])
+                                                                    <select name="identify" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($cognitiveSkills['identify'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['identify'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['identify'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="identify" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Following Instruction
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($cognitiveSkills['instruction'])
+                                                                    <select name="instruction" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($cognitiveSkills['instruction'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['instruction'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($cognitiveSkills['instruction'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="instruction" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                <h4>FMS</h4>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                In-hand Manipulation
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['manipulation'])
+                                                                    <select name="manipulation" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['manipulation'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['manipulation'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['manipulation'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="manipulation" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Eye-hand Coordination
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['coordination'])
+                                                                    <select name="coordination" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['coordination'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['coordination'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['coordination'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="coordination" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Tracing
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['tracing'])
+                                                                    <select name="tracing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['tracing'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['tracing'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['tracing'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="tracing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Imitating
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['imatating'])
+                                                                    <select name="imatating" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['imatating'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['imatating'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['imatating'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="imatating" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Copying
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['copying'])
+                                                                    <select name="copying" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['copying'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['copying'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['copying'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="copying" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Writing
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['writing'])
+                                                                    <select name="writing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['writing'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['writing'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['writing'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="writing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Coloring
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['coloring'])
+                                                                    <select name="coloring" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['coloring'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['coloring'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['coloring'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="coloring" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Painting
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['painting'])
+                                                                    <select name="painting" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['painting'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['painting'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['painting'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="painting" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Cutting
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['cutting'])
+                                                                    <select name="cutting" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['cutting'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['cutting'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['cutting'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="cutting" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Folding
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['folding'])
+                                                                    <select name="folding" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['folding'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['folding'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['folding'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="folding" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Strength
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($fms['strength'])
+                                                                    <select name="strength" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($fms['strength'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($fms['strength'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($fms['strength'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="strength" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                <h4>GMS</h4>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Motor Planning
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($gms['planning'])
+                                                                    <select name="planning" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($gms['planning'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($gms['planning'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($gms['planning'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="planning" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Balance And Coordination
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($gms['balance'])
+                                                                    <select name="balance" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($gms['balance'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($gms['balance'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($gms['balance'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="balance" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Body Awareness
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($gms['body'])
+                                                                    <select name="body" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($gms['body'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($gms['body'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($gms['body'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="body" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Physical Strength
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($gms['strength'])
+                                                                    <select name="strength" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($gms['strength'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($gms['strength'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($gms['strength'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="strength" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Reaction Time
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($gms['reaction'])
+                                                                    <select name="reaction" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($gms['reaction'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($gms['reaction'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($gms['reaction'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="reaction" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                <h4>ADLs</h4>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Feeding
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($adls['feeding'])
+                                                                    <select name="feeding" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($adls['feeding'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($adls['feeding'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($adls['feeding'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="feeding" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Dressing
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($adls['dressing'])
+                                                                    <select name="dressing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($adls['dressing'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($adls['dressing'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($adls['dressing'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="dressing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Grooming
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($adls['grooming'])
+                                                                    <select name="grooming" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($adls['grooming'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($adls['grooming'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($adls['grooming'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="grooming" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Bathing
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($adls['bathing'])
+                                                                    <select name="bathing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($adls['bathing'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($adls['bathing'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($adls['bathing'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="bathing" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="align-middle">
+                                                            <td>
+                                                                Meal Preparation
+                                                            </td>
+                                                            <td class="text-center">
+                                                                @if ($adls['meal'])
+                                                                    <select name="meal" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        @if ($adls['meal'] == 'good')
+                                                                            <option value="good" selected>Good
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="good">Good</option>
+                                                                        @endif
+
+                                                                        @if ($adls['meal'] == 'poor')
+                                                                            <option value="poor" selected>Poor
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="poor">Poor</option>
+                                                                        @endif
+
+                                                                        @if ($adls['meal'] == 'fair')
+                                                                            <option value="fair" selected>Fair
+                                                                            </option>
+                                                                        @else
+                                                                            <option value="fair">Fair</option>
+                                                                        @endif
+                                                                    </select>
+                                                                @else
+                                                                    <select name="meal" id=""
+                                                                        class="form-control text-center">
+                                                                        <option value="">Select Grade</option>
+                                                                        <option value="good">Good</option>
+                                                                        <option value="poor">Poor</option>
+                                                                        <option value="fair">Fair</option>
+                                                                    </select>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+
+
 
                                                         <tr class="align-middle">
                                                             <td>

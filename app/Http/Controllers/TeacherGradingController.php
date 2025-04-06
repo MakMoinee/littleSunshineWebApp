@@ -46,22 +46,87 @@ class TeacherGradingController extends Controller
                 if ($gCount == 0) {
                     $newGrades = new Grades();
                     $newGrades->studentID = $s['id'];
-                    $newGrades->workBehavior = null;
-                    $newGrades->socialSkills = null;
-                    $newGrades->cognitiveSkills = null;
-                    $newGrades->fms = null;
-                    $newGrades->gms = null;
-                    $newGrades->adls = null;
+                    $newGrades->workBehavior = json_encode([
+                        "attention" => "",
+                        "concentration" => "",
+                        "tolerance" => "",
+                        "impulse" => "",
+                        "sitting" => "",
+                    ]);
+                    $newGrades->socialSkills = json_encode([
+                        "name" => "",
+                        "eye" => "",
+                        "joint" => "",
+                        "verbal" => "",
+                        "cooperation" => "",
+                        "activeListening" => "",
+                        "flexibility" => "",
+                        "decision" => "",
+                        "manners" => "",
+                    ]);
+                    $newGrades->cognitiveSkills = json_encode([
+                        "match" => "",
+                        "sort" => "",
+                        "recognize" => "",
+                        "identify" => "",
+                        "instruction" => "",
+                    ]);
+                    $newGrades->fms = json_encode([
+                        "manipulation" => "",
+                        "coordination" => "",
+                        "tracing" => "",
+                        "imatating" => "",
+                        "copying" => "",
+                        "writing" => "",
+                        "coloring" => "",
+                        "painting" => "",
+                        "cutting" => "",
+                        "folding" => "",
+                        "strength" => "",
+                    ]);
+                    $newGrades->gms = json_encode([
+                        "planning" => "",
+                        "balance" => "",
+                        "body" => "",
+                        "strength" => "",
+                        "reaction" => "",
+                    ]);
+                    $newGrades->adls = json_encode([
+                        "feeding" => "",
+                        "dressing" => "",
+                        "grooming" => "",
+                        "bathing" => "",
+                        "meal" => "",
+                    ]);
                     $newGrades->save();
                 }
 
                 $grades = json_decode(DB::table('grades')->where("studentID", '=', $s['id'])->get(), true);
+                if (count($grades) > 0) {
+                    $grade =  $grades[0];
+                    $workBehavior = json_decode($grade['workBehavior'], true);
+                    $socialSkills = json_decode($grade['socialSkills'], true);
+                    $cognitiveSkills = json_decode($grade['cognitiveSkills'], true);
+                    $fms = json_decode($grade['fms'], true);
+                    $gms = json_decode($grade['gms'], true);
+                    $adls = json_decode($grade['adls'], true);
+                }
             }
 
 
 
-
-            return view('teacher.grading', ['students' => $allStudents, 'studentAss' => $studentAss, 'submissions' => $studentSub, 'grades' => $grades]);
+            return view('teacher.grading', [
+                'students' => $allStudents,
+                'studentAss' => $studentAss,
+                'submissions' => $studentSub,
+                'grades' => $grades,
+                'workBehavior' => $workBehavior,
+                'socialSkills' => $socialSkills,
+                'cognitiveSkills' => $cognitiveSkills,
+                'fms' => $fms,
+                'gms' => $gms,
+                'adls' => $adls,
+            ]);
         }
         return redirect("/");
     }
@@ -96,13 +161,65 @@ class TeacherGradingController extends Controller
                     session()->put("errorUpdateSubmit", true);
                 }
             } else if ($request->btnSave) {
+                $workBehavior = json_encode([
+                    "attention" => $request->attention != "" ? $request->attention : "",
+                    "concentration" => $request->concentration != "" ? $request->concentration : "",
+                    "tolerance" => $request->tolerance != "" ? $request->tolerance : "",
+                    "impulse" => $request->impulse != "" ? $request->impulse : "",
+                    "sitting" => $request->sitting != "" ? $request->sitting : "",
+                ]);
+                $socialSkills = json_encode([
+                    "name" => $request->name != "" ? $request->name : "",
+                    "eye" => $request->eye != "" ? $request->eye : "",
+                    "joint" => $request->joint != "" ? $request->joint : "",
+                    "verbal" => $request->verbal != "" ? $request->verbal : "",
+                    "cooperation" => $request->cooperation != "" ? $request->cooperation : "",
+                    "activeListening" => $request->activeListening != "" ? $request->activeListening : "",
+                    "flexibility" => $request->flexibility != "" ? $request->flexibility : "",
+                    "decision" => $request->decision != "" ? $request->decision : "",
+                    "manners" => $request->manners != "" ? $request->manners : "",
+                ]);
+                $cognitiveSkills = json_encode([
+                    "match" => $request->match != "" ? $request->match : "",
+                    "sort" => $request->sort != "" ? $request->sort : "",
+                    "recognize" => $request->recognize != "" ? $request->recognize : "",
+                    "identify" => $request->identify != "" ? $request->identify : "",
+                    "instruction" => $request->instruction != "" ? $request->instruction : "",
+                ]);
+                $fms = json_encode([
+                    "manipulation" => $request->manipulation != "" ? $request->manipulation : "",
+                    "coordination" => $request->coordination != "" ? $request->coordination : "",
+                    "tracing" => $request->tracing != "" ? $request->tracing : "",
+                    "imatating" => $request->imatating != "" ? $request->imatating : "",
+                    "copying" => $request->copying != "" ? $request->copying : "",
+                    "writing" => $request->writing != "" ? $request->writing : "",
+                    "coloring" => $request->coloring != "" ? $request->coloring : "",
+                    "painting" => $request->painting != "" ? $request->painting : "",
+                    "cutting" => $request->cutting != "" ? $request->cutting : "",
+                    "folding" => $request->folding != "" ? $request->folding : "",
+                    "strength" => $request->strength != "" ? $request->strength : "",
+                ]);
+                $gms = json_encode([
+                    "planning" => $request->planning != "" ? $request->planning : "",
+                    "balance" => $request->balance != "" ? $request->balance : "",
+                    "body" => $request->body != "" ? $request->body : "",
+                    "strength" => $request->strength != "" ? $request->strength : "",
+                    "reaction" => $request->reaction != "" ? $request->reaction : "",
+                ]);
+                $adls = json_encode([
+                    "feeding" => $request->feeding != "" ? $request->feeding : "",
+                    "dressing" => $request->dressing != "" ? $request->dressing : "",
+                    "grooming" => $request->grooming != "" ? $request->grooming : "",
+                    "bathing" => $request->bathing != "" ? $request->bathing : "",
+                    "meal" => $request->meal != "" ? $request->meal : "",
+                ]);
                 $updateCount = DB::table('grades')->where('studentID', '=', $request->sid)->update([
-                    "workBehavior" => $request->workBehavior,
-                    "socialSkills" =>  $request->socialSkills,
-                    "cognitiveSkills" =>  $request->cognitiveSkills,
-                    "fms" =>  $request->fms,
-                    "gms" =>  $request->gms,
-                    "adls" =>  $request->adls,
+                    "workBehavior" => $workBehavior,
+                    "socialSkills" =>  $socialSkills,
+                    "cognitiveSkills" =>  $cognitiveSkills,
+                    "fms" =>  $fms,
+                    "gms" =>  $gms,
+                    "adls" =>  $adls,
                 ]);
 
                 if ($updateCount > 0) {
