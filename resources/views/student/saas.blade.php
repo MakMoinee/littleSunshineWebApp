@@ -263,10 +263,19 @@
                             <div class="col-md-12">
                                 <div class="card bg-gred">
                                     <div class="card-body">
-                                        <center>
-                                            <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2"
-                                                id="pdfViewer" src="{{ $item['filePath'] }}" type="application/pdf">
-                                        </center>
+                                        @if (str_ends_with($item['filePath'], '.pdf'))
+                                            <center>
+                                                <embed style="height: 500px; width: 100%;"
+                                                    class="embed-responsive mt-2" id="pdfViewer"
+                                                    src="{{ $item['filePath'] }}" type="application/pdf">
+                                            </center>
+                                        @else
+                                            <center>
+                                                <embed style="height: 500px; width: 100%;"
+                                                    class="embed-responsive mt-2" id="pdfViewer"
+                                                    src="{{ $item['filePath'] }}">
+                                            </center>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
