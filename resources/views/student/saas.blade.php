@@ -273,7 +273,7 @@
                                             <center>
                                                 <video controls style="height: 500px; width: 100%;" class="mt-2">
                                                     <source src="{{ $item['filePath'] }}"
-                                                        type="video/{{ strtolower(pathinfo($filePath, PATHINFO_EXTENSION)) }}">
+                                                        type="video/{{ strtolower(pathinfo($item['filePath'], PATHINFO_EXTENSION)) }}">
                                                     Your browser does not support the video tag.
                                                 </video>
                                             </center>
