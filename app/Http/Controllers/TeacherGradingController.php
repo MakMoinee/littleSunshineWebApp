@@ -33,6 +33,12 @@ class TeacherGradingController extends Controller
             $studentAss = array();
             $studentSub = array();
             $grades = array();
+            $workBehavior  = array();
+            $socialSkills  = array();
+            $cognitiveSkills  = array();
+            $fms  = array();
+            $gms  = array();
+            $adls  = array();
             foreach ($sortedStudents as $s) {
                 $data = json_decode(DB::table('assignments')->where("studentID", '=', $s['id'])->get(), true);
                 if (count($data) > 0) {
