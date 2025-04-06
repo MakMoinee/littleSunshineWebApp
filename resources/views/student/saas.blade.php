@@ -263,7 +263,9 @@
                             <div class="col-md-12">
                                 <div class="card bg-gred">
                                     <div class="card-body">
-                                        @if (str_ends_with($item['filePath'], '.pdf'))
+                                        @if (str_ends_with($item['filePath'], '.pdf') ||
+                                                str_ends_with($item['filePath'], '.jpg') ||
+                                                str_ends_with($item['filePath'], '.png'))
                                             <center>
                                                 <embed style="height: 500px; width: 100%;"
                                                     class="embed-responsive mt-2" id="pdfViewer"
