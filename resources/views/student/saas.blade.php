@@ -271,9 +271,9 @@
                                             </center>
                                         @else
                                             <center>
-                                                <embed style="height: 500px; width: 100%;"
+                                                <iframe style="height: 500px; width: 100%;"
                                                     class="embed-responsive mt-2" id="pdfViewer"
-                                                    src="{{ $item['filePath'] }}">
+                                                    src="{{ $item['filePath'] }}"></iframe>
                                             </center>
                                         @endif
                                     </div>
