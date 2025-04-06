@@ -271,9 +271,11 @@
                                             </center>
                                         @else
                                             <center>
-                                                <iframe style="height: 500px; width: 100%;"
-                                                    class="embed-responsive mt-2" id="pdfViewer"
-                                                    src="{{ $item['filePath'] }}"></iframe>
+                                                <video controls style="height: 500px; width: 100%;" class="mt-2">
+                                                    <source src="{{ $filePath }}"
+                                                        type="video/{{ $extension }}">
+                                                    Your browser does not support the video tag.
+                                                </video>
                                             </center>
                                         @endif
                                     </div>
