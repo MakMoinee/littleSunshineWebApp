@@ -278,6 +278,11 @@
                                                 </video>
                                             </center>
                                         @endif
+
+                                        <a id="myLink" target="_blank" href="{{ $item['filePath'] }}"
+                                            class="text-decoration-none">If
+                                            File Or Link is
+                                            broken, please click this</a>
                                     </div>
                                 </div>
                             </div>
