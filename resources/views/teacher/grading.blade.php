@@ -611,6 +611,16 @@
                             <label for="docu">Assignment Document:<span class="text-danger"></span></label>
                             <embed style="height: 450px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer2"
                                 src="" type="application/pdf">
+
+                            <iframe style="height: 500px; width: 100%; display:none;" id="linkViewer" width="560"
+                                height="315" src="" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+
+                            <a id="myLink" target="_blank" href="" class="text-decoration-none">If
+                                File Or Link is
+                                broken, please click this</a>
                         </div>
                     </div>
                     <div class="row">
@@ -668,7 +678,17 @@
 
         function previewAns(id, filePath) {
             let pdfViewer2 = document.getElementById('pdfViewer2');
-            pdfViewer2.src = filePath;
+            let linkViewer = document.getElementById('linkViewer');
+            if (filePath.endsWith(".pdf") || filePath.endsWith(".jpg") || filePath.endsWith(".png")) {
+                pdfViewer2.setAttribute("style", "height: 500px; width: 100%; ");
+                linkViewer.setAttribute("style", "display:none");
+                pdfViewer2.src = filePath;
+            } else {
+                pdfViewer2.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%; ");
+                linkViewer.src = getEmbedUrl(linkFilePath);
+            }
+
             let sub = submissions[id];
             if (sub) {
                 console.log(sub);
@@ -700,6 +720,41 @@
 
             }
         }
+
+        function getEmbedUrl(url) {
+            // YouTube
+            if (url.includes("youtube.com/watch") || url.includes("youtu.be")) {
+                let videoId = '';
+                if (url.includes("youtube.com")) {
+                    const urlParams = new URLSearchParams(new URL(url).search);
+                    videoId = urlParams.get("v");
+                } else if (url.includes("youtu.be")) {
+                    videoId = url.split("youtu.be/")[1];
+                }
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+
+            // Vimeo
+            if (url.includes("vimeo.com")) {
+                const match = url.match(/vimeo\.com\/(\d+)/);
+                if (match) {
+                    return `https://player.vimeo.com/video/${match[1]}`;
+                }
+            }
+
+            // Facebook (requires Facebook SDK, so just return null here)
+            if (url.includes("facebook.com")) {
+                return null; // Facebook embedding is complex and requires SDK
+            }
+
+            // Self-hosted (e.g., .mp4 files)
+            if (url.endsWith(".mp4")) {
+                return url; // You can use <video> tag for this
+            }
+
+            return null; // Unknown or unsupported format
+        }
+
 
         function showSubmittedGrade(id) {
 
