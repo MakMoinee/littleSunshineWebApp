@@ -198,85 +198,540 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($grades as $item)
-                                            <tr class="align-middle">
-                                                <td>
-                                                    Work Behavior
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($item['workBehavior'])
-                                                        {{ $item['workBehavior'] }}
-                                                    @else
-                                                        Not Graded Yet
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    Social Skills
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($item['socialSkills'])
-                                                        {{ $item['socialSkills'] }}
-                                                    @else
-                                                        Not Graded Yet
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    Cognitive Skills
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($item['cognitiveSkills'])
-                                                        {{ $item['cognitiveSkills'] }}
-                                                    @else
-                                                        Not Graded Yet
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    FMS
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($item['fms'])
-                                                        {{ $item['fms'] }}
-                                                    @else
-                                                        Not Graded Yet
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    GMS
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($item['gms'])
-                                                        {{ $item['gms'] }}
-                                                    @else
-                                                        Not Graded Yet
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <tr class="align-middle">
-                                                <td>
-                                                    ADLs
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($item['adls'])
-                                                        {{ $item['adls'] }}
-                                                    @else
-                                                        Not Graded Yet
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                            <form action="/teacher_grading" method="post"
+                                                id="gradeForm{{ $item['id'] }}">
+                                                @csrf
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <h4>Work Behavior</h4>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Attention
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($workBehavior['attention'])
+                                                            {{ $workBehavior['attention'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Concentration
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($workBehavior['concentration'])
+                                                            {{ $workBehavior['concentration'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Frustration Tolerance
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($workBehavior['tolerance'])
+                                                            {{ $workBehavior['tolerance'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Impulse Control
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($workBehavior['impulse'])
+                                                            {{ $workBehavior['impulse'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Sitting Quality
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($workBehavior['sitting'])
+                                                            {{ $workBehavior['sitting'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
 
-                                            <tr class="align-middle">
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                            </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <h4>Social Skills</h4>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Name Calling
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['name'])
+                                                            {{ $socialSkills['name'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Eye Contact
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['eye'])
+                                                            {{ $socialSkills['eye'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Joint Attention
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['joint'])
+                                                            {{ $socialSkills['joint'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Verbal Communication
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['verbal'])
+                                                            {{ $socialSkills['verbal'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Cooperation
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['cooperation'])
+                                                            {{ $socialSkills['cooperation'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Active Listening
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['activeListening'])
+                                                            {{ $socialSkills['activeListening'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Flexibility
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['flexibility'])
+                                                            {{ $socialSkills['flexibility'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Following Decision
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['decision'])
+                                                            {{ $socialSkills['decision'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Manners
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($socialSkills['manners'])
+                                                            {{ $socialSkills['manners'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <h4>Cognitive Skills</h4>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Match
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($cognitiveSkills['match'])
+                                                            {{ $cognitiveSkills['match'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Sort
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($cognitiveSkills['sort'])
+                                                            {{ $cognitiveSkills['sort'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Recognize
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($cognitiveSkills['recognize'])
+                                                            {{ $cognitiveSkills['recognize'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Identify
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($cognitiveSkills['identify'])
+                                                            {{ $cognitiveSkills['identify'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Following Instruction
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($cognitiveSkills['instruction'])
+                                                            {{ $cognitiveSkills['instruction'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <h4>FMS</h4>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        In-hand Manipulation
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['manipulation'])
+                                                            {{ $fms['manipulation'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Eye-hand Coordination
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['coordination'])
+                                                            {{ $fms['coordination'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Tracing
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['tracing'])
+                                                            {{ $fms['tracing'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Imitating
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['imatating'])
+                                                            {{ $fms['imatating'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Copying
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['copying'])
+                                                            {{ $fms['copying'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Writing
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['writing'])
+                                                            {{ $fms['writing'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Coloring
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['coloring'])
+                                                            {{ $fms['coloring'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Painting
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['painting'])
+                                                            {{ $fms['painting'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Cutting
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['cutting'])
+                                                            {{ $fms['cutting'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Folding
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['folding'])
+                                                            {{ $fms['folding'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Strength
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($fms['strength'])
+                                                            {{ $fms['strength'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <h4>GMS</h4>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Motor Planning
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($gms['planning'])
+                                                            {{ $gms['planning'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Balance And Coordination
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($gms['balance'])
+                                                            {{ $gms['balance'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Body Awareness
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($gms['body'])
+                                                            {{ $gms['body'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Physical Strength
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($gms['strength'])
+                                                            {{ $gms['strength'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Reaction Time
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($gms['reaction'])
+                                                            {{ $gms['reaction'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+
+
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        <h4>ADLs</h4>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Feeding
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($adls['feeding'])
+                                                            {{ $adls['feeding'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Dressing
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($adls['dressing'])
+                                                            {{ $adls['dressing'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Grooming
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($adls['grooming'])
+                                                            {{ $adls['grooming'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Bathing
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($adls['bathing'])
+                                                            {{ $adls['grooming'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <tr class="align-middle">
+                                                    <td>
+                                                        Meal Preparation
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($adls['meal'])
+                                                            {{ $adls['meal'] }}
+                                                        @else
+                                                            Not Graded
+                                                        @endif
+                                                    </td>
+                                                </tr>
+
+
+                                            </form>
                                         @endforeach
                                     </tbody>
                                 </table>

@@ -33,6 +33,12 @@ class StudentGradingController extends Controller
                 }
 
                 $grades = array();
+                $workBehavior  = array();
+                $socialSkills  = array();
+                $cognitiveSkills  = array();
+                $fms  = array();
+                $gms  = array();
+                $adls  = array();
 
                 $student = json_decode(DB::table('students')
                     ->where('userID', '=', $user['userID'])
@@ -54,8 +60,27 @@ class StudentGradingController extends Controller
                     }
 
                     $grades = json_decode(DB::table('grades')->where("studentID", '=', $s['id'])->get(), true);
+                    if (count($grades) > 0) {
+                        $grade =  $grades[0];
+                        $workBehavior = json_decode($grade['workBehavior'], true);
+                        $socialSkills = json_decode($grade['socialSkills'], true);
+                        $cognitiveSkills = json_decode($grade['cognitiveSkills'], true);
+                        $fms = json_decode($grade['fms'], true);
+                        $gms = json_decode($grade['gms'], true);
+                        $adls = json_decode($grade['adls'], true);
+                    }
                 }
-                return view('student.grading', ['assignments' => $assignments, 'answers' => $myAnswers, 'grades' => $grades]);
+                return view('student.grading', [
+                    'assignments' => $assignments,
+                    'answers' => $myAnswers,
+                    'grades' => $grades,
+                    'workBehavior' => $workBehavior,
+                    'socialSkills' => $socialSkills,
+                    'cognitiveSkills' => $cognitiveSkills,
+                    'fms' => $fms,
+                    'gms' => $gms,
+                    'adls' => $adls,
+                ]);
             } else {
                 return redirect("/logout");
             }
