@@ -38,8 +38,8 @@ class RollEmail extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
-            ->subject($this->subject)
-            ->view('emails.template')
+            ->subject($this->subject . ": " . $this->studentName)
+            ->view('emails.roll')
             ->with([
                 "subject" => $this->subject,
                 "studentName" =>  $this->studentName,

@@ -65,6 +65,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="card-header bg-white">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#addUserModal">
+                                        Add User
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive bg-white">
                                 <table class="table border mb-0">
@@ -74,28 +84,34 @@
                                             <th>Username</th>
                                             <th class="text-center">Status</th>
                                             <th>Created Date</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($students as $item)
+                                        @foreach ($mUsers as $item)
                                             <tr class="align-middle">
                                                 <td class="text-center">
-                                                    {{ $item->name }}
-                                                </td>
-                                                <td>
-                                                    @if (array_key_exists($item->id, $mUsers))
+                                                    @if (count($students) > 0 && array_key_exists($item->userID, $students))
+                                                        {{ $students[$item->userID]['name'] }}
                                                     @else
                                                     @endif
                                                 </td>
+                                                <td>
+                                                    {{ $item->username }}
+                                                </td>
                                                 <td class="text-center">
-
+                                                    {{ $item->status }}
                                                 </td>
                                                 <td>
-
+                                                    {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d') }}
                                                 </td>
                                                 <td class="text-center">
-
+                                                    <form action="/teacher_students/{{ $item->userID }}" method="post">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary"
+                                                            name="btnDeleteUser" value="yes">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -149,6 +165,64 @@
                             style="color:white !important;">Close</button>
                         <button type="submit" class="btn btn-danger" name="btnDeleteAss" value="yes"
                             style="color:white !important;">Proceed Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade " id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="assForm" action="/teacher_students" method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <h5>Create User</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group text-dark">
+                                    <label for="username">Student:</label>
+                                    <br>
+                                    @foreach ($allStudents as $item)
+                                        @if (count($students) > 0 && array_key_exists($item['userID'], $students))
+                                        @else
+                                            <select required name="student" id="" class="form-control">
+                                                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                                            </select>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="form-group text-dark">
+                                    <label for="username">Username:</label>
+                                    <br>
+                                    <input required type="text" name="username" id=""
+                                        class="form-control">
+                                </div>
+                                <div class="form-group text-dark">
+                                    <label for="password">Password:</label>
+                                    <br>
+                                    <input required type="password" name="password" id=""
+                                        class="form-control">
+                                </div>
+                                <div class="form-group text-dark">
+                                    <label for="confirmPass">Confirm Password:</label>
+                                    <br>
+                                    <input required type="password" name="confirmPass" id=""
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                        <button type="submit" class="btn btn-danger" name="btnAddUser" value="yes"
+                            style="color:white !important;">Save</button>
                     </div>
                 </form>
             </div>
@@ -211,37 +285,51 @@
         {{ session()->forget('errorSaveAss') }}
     @endif
 
-    @if (session()->pull('errorDeleteAss'))
+    @if (session()->pull('errorSaveUser'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Delete Assignment, Please Try Again Later',
+                    title: 'Failed To Add User, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorDeleteAss') }}
+        {{ session()->forget('errorSaveUser') }}
     @endif
 
 
-    @if (session()->pull('successDeleteAss'))
+    @if (session()->pull('successSaveUser'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Deleted Assignment',
+                    title: 'Successfully Added User',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successDeleteAss') }}
+        {{ session()->forget('successSaveUser') }}
     @endif
 
+    @if (session()->pull('successDeleteUser'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Deleted User',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successDeleteUser') }}
+    @endif
     @if (session()->pull('successSaveAss'))
         <script>
             setTimeout(() => {
@@ -256,20 +344,47 @@
         </script>
         {{ session()->forget('successSaveAss') }}
     @endif
-
-    @if (session()->pull('errorEnroll'))
+    @if (session()->pull('errorDeleteUser'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed To Enroll Student, Please Try Again Later',
+                    title: 'Failed To Delete  User, Please Try Again Later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorEnroll') }}
+        {{ session()->forget('errorDeleteUser') }}
+    @endif
+    @if (session()->pull('errorUserExist'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Username Already Exist, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorUserExist') }}
+    @endif
+    @if (session()->pull('errorPassNotMatch'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Password Does Not Match, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorPassNotMatch') }}
     @endif
 </body>
 
