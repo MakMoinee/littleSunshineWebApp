@@ -54,20 +54,57 @@ class TeacherProfileController extends Controller
             }
 
             if ($request->btnEditTeacherName) {
+                $files = $request->file('profilePic');
+                $fileName = "";
+                $filePrefix = "";
+                if ($files) {
+                    $mimeType = $files->getMimeType();
+                    if ($mimeType == "image/png" || $mimeType == "image/jpg" || $mimeType == "image/JPG" || $mimeType == "image/JPEG" || $mimeType == "image/jpeg" || $mimeType == "image/PNG") {
+                        $fileName = strtotime(now()) . "." . $files->getClientOriginalExtension();
+                        $env = env('APP_ENV');
+                        if ($env == "stage") {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/profiles';
+                            $filePrefix = "/public";
+                        } else {
+                            $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/profiles';
+                            $filePrefix = "";
+                        }
+                        $isFile = $files->move($destinationPath,  $fileName);
+                        chmod($destinationPath, 0755);
+                    }
+                }
+
                 $teacher = json_decode(DB::table('teachers')->where('userID', '=', $user['userID'])->get(), true);
                 if (count($teacher) > 0) {
-                    $updateCount = DB::table('teachers')->where('userID', '=', $user['userID'])->update([
-                        "name" => $request->name
-                    ]);
-                    if ($updateCount > 0) {
-                        session()->put("successUpdateTeacherName", true);
+
+
+                    if ($fileName) {
+                        $updateCount = DB::table('teachers')->where('userID', '=', $user['userID'])->update([
+                            "name" => $request->name,
+                            "imagePath" => $filePrefix . $fileName,
+                        ]);
+                        if ($updateCount > 0) {
+                            session()->put("successUpdateTeacherName", true);
+                        } else {
+                            session()->put("errorUpdateTeacherName", true);
+                        }
                     } else {
-                        session()->put("errorUpdateTeacherName", true);
+                        $updateCount = DB::table('teachers')->where('userID', '=', $user['userID'])->update([
+                            "name" => $request->name,
+                        ]);
+                        if ($updateCount > 0) {
+                            session()->put("successUpdateTeacherName", true);
+                        } else {
+                            session()->put("errorUpdateTeacherName", true);
+                        }
                     }
                 } else {
-                    $newTeacher = new Teachers();
+                    $newTeacher = new Teachers(); 
                     $newTeacher->userID = $user['userID'];
                     $newTeacher->name = $request->name;
+                    if ($fileName) {
+                        $newTeacher->imagePath = $filePrefix . "/data/profiles/" . $fileName;
+                    }
                     $isSave = $newTeacher->save();
                     if ($isSave) {
                         session()->put("successUpdateTeacherName", true);
