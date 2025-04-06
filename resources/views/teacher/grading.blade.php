@@ -609,14 +609,14 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <label for="docu">Assignment Document:<span class="text-danger"></span></label>
-                            <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer2"
+                            <embed style="height: 450px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer2"
                                 src="" type="application/pdf">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <label for="docu">Student Answer:<span class="text-danger"></span></label>
-                            <embed style="height: 500px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer3"
+                            <embed style="height: 450px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer3"
                                 src="" type="application/pdf">
                         </div>
                     </div>
