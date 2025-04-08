@@ -189,12 +189,13 @@
                                     <label for="username">Student:</label>
                                     <br>
                                     @foreach ($allStudents as $item)
-                                        @if (count($students) > 0 && array_key_exists($item['userID'], $students))
-                                        @else
-                                            <select required name="student" id="" class="form-control">
+                                        <select required name="student" id="" class="form-control">
+                                            @if (count($students) > 0 && array_key_exists($item['userID'], $students))
+                                            @else
                                                 <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                            </select>
-                                        @endif
+                                            @endif
+
+                                        </select>
                                     @endforeach
                                 </div>
                                 <div class="form-group text-dark">
