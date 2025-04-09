@@ -275,9 +275,9 @@
                                         @else
                                             @if (str_ends_with($item['filePath'], '.docx'))
                                                 <iframe style="height: 500px; width: 100%;" id="linkViewer"
-                                                    width="560" height="315" src="{{ url($item['filePath']) }}"
-                                                    frameborder="0"
-                                                    allowfullscreen>
+                                                    width="560" height="315"
+                                                    src="https://docs.google.com/gview?url={{ url($item['filePath']) }}&embedded=true"
+                                                    frameborder="0" allowfullscreen>
                                                 </iframe>
                                             @else
                                                 <center>
