@@ -269,6 +269,7 @@
         let linkViewer = document.getElementById('linkViewer');
         let audioPlayer = document.getElementById('audioPlayer');
         let myLink = document.getElementById('myLink');
+        pdfViewer.src = filePath;
         if (filePath && getFileType(filePath) == "video") {
             audioPlayer.setAttribute("style", "display:none");
             pdfViewer.setAttribute("style", "display:none");
@@ -279,6 +280,12 @@
             pdfViewer.setAttribute("style", "display:none");
             audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
             audioPlayer.src = getEmbedUrl(filePath);
+        } else if (filePath && getEmbedUrl(linkFilePath).includes("www.youtube.com")) {
+            audioPlayer.setAttribute("style", "display:none");
+            pdfViewer.setAttribute("style", "display:none");
+            linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+            linkViewer.src = getEmbedUrl(filePath);
+            myLink.href = filePath;
         } else {
             linkViewer.setAttribute("style", "display:none");
             pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
@@ -286,22 +293,29 @@
             myLink.href = filePath;
         }
 
-        if (linkFilePath && getFileType(linkFilePath) == "video") {
-            audioPlayer.setAttribute("style", "display:none");
-            pdfViewer.setAttribute("style", "display:none");
-            linkViewer.setAttribute("style", "height: 500px; width: 100%;");
-            linkViewer.src = getEmbedUrl(linkFilePath);
-        } else if (linkFilePath && getFileType(linkFilePath) == "audio") {
-            linkViewer.setAttribute("style", "display:none");
-            pdfViewer.setAttribute("style", "display:none");
-            audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
-            audioPlayer.src = getEmbedUrl(linkFilePath);
-        } else {
-            audioPlayer.setAttribute("style", "display:none");
-            linkViewer.setAttribute("style", "display:none");
-            pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
-            pdfViewer.src = linkFilePath;
-            myLink.href = linkFilePath;
+        if (linkFilePath) {
+            if (linkFilePath && getFileType(linkFilePath) == "video") {
+                audioPlayer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+                linkViewer.src = getEmbedUrl(linkFilePath);
+            } else if (linkFilePath && getFileType(linkFilePath) == "audio") {
+                linkViewer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "display:none");
+                audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
+                audioPlayer.src = getEmbedUrl(linkFilePath);
+            } else if (linkFilePath && getEmbedUrl(linkFilePath).includes("www.youtube.com")) {
+                audioPlayer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+                linkViewer.src = getEmbedUrl(linkFilePath);
+            } else {
+                audioPlayer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
+                pdfViewer.src = linkFilePath;
+                myLink.href = linkFilePath;
+            }
         }
 
     }
