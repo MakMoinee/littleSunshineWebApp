@@ -220,6 +220,12 @@
                 audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
                 audioPlayer.src = filePath;
                 myLink.href = filePath;
+            } else if (filePath && getEmbedUrl(linkFilePath).includes("www.youtube.com")) {
+                audioPlayer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+                linkViewer.src = getEmbedUrl(filePath);
+                myLink.href = filePath;
             } else {
                 console.log(filePath)
                 audioPlayer.setAttribute("style", "display:none");
@@ -239,7 +245,7 @@
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "display:none");
                 audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
-                audioPlayer.src = linkFilePath;
+                audioPlayer.src = getEmbedUrl(linkFilePath);
                 myLink.href = linkFilePath;
             } else if (linkFilePath && getEmbedUrl(linkFilePath).includes("www.youtube.com")) {
                 audioPlayer.setAttribute("style", "display:none");
