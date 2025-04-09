@@ -221,6 +221,8 @@
                 audioPlayer.src = filePath;
                 myLink.href = filePath;
             } else {
+                console.log(filePath)
+                audioPlayer.setAttribute("style", "display:none");
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
                 pdfViewer.src = filePath;
