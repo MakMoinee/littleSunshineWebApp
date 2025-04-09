@@ -274,13 +274,23 @@
                                                     src="{{ $item['filePath'] }}" type="application/pdf">
                                             </center>
                                         @else
-                                            <center>
-                                                <video controls style="height: 500px; width: 100%;" class="mt-2">
-                                                    <source src="{{ $item['filePath'] }}"
-                                                        type="video/{{ strtolower(pathinfo($item['filePath'], PATHINFO_EXTENSION)) }}">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            </center>
+                                            @if (str_ends_with($item['filePath'], '.docx'))
+                                                <iframe style="height: 500px; width: 100%;" id="linkViewer"
+                                                    width="560" height="315" src="{{ $item['filePath'] }}"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            @else
+                                                <center>
+                                                    <video controls style="height: 500px; width: 100%;"
+                                                        class="mt-2">
+                                                        <source src="{{ $item['filePath'] }}"
+                                                            type="video/{{ strtolower(pathinfo($item['filePath'], PATHINFO_EXTENSION)) }}">
+                                                        Your browser does not support the video tag.
+                                                    </video>
+                                                </center>
+                                            @endif
                                         @endif
 
                                         <a id="myLink" target="_blank" href="{{ $item['filePath'] }}"
