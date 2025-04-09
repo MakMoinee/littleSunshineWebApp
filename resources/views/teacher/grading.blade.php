@@ -337,25 +337,25 @@
                                                                 Attention
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($workBehavior['attention'])
+                                                                @if ($workBehavior[$item['studentID']]['attention'])
                                                                     <select name="attention" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($workBehavior['attention'] == 'good')
+                                                                        @if ($workBehavior[$item['studentID']]['attention'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['attention'] == 'poor')
+                                                                        @if ($workBehavior[$item['studentID']]['attention'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['attention'] == 'fair')
+                                                                        @if ($workBehavior[$item['studentID']]['attention'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -378,25 +378,25 @@
                                                                 Concentration
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($workBehavior['concentration'])
+                                                                @if ($workBehavior[$item['studentID']]['attention'])
                                                                     <select name="concentration" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($workBehavior['concentration'] == 'good')
+                                                                        @if ($workBehavior[$item['studentID']]['attention'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['concentration'] == 'poor')
+                                                                        @if ($workBehavior[$item['studentID']]['attention'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['concentration'] == 'fair')
+                                                                        @if ($workBehavior[$item['studentID']]['attention'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -419,25 +419,25 @@
                                                                 Frustration Tolerance
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($workBehavior['tolerance'])
+                                                                @if ($workBehavior[$item['studentID']]['tolerance'])
                                                                     <select name="tolerance" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($workBehavior['tolerance'] == 'good')
+                                                                        @if ($workBehavior[$item['studentID']]['tolerance'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['tolerance'] == 'poor')
+                                                                        @if ($workBehavior[$item['studentID']]['tolerance'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['tolerance'] == 'fair')
+                                                                        @if ($workBehavior[$item['studentID']]['tolerance'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -460,25 +460,25 @@
                                                                 Impulse Control
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($workBehavior['impulse'])
+                                                                @if ($workBehavior[$item['studentID']]['impulse'])
                                                                     <select name="impulse" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($workBehavior['impulse'] == 'good')
+                                                                        @if ($workBehavior[$item['studentID']]['impulse'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['impulse'] == 'poor')
+                                                                        @if ($workBehavior[$item['studentID']]['impulse'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['impulse'] == 'fair')
+                                                                        @if ($workBehavior[$item['studentID']]['impulse'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -501,25 +501,25 @@
                                                                 Sitting Quality
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($workBehavior['sitting'])
+                                                                @if ($workBehavior[$item['studentID']]['sitting'])
                                                                     <select name="sitting" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($workBehavior['sitting'] == 'good')
+                                                                        @if ($workBehavior[$item['studentID']]['sitting'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['sitting'] == 'poor')
+                                                                        @if ($workBehavior[$item['studentID']]['sitting'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($workBehavior['sitting'] == 'fair')
+                                                                        @if ($workBehavior[$item['studentID']]['sitting'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -549,25 +549,25 @@
                                                                 Name Calling
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['name'])
+                                                                @if ($socialSkills[$item['studentID']]['name'])
                                                                     <select name="name" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['name'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['name'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['name'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['name'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['name'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['name'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -590,25 +590,25 @@
                                                                 Eye Contact
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['eye'])
+                                                                @if ($socialSkills[$item['studentID']]['eye'])
                                                                     <select name="eye" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['eye'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['eye'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['eye'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['eye'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['eye'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['eye'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -631,25 +631,25 @@
                                                                 Joint Attention
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['joint'])
+                                                                @if ($socialSkills[$item['studentID']]['joint'])
                                                                     <select name="joint" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['joint'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['joint'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['joint'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['joint'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['joint'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['joint'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -672,25 +672,25 @@
                                                                 Verbal Communication
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['verbal'])
+                                                                @if ($socialSkills[$item['studentID']]['verbal'])
                                                                     <select name="verbal" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['verbal'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['verbal'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['verbal'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['verbal'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['verbal'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['verbal'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -713,25 +713,25 @@
                                                                 Cooperation
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['cooperation'])
+                                                                @if ($socialSkills[$item['studentID']]['cooperation'])
                                                                     <select name="cooperation" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['cooperation'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['cooperation'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['cooperation'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['cooperation'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['cooperation'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['cooperation'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -754,25 +754,25 @@
                                                                 Active Listening
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['activeListening'])
+                                                                @if ($socialSkills[$item['studentID']]['activeListening'])
                                                                     <select name="activeListening" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['activeListening'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['activeListening'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['activeListening'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['activeListening'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['activeListening'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['activeListening'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -795,25 +795,25 @@
                                                                 Flexibility
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['flexibility'])
+                                                                @if ($socialSkills[$item['studentID']]['flexibility'])
                                                                     <select name="flexibility" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['flexibility'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['flexibility'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['flexibility'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['flexibility'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['flexibility'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['flexibility'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -836,25 +836,25 @@
                                                                 Following Decision
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['decision'])
+                                                                @if ($socialSkills[$item['studentID']]['decision'])
                                                                     <select name="decision" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['decision'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['decision'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['decision'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['decision'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['decision'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['decision'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -877,25 +877,25 @@
                                                                 Manners
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($socialSkills['manners'])
+                                                                @if ($socialSkills[$item['studentID']]['manners'])
                                                                     <select name="manners" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($socialSkills['manners'] == 'good')
+                                                                        @if ($socialSkills[$item['studentID']]['manners'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['manners'] == 'poor')
+                                                                        @if ($socialSkills[$item['studentID']]['manners'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($socialSkills['manners'] == 'fair')
+                                                                        @if ($socialSkills[$item['studentID']]['manners'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -927,25 +927,25 @@
                                                                 Match
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($cognitiveSkills['match'])
+                                                                @if ($cognitiveSkills[$item['studentID']]['match'])
                                                                     <select name="match" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($cognitiveSkills['match'] == 'good')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['match'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['match'] == 'poor')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['match'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['match'] == 'fair')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['match'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -968,25 +968,25 @@
                                                                 Sort
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($cognitiveSkills['sort'])
+                                                                @if ($cognitiveSkills[$item['studentID']]['sort'])
                                                                     <select name="sort" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($cognitiveSkills['sort'] == 'good')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['sort'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['sort'] == 'poor')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['sort'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['sort'] == 'fair')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['sort'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1009,25 +1009,25 @@
                                                                 Recognize
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($cognitiveSkills['recognize'])
+                                                                @if ($cognitiveSkills[$item['studentID']]['recognize'])
                                                                     <select name="recognize" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($cognitiveSkills['recognize'] == 'good')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['recognize'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['recognize'] == 'poor')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['recognize'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['recognize'] == 'fair')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['recognize'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1050,25 +1050,25 @@
                                                                 Identify
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($cognitiveSkills['identify'])
+                                                                @if ($cognitiveSkills[$item['studentID']]['identify'])
                                                                     <select name="identify" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($cognitiveSkills['identify'] == 'good')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['identify'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['identify'] == 'poor')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['identify'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['identify'] == 'fair')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['identify'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1091,25 +1091,25 @@
                                                                 Following Instruction
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($cognitiveSkills['instruction'])
+                                                                @if ($cognitiveSkills[$item['studentID']]['instruction'])
                                                                     <select name="instruction" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($cognitiveSkills['instruction'] == 'good')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['instruction'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['instruction'] == 'poor')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['instruction'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($cognitiveSkills['instruction'] == 'fair')
+                                                                        @if ($cognitiveSkills[$item['studentID']]['instruction'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1141,25 +1141,25 @@
                                                                 In-hand Manipulation
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['manipulation'])
+                                                                @if ($fms[$item['studentID']]['manipulation'])
                                                                     <select name="manipulation" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['manipulation'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['manipulation'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['manipulation'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['manipulation'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['manipulation'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['manipulation'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1182,25 +1182,25 @@
                                                                 Eye-hand Coordination
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['coordination'])
+                                                                @if ($fms[$item['studentID']]['coordination'])
                                                                     <select name="coordination" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['coordination'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['coordination'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['coordination'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['coordination'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['coordination'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['coordination'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1223,25 +1223,25 @@
                                                                 Tracing
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['tracing'])
+                                                                @if ($fms[$item['studentID']]['tracing'])
                                                                     <select name="tracing" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['tracing'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['tracing'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['tracing'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['tracing'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['tracing'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['tracing'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1264,25 +1264,25 @@
                                                                 Imitating
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['imatating'])
+                                                                @if ($fms[$item['studentID']]['imatating'])
                                                                     <select name="imatating" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['imatating'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['imatating'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['imatating'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['imatating'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['imatating'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['imatating'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1305,25 +1305,25 @@
                                                                 Copying
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['copying'])
+                                                                @if ($fms[$item['studentID']]['copying'])
                                                                     <select name="copying" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['copying'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['copying'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['copying'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['copying'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['copying'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['copying'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1346,25 +1346,25 @@
                                                                 Writing
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['writing'])
+                                                                @if ($fms[$item['studentID']]['writing'])
                                                                     <select name="writing" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['writing'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['writing'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['writing'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['writing'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['writing'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['writing'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1387,25 +1387,25 @@
                                                                 Coloring
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['coloring'])
+                                                                @if ($fms[$item['studentID']]['coloring'])
                                                                     <select name="coloring" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['coloring'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['coloring'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['coloring'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['coloring'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['coloring'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['coloring'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1428,25 +1428,25 @@
                                                                 Painting
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['painting'])
+                                                                @if ($fms[$item['studentID']]['painting'])
                                                                     <select name="painting" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['painting'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['painting'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['painting'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['painting'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['painting'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['painting'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1469,25 +1469,25 @@
                                                                 Cutting
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['cutting'])
+                                                                @if ($fms[$item['studentID']]['cutting'])
                                                                     <select name="cutting" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['cutting'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['cutting'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['cutting'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['cutting'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['cutting'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['cutting'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1510,25 +1510,25 @@
                                                                 Folding
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['folding'])
+                                                                @if ($fms[$item['studentID']]['folding'])
                                                                     <select name="folding" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['folding'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['folding'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['folding'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['folding'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['folding'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['folding'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1551,25 +1551,25 @@
                                                                 Strength
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($fms['strength'])
+                                                                @if ($fms[$item['studentID']]['strength'])
                                                                     <select name="strength" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($fms['strength'] == 'good')
+                                                                        @if ($fms[$item['studentID']]['strength'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($fms['strength'] == 'poor')
+                                                                        @if ($fms[$item['studentID']]['strength'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($fms['strength'] == 'fair')
+                                                                        @if ($fms[$item['studentID']]['strength'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1599,25 +1599,25 @@
                                                                 Motor Planning
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($gms['planning'])
+                                                                @if ($gms[$item['studentID']]['planning'])
                                                                     <select name="planning" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($gms['planning'] == 'good')
+                                                                        @if ($gms[$item['studentID']]['planning'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($gms['planning'] == 'poor')
+                                                                        @if ($gms[$item['studentID']]['planning'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($gms['planning'] == 'fair')
+                                                                        @if ($gms[$item['studentID']]['planning'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1641,25 +1641,25 @@
                                                                 Balance And Coordination
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($gms['balance'])
+                                                                @if ($gms[$item['studentID']]['balance'])
                                                                     <select name="balance" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($gms['balance'] == 'good')
+                                                                        @if ($gms[$item['studentID']]['balance'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($gms['balance'] == 'poor')
+                                                                        @if ($gms[$item['studentID']]['balance'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($gms['balance'] == 'fair')
+                                                                        @if ($gms[$item['studentID']]['balance'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1682,25 +1682,25 @@
                                                                 Body Awareness
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($gms['body'])
+                                                                @if ($gms[$item['studentID']]['body'])
                                                                     <select name="body" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($gms['body'] == 'good')
+                                                                        @if ($gms[$item['studentID']]['body'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($gms['body'] == 'poor')
+                                                                        @if ($gms[$item['studentID']]['body'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($gms['body'] == 'fair')
+                                                                        @if ($gms[$item['studentID']]['body'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1723,25 +1723,25 @@
                                                                 Physical Strength
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($gms['strength'])
+                                                                @if ($gms[$item['studentID']]['strength'])
                                                                     <select name="strength" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($gms['strength'] == 'good')
+                                                                        @if ($gms[$item['studentID']]['strength'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($gms['strength'] == 'poor')
+                                                                        @if ($gms[$item['studentID']]['strength'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($gms['strength'] == 'fair')
+                                                                        @if ($gms[$item['studentID']]['strength'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1764,25 +1764,25 @@
                                                                 Reaction Time
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($gms['reaction'])
+                                                                @if ($gms[$item['studentID']]['reaction'])
                                                                     <select name="reaction" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($gms['reaction'] == 'good')
+                                                                        @if ($gms[$item['studentID']]['reaction'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($gms['reaction'] == 'poor')
+                                                                        @if ($gms[$item['studentID']]['reaction'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($gms['reaction'] == 'fair')
+                                                                        @if ($gms[$item['studentID']]['reaction'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1814,25 +1814,25 @@
                                                                 Feeding
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($adls['feeding'])
+                                                                @if ($adls[$item['studentID']]['feeding'])
                                                                     <select name="feeding" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($adls['feeding'] == 'good')
+                                                                        @if ($adls[$item['studentID']]['feeding'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($adls['feeding'] == 'poor')
+                                                                        @if ($adls[$item['studentID']]['feeding'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($adls['feeding'] == 'fair')
+                                                                        @if ($adls[$item['studentID']]['feeding'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1855,25 +1855,25 @@
                                                                 Dressing
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($adls['dressing'])
+                                                                @if ($adls[$item['studentID']]['dressing'])
                                                                     <select name="dressing" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($adls['dressing'] == 'good')
+                                                                        @if ($adls[$item['studentID']]['dressing'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($adls['dressing'] == 'poor')
+                                                                        @if ($adls[$item['studentID']]['dressing'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($adls['dressing'] == 'fair')
+                                                                        @if ($adls[$item['studentID']]['dressing'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1896,25 +1896,25 @@
                                                                 Grooming
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($adls['grooming'])
+                                                                @if ($adls[$item['studentID']]['grooming'])
                                                                     <select name="grooming" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($adls['grooming'] == 'good')
+                                                                        @if ($adls[$item['studentID']]['grooming'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($adls['grooming'] == 'poor')
+                                                                        @if ($adls[$item['studentID']]['grooming'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($adls['grooming'] == 'fair')
+                                                                        @if ($adls[$item['studentID']]['grooming'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1937,25 +1937,25 @@
                                                                 Bathing
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($adls['bathing'])
+                                                                @if ($adls[$item['studentID']]['bathing'])
                                                                     <select name="bathing" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($adls['bathing'] == 'good')
+                                                                        @if ($adls[$item['studentID']]['bathing'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($adls['bathing'] == 'poor')
+                                                                        @if ($adls[$item['studentID']]['bathing'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($adls['bathing'] == 'fair')
+                                                                        @if ($adls[$item['studentID']]['bathing'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else
@@ -1978,25 +1978,25 @@
                                                                 Meal Preparation
                                                             </td>
                                                             <td class="text-center">
-                                                                @if ($adls['meal'])
+                                                                @if ($adls[$item['studentID']]['meal'])
                                                                     <select name="meal" id=""
                                                                         class="form-control text-center">
                                                                         <option value="">Select Grade</option>
-                                                                        @if ($adls['meal'] == 'good')
+                                                                        @if ($adls[$item['studentID']]['meal'] == 'good')
                                                                             <option value="good" selected>Good
                                                                             </option>
                                                                         @else
                                                                             <option value="good">Good</option>
                                                                         @endif
 
-                                                                        @if ($adls['meal'] == 'poor')
+                                                                        @if ($adls[$item['studentID']]['meal'] == 'poor')
                                                                             <option value="poor" selected>Poor
                                                                             </option>
                                                                         @else
                                                                             <option value="poor">Poor</option>
                                                                         @endif
 
-                                                                        @if ($adls['meal'] == 'fair')
+                                                                        @if ($adls[$item['studentID']]['meal'] == 'fair')
                                                                             <option value="fair" selected>Fair
                                                                             </option>
                                                                         @else

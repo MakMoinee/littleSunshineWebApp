@@ -107,20 +107,19 @@ class TeacherGradingController extends Controller
                     $newGrades->save();
                 }
 
-                $grades = json_decode(DB::table('grades')->where("studentID", '=', $s['id'])->get(), true);
-                if (count($grades) > 0) {
-                    $grade =  $grades[0];
-                    $workBehavior = json_decode($grade['workBehavior'], true);
-                    $socialSkills = json_decode($grade['socialSkills'], true);
-                    $cognitiveSkills = json_decode($grade['cognitiveSkills'], true);
-                    $fms = json_decode($grade['fms'], true);
-                    $gms = json_decode($grade['gms'], true);
-                    $adls = json_decode($grade['adls'], true);
+                $gradesTmp = json_decode(DB::table('grades')->where("studentID", '=', $s['id'])->get(), true);
+                if (count($gradesTmp) > 0) {
+                    $grade =  $gradesTmp[0];
+                    array_push($grades, $grade);
+                    $workBehavior[$s['id']] = json_decode($grade['workBehavior'], true);
+                    $socialSkills[$s['id']] = json_decode($grade['socialSkills'], true);
+                    $cognitiveSkills[$s['id']] = json_decode($grade['cognitiveSkills'], true);
+                    $fms[$s['id']] = json_decode($grade['fms'], true);
+                    $gms[$s['id']] = json_decode($grade['gms'], true);
+                    $adls[$s['id']] = json_decode($grade['adls'], true);
                 }
             }
-
-
-
+            
             return view('teacher.grading', [
                 'students' => $allStudents,
                 'studentAss' => $studentAss,
