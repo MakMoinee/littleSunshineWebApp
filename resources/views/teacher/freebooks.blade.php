@@ -239,8 +239,13 @@
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "display:none");
                 audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
-                audioPlayer.src = getEmbedUrl(linkFilePath);
+                audioPlayer.src = linkFilePath;
                 myLink.href = linkFilePath;
+            } else if (linkFilePath && getEmbedUrl(linkFilePath).includes("www.youtube.com")) {
+                audioPlayer.setAttribute("style", "display:none");
+                pdfViewer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+                linkViewer.src = getEmbedUrl(linkFilePath);
             } else {
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
