@@ -25,6 +25,8 @@ class TeacherFreeBooksController extends Controller
             $allBooks = json_decode(DB::table('books')
                 ->where('userID', '=', $user['userID'])
                 ->orderBy('created_at', 'desc')->get(), true);
+
+            dd($allBooks);
             return view('teacher.freebooks', ['books' => $allBooks]);
         }
         return redirect("/");
