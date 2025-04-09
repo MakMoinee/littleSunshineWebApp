@@ -184,8 +184,14 @@
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body mx-auto">
-                                <img src="{{ $item['thumbnail'] }}" alt="" srcset=""
-                                    style="height: 150px; width:150px;">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <center>
+                                            <img src="{{ $item['thumbnail'] }}" alt="" srcset=""
+                                                style="height: 150px; width:150px;">
+                                        </center>
+                                    </div>
+                                </div>
                                 <br>
                                 <div class="row mt-3 mb-2">
                                     <div class="col-lg-12">
@@ -196,10 +202,12 @@
                                 </div>
 
                                 <div class="row mt-3">
-                                    <div class="col-lg-5 mx-auto d-flex">
-                                        <button type="button" class="btn btn-success text-white btn-sm"
-                                            data-coreui-toggle="modal" data-coreui-target="#viewBookModal"
-                                            onclick="viewBook('{{ $item['book'] }}','{{ $item['link'] }}')">View</button>
+                                    <div class="col-lg-12 mx-auto d-flex">
+                                        <center>
+                                            <button type="button" class="btn btn-success text-white btn-sm"
+                                                data-coreui-toggle="modal" data-coreui-target="#viewBookModal"
+                                                onclick="viewBook('{{ $item['book'] }}','{{ $item['link'] }}')">View</button>
+                                        </center>
                                     </div>
                                 </div>
 
