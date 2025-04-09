@@ -277,7 +277,6 @@
                                                 <iframe style="height: 500px; width: 100%;" id="linkViewer"
                                                     width="560" height="315" src="{{ $item['filePath'] }}"
                                                     frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                     allowfullscreen>
                                                 </iframe>
                                             @else
