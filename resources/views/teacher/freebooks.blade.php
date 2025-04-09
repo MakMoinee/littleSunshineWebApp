@@ -213,11 +213,13 @@
                 pdfViewer.setAttribute("style", "display:none");
                 linkViewer.setAttribute("style", "height: 500px; width: 100%;");
                 linkViewer.src = getEmbedUrl(filePath);
+                myLink.href = filePath;
             } else if (filePath && getFileType(filePath) == "audio") {
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "display:none");
                 audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
-                audioPlayer.src = getEmbedUrl(filePath);
+                audioPlayer.src = filePath;
+                myLink.href = filePath;
             } else {
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
@@ -230,11 +232,13 @@
                 pdfViewer.setAttribute("style", "display:none");
                 linkViewer.setAttribute("style", "height: 500px; width: 100%;");
                 linkViewer.src = getEmbedUrl(linkFilePath);
+                myLink.href = linkFilePath;
             } else if (linkFilePath && getFileType(linkFilePath) == "audio") {
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "display:none");
                 audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
                 audioPlayer.src = getEmbedUrl(linkFilePath);
+                myLink.href = linkFilePath;
             } else {
                 linkViewer.setAttribute("style", "display:none");
                 pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
