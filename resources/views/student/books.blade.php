@@ -202,7 +202,7 @@
                                 </div>
 
                                 <div class="row mt-3">
-                                    <div class="col-lg-12 mx-auto d-flex">
+                                    <div class="col-lg-12">
                                         <center>
                                             <button type="button" class="btn btn-success text-white btn-sm"
                                                 data-coreui-toggle="modal" data-coreui-target="#viewBookModal"
