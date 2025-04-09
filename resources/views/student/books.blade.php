@@ -187,7 +187,7 @@
                                 <img src="{{ $item['thumbnail'] }}" alt="" srcset=""
                                     style="height: 150px; width:150px;">
                                 <br>
-                                <div class="row">
+                                <div class="row mt-3 mb-2">
                                     <div class="col-lg-12">
                                         <center>
                                             <h5 class="text-dark text-center">{{ $item['title'] }}</h5>
