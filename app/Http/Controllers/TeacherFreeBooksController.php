@@ -26,7 +26,6 @@ class TeacherFreeBooksController extends Controller
                 ->where('userID', '=', $user['userID'])
                 ->orderBy('created_at', 'desc')->get(), true);
 
-            dd($allBooks);
             return view('teacher.freebooks', ['books' => $allBooks]);
         }
         return redirect("/");
