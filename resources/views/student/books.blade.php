@@ -232,6 +232,10 @@
                                 allowfullscreen>
                             </iframe>
 
+                            <audio controls style="height: 500px; width: 100%; display:none;" id="audioPlayer">
+                                <source src="" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
 
                             <a id="myLink" target="_blank" href="" class="text-decoration-none">If
                                 File Or Link is
@@ -263,19 +267,60 @@
     function viewBook(filePath, linkFilePath) {
         let pdfViewer = document.getElementById('pdfViewer');
         let linkViewer = document.getElementById('linkViewer');
+        let audioPlayer = document.getElementById('audioPlayer');
         let myLink = document.getElementById('myLink');
         pdfViewer.src = filePath;
-        if (filePath) {
+        if (filePath && getFileType(filePath) == "video") {
+            audioPlayer.setAttribute("style", "display:none");
+            pdfViewer.setAttribute("style", "display:none");
+            linkViewer.setAttribute("style", "height: 500px; width: 100%;");
+            linkViewer.src = getEmbedUrl(filePath);
+        } else if (filePath && getFileType(filePath) == "audio") {
+            linkViewer.setAttribute("style", "display:none");
+            pdfViewer.setAttribute("style", "display:none");
+            audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
+            audioPlayer.src = getEmbedUrl(filePath);
+        } else {
             linkViewer.setAttribute("style", "display:none");
             pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
             pdfViewer.src = filePath;
             myLink.href = filePath;
         }
-        if (linkFilePath) {
+
+        if (linkFilePath && getFileType(linkFilePath) == "video") {
+            audioPlayer.setAttribute("style", "display:none");
             pdfViewer.setAttribute("style", "display:none");
             linkViewer.setAttribute("style", "height: 500px; width: 100%;");
             linkViewer.src = getEmbedUrl(linkFilePath);
+        } else if (linkFilePath && getFileType(linkFilePath) == "audio") {
+            linkViewer.setAttribute("style", "display:none");
+            pdfViewer.setAttribute("style", "display:none");
+            audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
+            audioPlayer.src = getEmbedUrl(linkFilePath);
+        } else {
+            linkViewer.setAttribute("style", "display:none");
+            pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
+            pdfViewer.src = linkFilePath;
             myLink.href = linkFilePath;
+        }
+
+    }
+
+    function getFileType(url) {
+        const audioExtensions = ['.mp3', '.wav', '.ogg', '.flac', '.aac', '.m4a'];
+        const videoExtensions = ['.mp4', '.avi', '.mkv', '.webm', '.mov', '.flv'];
+        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp'];
+
+        const ext = url.split('.').pop().toLowerCase();
+
+        if (audioExtensions.includes('.' + ext)) {
+            return 'audio';
+        } else if (videoExtensions.includes('.' + ext)) {
+            return 'video';
+        } else if (imageExtensions.includes('.' + ext)) {
+            return 'image';
+        } else {
+            return 'unknown';
         }
     }
 
@@ -310,7 +355,7 @@
             return url; // You can use <video> tag for this
         }
 
-        return null; // Unknown or unsupported format
+        return url; // Unknown or unsupported format
     }
 
 
