@@ -332,6 +332,11 @@
                                                     class="embed-responsive mt-2"
                                                     id="pdfViewer2{{ $item['assignmentID'] }}" src=""
                                                     type="application/pdf">
+
+                                                <iframe style="height: 500px; width: 100%;"
+                                                    id="linkViewer2{{ $item['assignmentID'] }}" width="560"
+                                                    height="315" src="" frameborder="0" allowfullscreen>
+                                                </iframe>
                                             </center>
                                         </div>
                                     </div>
@@ -376,10 +381,19 @@
                 var reader = new FileReader();
                 reader.onload = function() {
                     console.log("here");
-                    var output = document.getElementById(`pdfViewer2${id}`);
-                    output.removeAttribute("style");
-                    output.setAttribute("style", "height: 500px; width: 100%;");
-                    output.src = reader.result;
+                    let rs = reader.result;
+                    if (rs.endsWith(".pdf")) {
+                        var output = document.getElementById(`pdfViewer2${id}`);
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 500px; width: 100%;");
+                        output.src = rs;
+                    } else if (rs.endsWith(".mp4")) {
+                        var output = document.getElementById(`linkViewer2${id}`);
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 500px; width: 100%;");
+                        output.src = rs;
+                    }
+
                 };
                 reader.readAsDataURL(files[0]);
             }
