@@ -120,6 +120,19 @@ class TeacherGradingController extends Controller
                 }
             }
 
+            dd([
+                'students' => $allStudents,
+                'studentAss' => $studentAss,
+                'submissions' => $studentSub,
+                'grades' => $grades,
+                'workBehavior' => $workBehavior,
+                'socialSkills' => $socialSkills,
+                'cognitiveSkills' => $cognitiveSkills,
+                'fms' => $fms,
+                'gms' => $gms,
+                'adls' => $adls,
+            ]);
+
             return view('teacher.grading', [
                 'students' => $allStudents,
                 'studentAss' => $studentAss,
