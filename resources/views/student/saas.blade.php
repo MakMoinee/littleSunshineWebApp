@@ -274,11 +274,10 @@
                                             </center>
                                         @else
                                             @if (str_ends_with($item['filePath'], '.docx'))
-                                                <iframe style="height: 500px; width: 100%;" id="linkViewer"
-                                                    width="560" height="315" src="{{ $item['filePath'] }}"
-                                                    frameborder="0"
-                                                    allowfullscreen>
-                                                </iframe>
+                                                <embed style="height: 500px; width: 100%;"
+                                                    class="embed-responsive mt-2" id="pdfViewer"
+                                                    src="{{ $item['filePath'] }}"
+                                                    type="application/{{ strtolower(pathinfo($item['filePath'], PATHINFO_EXTENSION)) }}">
                                             @else
                                                 <center>
                                                     <video controls style="height: 500px; width: 100%;"
