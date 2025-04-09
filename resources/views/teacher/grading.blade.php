@@ -2062,6 +2062,12 @@
                                 allowfullscreen>
                             </iframe>
 
+                            <audio controls style="height: 500px; width: 100%; display:none;" id="audioPlayer">
+                                <source src="" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+
+
                             <a id="myLink" target="_blank" href="" class="text-decoration-none">If
                                 File Or Link is
                                 broken, please click this</a>
@@ -2123,14 +2129,24 @@
         function previewAns(id, filePath) {
             let pdfViewer2 = document.getElementById('pdfViewer2');
             let linkViewer = document.getElementById('linkViewer');
-            if (filePath.endsWith(".pdf") || filePath.endsWith(".jpg") || filePath.endsWith(".png")) {
+            let audioPlayer = document.getElementById('audioPlayer');
+            if (getFileType(filePath) == "video") {
+
+                pdfViewer2.setAttribute("style", "display:none");
+                audioPlayer.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "height: 500px; width: 100%; ");
+                linkViewer.src = getEmbedUrl(filePath);
+            } else if (getFileType(filePath) == "audio") {
+                pdfViewer2.setAttribute("style", "display:none");
+                linkViewer.setAttribute("style", "display:none");
+                audioPlayer.setAttribute("style", "height: 500px; width: 100%; ");
+                audioPlayer.src = getEmbedUrl(filePath);
+            } else {
+
                 pdfViewer2.setAttribute("style", "height: 500px; width: 100%; ");
                 linkViewer.setAttribute("style", "display:none");
+                audioPlayer.setAttribute("style", "display:none");
                 pdfViewer2.src = filePath;
-            } else {
-                pdfViewer2.setAttribute("style", "display:none");
-                linkViewer.setAttribute("style", "height: 500px; width: 100%; ");
-                linkViewer.src = getEmbedUrl(linkFilePath);
             }
 
             let sub = submissions[id];
@@ -2165,6 +2181,29 @@
             }
         }
 
+        function getFileType(url) {
+            const audioExtensions = ['.mp3', '.wav', '.ogg', '.flac', '.aac', '.m4a'];
+            const videoExtensions = ['.mp4', '.avi', '.mkv', '.webm', '.mov', '.flv'];
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp'];
+
+            const ext = url.split('.').pop().toLowerCase();
+
+            if (audioExtensions.includes('.' + ext)) {
+                return 'audio';
+            } else if (videoExtensions.includes('.' + ext)) {
+                return 'video';
+            } else if (imageExtensions.includes('.' + ext)) {
+                return 'image';
+            } else {
+                return 'unknown';
+            }
+        }
+
+        // Test the function
+        const url = 'https://example.com/video.mp4'; // Replace with your URL
+        console.log(getFileType(url)); // Outputs: 'video'
+
+
         function getEmbedUrl(url) {
             // YouTube
             if (url.includes("youtube.com/watch") || url.includes("youtu.be")) {
@@ -2196,7 +2235,7 @@
                 return url; // You can use <video> tag for this
             }
 
-            return null; // Unknown or unsupported format
+            return url; // Unknown or unsupported format
         }
 
 
