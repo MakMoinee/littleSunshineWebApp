@@ -124,8 +124,8 @@
                                                 </td>
                                                 <td>
                                                     <button onclick="deleteSess({{ $item->id }})"
-                                                        class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#deleteSessionModal">
+                                                        class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#deleteSessionModal">
                                                         Delete
                                                     </button>
                                                 </td>
