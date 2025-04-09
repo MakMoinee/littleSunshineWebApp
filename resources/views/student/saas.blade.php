@@ -266,7 +266,6 @@
                                         @if (str_ends_with($item['filePath'], '.pdf') ||
                                                 str_ends_with($item['filePath'], '.jpg') ||
                                                 str_ends_with($item['filePath'], '.png') ||
-                                                str_ends_with($item['filePath'], '.docx') ||
                                                 str_ends_with($item['filePath'], '.txt'))
                                             <center>
                                                 <embed style="height: 500px; width: 100%;"
