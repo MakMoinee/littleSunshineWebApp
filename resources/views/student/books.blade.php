@@ -269,7 +269,6 @@
         let linkViewer = document.getElementById('linkViewer');
         let audioPlayer = document.getElementById('audioPlayer');
         let myLink = document.getElementById('myLink');
-        pdfViewer.src = filePath;
         if (filePath && getFileType(filePath) == "video") {
             audioPlayer.setAttribute("style", "display:none");
             pdfViewer.setAttribute("style", "display:none");
@@ -298,6 +297,7 @@
             audioPlayer.setAttribute("style", "height: 500px; width: 100%;");
             audioPlayer.src = getEmbedUrl(linkFilePath);
         } else {
+            audioPlayer.setAttribute("style", "display:none");
             linkViewer.setAttribute("style", "display:none");
             pdfViewer.setAttribute("style", "height: 800px; width: 100%;");
             pdfViewer.src = linkFilePath;
