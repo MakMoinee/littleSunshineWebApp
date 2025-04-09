@@ -379,6 +379,10 @@
             return url; // You can use <video> tag for this
         }
 
+        if (url.endsWith(".docx")) {
+            return `https://docs.google.com/gview?url={{ url(${url}) }}&embedded=true`;
+        }
+
         return url; // Unknown or unsupported format
     }
 
