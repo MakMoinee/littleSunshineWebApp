@@ -309,7 +309,7 @@
                         <a href="/student_books" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
-                                    <img src="/img/studentBook.png" class="mimage" alt="Upload Story Book Icon"
+                                    <img src="/img/studentBook3.png" class="mimage" alt="Upload Story Book Icon"
                                         style="margin-left: -50px; height: 180px; width: 180px">
                                 </div>
                             </div>
