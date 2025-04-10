@@ -334,6 +334,8 @@
         const audioExtensions = ['.mp3', '.wav', '.ogg', '.flac', '.aac', '.m4a'];
         const videoExtensions = ['.mp4', '.avi', '.mkv', '.webm', '.mov', '.flv'];
         const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp'];
+        const docExtensions = ['.docx'];
+        const pdfExtensions = ['.pdf'];
 
         const ext = url.split('.').pop().toLowerCase();
 
@@ -343,10 +345,15 @@
             return 'video';
         } else if (imageExtensions.includes('.' + ext)) {
             return 'image';
+        } else if (docExtensions.includes('.' + ext)) {
+            return 'docx';
+        } else if (pdfExtensions.includes('.' + ext)) {
+            return 'pdf';
         } else {
             return 'unknown';
         }
     }
+
 
     function getEmbedUrl(url) {
         // YouTube
@@ -377,10 +384,6 @@
         // Self-hosted (e.g., .mp4 files)
         if (url.endsWith(".mp4")) {
             return url; // You can use <video> tag for this
-        }
-
-        if (url.endsWith(".docx")) {
-            return `https://docs.google.com/gview?url={{ url(${url}) }}&embedded=true`;
         }
 
         return url; // Unknown or unsupported format
