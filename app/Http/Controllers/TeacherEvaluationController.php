@@ -44,6 +44,7 @@ class TeacherEvaluationController extends Controller
                 }
             }
 
+
             return view('teacher.evaluation', ['students' => $allStudents, 'mSessions' => $datas]);
         }
 
@@ -72,7 +73,8 @@ class TeacherEvaluationController extends Controller
             }
 
             if ($request->btnAddEvaluation) {
-                $newEval = new Evaluations();
+                $newEval = new Evaluations(); 
+                $newEval->studentID = $request->studentID;
                 $newEval->sessionID = $request->sessionNum;
                 $newEval->evaluation = $request->evaluation;
                 $isSave = $newEval->save();

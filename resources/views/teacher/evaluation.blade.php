@@ -256,7 +256,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (json_decode(DB::table('vweval')->where('studentID', '=', $item->id)->get(), true) as $ss)
+                                            @foreach (json_decode(DB::table('evaluations')->where('studentID', '=', $item->id)->get(), true) as $ss)
                                                 <tr class="align-middle">
                                                     <td>
                                                         {{ $ss['sessionID'] }}
@@ -277,7 +277,8 @@
                             </div>
                             <div class="card-footer bg-white">
                                 <button class="btn bg-mbg btn-sm" style="float: right" data-coreui-toggle="modal"
-                                    data-coreui-target="#addEvalModal">Add Evaluation</button>
+                                    data-coreui-target="#addEvalModal" onclick="addEvalFunc({{ $item->id }})">Add
+                                    Evaluation</button>
                             </div>
                             <br>
                         </div>
@@ -302,6 +303,7 @@
                             </label>
                             <br>
                             <input type="text" class="form-control" name="sessionNum">
+                            <input type="hidden" name="studentID" id="addEvalStudID" value="">
 
                         </div>
                         <div class="form-group mt-2">
@@ -356,6 +358,11 @@
     <script></script>
     <script>
         let lastSessId = 0;
+
+        function addEvalFunc(id) {
+            let addEvalStudID = document.getElementById('addEvalStudID');
+            addEvalStudID.value = id;
+        }
 
         function viewData(id) {
 

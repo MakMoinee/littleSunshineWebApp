@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->integer('studentID')->nullable(false);
             $table->integer('sessionID')->nullable(false);
             $table->string('evaluation')->nullable(false);
             $table->timestamps();

@@ -28,6 +28,7 @@ class TeacherSessionRecordsController extends Controller
                 ->where('teacherID', '=', $user['userID'])
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
+
             return view('teacher.records', ['students' => $allStudents, 'sessions' => $allSessions]);
         }
         return redirect("/");
