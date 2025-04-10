@@ -333,10 +333,24 @@
                                                     id="pdfViewer2{{ $item['assignmentID'] }}" src=""
                                                     type="application/pdf">
 
-                                                <iframe style="height: 500px; width: 100%;"
+                                                <iframe style="height: 500px; width: 100%; display: none;"
                                                     id="linkViewer2{{ $item['assignmentID'] }}" width="560"
-                                                    height="315" src="" frameborder="0" allowfullscreen>
+                                                    height="315" src="" frameborder="0" allowfullscreen
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                                                 </iframe>
+                                                <video id="videoViewer2{{ $item['assignmentID'] }}" controls
+                                                    style="height: 500px; width: 100%; display: none;">
+                                                    Your browser does not support the video tag.
+                                                </video>
+
+
+                                                <audio class="mt-3 mb-3" controls
+                                                    style="height: 200px; width: 100%; display:none;"
+                                                    id="audioPlayer1{{ $item['assignmentID'] }}">
+                                                    <source src="" type="audio/mp3">
+                                                    Your browser does not support the audio element.
+                                                </audio>
+
                                             </center>
                                         </div>
                                     </div>
@@ -378,24 +392,53 @@
         function previewData(event, id) {
             var files = event.currentTarget.files;
             if (files && files[0]) {
+                var file = files[0];
                 var reader = new FileReader();
                 reader.onload = function() {
                     console.log("here");
                     let rs = reader.result;
-                    if (rs.endsWith(".pdf")) {
-                        var output = document.getElementById(`pdfViewer2${id}`);
-                        output.removeAttribute("style");
-                        output.setAttribute("style", "height: 500px; width: 100%;");
-                        output.src = rs;
-                    } else if (rs.endsWith(".mp4")) {
-                        var output = document.getElementById(`linkViewer2${id}`);
-                        output.removeAttribute("style");
-                        output.setAttribute("style", "height: 500px; width: 100%;");
-                        output.src = rs;
-                    }
+                    console.log(file.type);
 
+                    if (file.type === "application/pdf") {
+                        var output = document.getElementById(`pdfViewer2${id}`);
+                        var output2 = document.getElementById(`linkViewer2${id}`);
+                        var output3 = document.getElementById(`videoViewer2${id}`);
+                        var output4 = document.getElementById(`audioPlayer1${id}`);
+
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 800px; width: 100%;");
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        output.src = rs;
+                    } else if (file.type === "video/mp4" || file.type === "video/webm") {
+                        var output = document.getElementById(`videoViewer2${id}`);
+                        var output2 = document.getElementById(`linkViewer2${id}`);
+                        var output3 = document.getElementById(`pdfViewer2${id}`);
+                        var output4 = document.getElementById(`audioPlayer1${id}`);
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 800px; width: 100%;");
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        output.src = rs;
+                    } else if (file.type === "audio/mpeg") {
+
+                        var output = document.getElementById(`audioPlayer1${id}`);
+                        var output2 = document.getElementById(`linkViewer2${id}`);
+                        var output3 = document.getElementById(`pdfViewer2${id}`);
+                        var output4 = document.getElementById(`videoViewer2${id}`);
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 200px; width: 100%; background-color:black;");
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        output.src = rs;
+                    } else {
+                        console.warn("Unsupported file type:", file.type);
+                    }
                 };
-                reader.readAsDataURL(files[0]);
+                reader.readAsDataURL(file);
             }
         }
     </script>

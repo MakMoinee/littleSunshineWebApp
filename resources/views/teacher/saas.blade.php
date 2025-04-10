@@ -141,12 +141,12 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <h4 class="text-white">Deadline:</h4>
+                                    <h4 class="text-dark">Deadline:</h4>
 
                                     <input type="date" class="form-control input-field mt-2" name="date">
                                     <div class="time-range mt-2">
-                                        <input type="time" class="form-control -field" name="startTime">
-                                        <span class="text-white">To</span>
+                                        <input type="time" class="form-control -field" name="startTime"
+                                            style="display: none">
                                         <input type="time" class="form-control input-field" name="endTime">
                                     </div>
 
@@ -192,13 +192,13 @@
                                                         @endif
                                                     @endforeach
                                                 </td>
-                                                <td >
+                                                <td>
                                                     {{ (new DateTime($item->dueFrom))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ (new DateTime($item->dueTo))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
-                                                <td >
+                                                <td>
                                                     @if ($item->filePath)
                                                         <a href="{{ $item->filePath }}">View File</a>
                                                     @else

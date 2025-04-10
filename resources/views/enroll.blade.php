@@ -106,7 +106,7 @@
                                     </div> --}}
 
                                     <button name="btnEnroll" value="yes" type="submit"
-                                        class="btn btn-primary mt-3 submit-btn">Submit</button>
+                                        class="btn btn-primary mt-3 submit-btn" onclick="validateFile()">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -136,6 +136,21 @@
     <!-- Template Javascript -->
     <script src="/new/js/main.js"></script>
     <script>
+        function validateFile() {
+            let evaluationFile = document.getElementById('evaluationFile');
+            if (evaluationFile.value) {
+
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Please Add Evaluation File',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }
+        }
+
         function uploadFile() {
             let evaluationFile = document.getElementById('evaluationFile');
             evaluationFile.click();

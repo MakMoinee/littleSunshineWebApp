@@ -2212,6 +2212,7 @@
             let pdfViewer2 = document.getElementById('pdfViewer2');
             let linkViewer = document.getElementById('linkViewer');
             let audioPlayer = document.getElementById('audioPlayer');
+            console.log(getFileType(filePath));
             if (getFileType(filePath) == "video") {
 
                 pdfViewer2.setAttribute("style", "display:none");
