@@ -18,7 +18,6 @@ class StudentEvaluationController extends Controller
 
             if ($user['userType'] == "student") {
                 $evaluations = json_decode(DB::table('vwmyeval')->where('userID', '=', $user['userID'])->orderBy('created_at', 'desc')->get(), true);
-
                 return view('student.evaluation', ['evaluations' => $evaluations]);
             } else {
                 return redirect("/logout");

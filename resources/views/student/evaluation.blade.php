@@ -140,91 +140,13 @@
 </head>
 
 <body>
-    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
-        <div class="sidebar-brand d-none d-md-flex bg-mbg">
-
-            <a href="/" class="sidebar-brand-full text-decoration-none">
-                <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
-            </a>
-            <a href="/" class="sidebar-brand-narrow text-decoration-none">
-                <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
-            </a>
-        </div>
-        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="init">
-            <div class="simplebar-wrapper" style="margin: 0px;">
-                <div class="simplebar-height-auto-observer-wrapper">
-                    <div class="simplebar-height-auto-observer"></div>
-                </div>
-                <div class="simplebar-mask">
-                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                        <div class="simplebar-content-wrapper" tabindex="0" role="region"
-                            aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
-
-                            <div class="simplebar-content" style="padding: 0px;">
-                                <div class="container-lg">
-                                    <div class="row">
-                                        <div style="background-color: rgb(63, 63, 63); ">
-                                            <center>
-                                                List Of Sessions
-                                            </center>
-                                        </div>
-                                    </div>
-                                    <div class="card mt-3">
-                                        <div class="card-body">
-                                            <div class="table-responsive bg-white">
-                                                <table class="table border mb-0">
-                                                    <thead class="table-light fw-semibold">
-                                                        <tr class="align-middle">
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @if (count($evaluations) > 0)
-                                                            @foreach ($evaluations as $item)
-                                                                <tr class="align-middle">
-                                                                    <td class="text-center" style="cursor: pointer"
-                                                                        onclick="viewData({{ $item['id'] }})">
-                                                                        {{ $item['details'] }} </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        @else
-                                                            <tr class="align-middle">
-                                                                <td class="text-center">
-                                                                    No Sessions Yet
-                                                                </td>
-                                                            </tr>
-                                                        @endif
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="simplebar-placeholder" style="width: 256px; height: 841px;"></div>
-            </div>
-            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-                <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-            </div>
-            <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-                <div class="simplebar-scrollbar"
-                    style="height: 247px; transform: translate3d(0px, 0px, 0px); display: block;">
-                </div>
-            </div>
-        </ul>
-    </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light">
         <header class="header header-sticky mb-4 bg-mbg">
             <div class="container-fluid">
-                <button class="header-toggler px-md-0 me-md-3" type="button"
-                    onclick="coreui.Sidebar.getInstance(document.querySelector(&#39;#sidebar&#39;)).toggle()">
-                    <img src="/menu.svg" alt="" srcset="" class="icon icon-lg">
-                </button>
                 <a class="header-brand d-md-none" href="#">
-
+                    <a href="/" class="sidebar-brand-full text-decoration-none">
+                        <h3 class="m-0 text-primary text-white"> <span class="color-mbg">Little</span> Sunshine</h3>
+                    </a>
                 </a>
 
                 <ul class="header-nav d-none d-md-flex">
@@ -248,40 +170,41 @@
                 class="background-image position-absolute bottom-0 end-0" alt="Right Image">
         </div>
         <div class="body flex-grow-1 px-3 bg-content">
-            @foreach ($evaluations as $item)
-                <div class="container-lg" style="display: none" id="cont{{ $item['id'] }}">
-                    <div class="row mt-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive bg-white">
-                                    <table class="table border mb-0">
-                                        <thead class="table-light fw-semibold ">
-                                            <tr class="align-middle">
-                                                <th>Session #</th>
-                                                <th>Evaluation</th>
+            <div class="container-lg">
+                <div class="row mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive bg-white">
+                                <table class="table border mb-0">
+                                    <thead class="table-light fw-semibold ">
+                                        <tr class="align-middle">
+                                            <th>Session Created Date</th>
+                                            <th>Session Details</th>
+                                            <th>Evaluation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($evaluations as $item)
+                                            <tr class="align-middle" id="evals{{ $item['id'] }}">
+                                                <td>
+                                                    {{ (new DateTime($item['created_at']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d') }}
+                                                </td>
+                                                <td>
+                                                    {{ $item['details'] }}
+                                                </td>
+                                                <td>
+                                                    {{ $item['evaluation'] }}
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($evaluations as $item)
-                                                <tr class="align-middle" id="evals{{ $item['id'] }}"
-                                                    style="display: none;">
-                                                    <td>
-                                                        {{ $item['details'] }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item['evaluation'] }}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                            <br>
                         </div>
+                        <br>
                     </div>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 
