@@ -2298,7 +2298,6 @@
                         output.src = sub['document'];
                     } else if (yourFileType === "video/mp4" || yourFileType === "video/webm" || yourFileType.includes(
                             "video")) {
-                        const videoURL = sub['document'];
 
                         var output = document.getElementById(`videoViewer3`);
                         var videoSource2 = document.getElementById(`videoSource2`);
@@ -2312,7 +2311,7 @@
                         output4.setAttribute("style", "display:none;");
                         var output5 = document.getElementById(`docxViewer3`);
                         output5.setAttribute("style", "display:none;");
-                        videoSource2.src = videoURL;
+                        videoSource2.src = sub['document'];
 
                         output.load();
                         output.play().catch((error) => {
