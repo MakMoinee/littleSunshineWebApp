@@ -2255,25 +2255,25 @@
 
         function updateMyStudent(sub) {
             console.log("here")
-            
+
             var output = document.getElementById(`pdfViewer3`);
-                var output2 = document.getElementById(`linkViewer3`);
-                var output3 = document.getElementById(`videoViewer3`);
-                var output4 = document.getElementById(`audioPlayer3`);
-                var output5 = document.getElementById(`docxViewer3`);
+            var output2 = document.getElementById(`linkViewer3`);
+            var output3 = document.getElementById(`videoViewer3`);
+            var output4 = document.getElementById(`audioPlayer3`);
+            var output5 = document.getElementById(`docxViewer3`);
 
-                output.removeAttribute("style");
-                output2.removeAttribute("style");
-                output3.removeAttribute("style");
-                output4.removeAttribute("style");
-                output5.removeAttribute("style");
+            output.removeAttribute("style");
+            output2.removeAttribute("style");
+            output3.removeAttribute("style");
+            output4.removeAttribute("style");
+            output5.removeAttribute("style");
 
-                output.setAttribute("style", "display:none;");
-                output2.setAttribute("style", "display:none;");
-                output3.setAttribute("style", "display:none;");
-                output4.setAttribute("style", "display:none;");
-                output5.setAttribute("style", "display:none;");
-                let size = Object.keys(sub).length;
+            output.setAttribute("style", "display:none;");
+            output2.setAttribute("style", "display:none;");
+            output3.setAttribute("style", "display:none;");
+            output4.setAttribute("style", "display:none;");
+            output5.setAttribute("style", "display:none;");
+            let size = Object.keys(sub).length;
             if (size > 0) {
                 console.log(sub);
 
