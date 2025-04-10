@@ -189,7 +189,7 @@
                                                 <td>
                                                     {{ (new DateTime($item['created_at']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d') }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $item['sessionID'] }}
                                                 </td>
                                                 <td>
