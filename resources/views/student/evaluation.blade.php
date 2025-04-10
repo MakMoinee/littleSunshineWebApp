@@ -177,22 +177,22 @@
                             <div class="table-responsive bg-white">
                                 <table class="table border mb-0">
                                     <thead class="table-light fw-semibold ">
-                                        <tr class="align-middle">
-                                            <th>Session Created Date</th>
-                                            <th>Session Number</th>
-                                            <th>Evaluation</th>
+                                        <tr>
+                                            <th class="text-center">Session Created Date</th>
+                                            <th class="text-center">Session Number</th>
+                                            <th class="text-center">Evaluation</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($evaluations as $item)
                                             <tr class="align-middle" id="evals{{ $item['id'] }}">
-                                                <td>
+                                                <td class="text-center">
                                                     {{ (new DateTime($item['created_at']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d') }}
                                                 </td>
                                                 <td class="text-center">
                                                     {{ $item['sessionID'] }}
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     {{ $item['evaluation'] }}
                                                 </td>
                                             </tr>
