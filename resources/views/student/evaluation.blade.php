@@ -179,7 +179,7 @@
                                     <thead class="table-light fw-semibold ">
                                         <tr class="align-middle">
                                             <th>Session Created Date</th>
-                                            <th>Session Details</th>
+                                            <th>Session Number</th>
                                             <th>Evaluation</th>
                                         </tr>
                                     </thead>
@@ -190,7 +190,7 @@
                                                     {{ (new DateTime($item['created_at']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d') }}
                                                 </td>
                                                 <td>
-                                                    {{ $item['details'] }}
+                                                    {{ $item['sessionID'] }}
                                                 </td>
                                                 <td>
                                                     {{ $item['evaluation'] }}
