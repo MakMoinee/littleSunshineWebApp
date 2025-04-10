@@ -31,6 +31,8 @@
     <script type="text/javascript" async src="/assets/js"></script>
     <script src="/assets/667090843876081" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.8.69/pdf.min.mjs"></script>
+    <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+
     <style>
         .bg-mbg {
             background-color: #1b2e3d !important;
@@ -176,7 +178,7 @@
                                                     <div class="card-body text-dark">
                                                         <h5>{{ $item['title'] }}</h5>
                                                         <p style="font-size: 12px;">Deadline -
-                                                            {{ (new DateTime($item['dueTo']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                            {{ (new DateTime($item['dueTo']))->format('Y-m-d h:i A') }}
                                                         </p>
                                                         <p style="font-size: 11px;margin-top: -10px;">Status: To Do</p>
                                                         <div class="row">
@@ -335,12 +337,11 @@
 
                                                 <iframe style="height: 500px; width: 100%; display: none;"
                                                     id="linkViewer2{{ $item['assignmentID'] }}" width="560"
-                                                    height="315" src="" frameborder="0" allowfullscreen
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                                                    height="315" src="" frameborder="0" allowfullscreen>
                                                 </iframe>
                                                 <video id="videoViewer2{{ $item['assignmentID'] }}" controls
                                                     style="height: 500px; width: 100%; display: none;">
-                                                    Your browser does not support the video tag.
+                                                    <source id="videoSource2{{ $item['assignmentID'] }}" />
                                                 </video>
 
 
@@ -350,6 +351,9 @@
                                                     <source src="" type="audio/mp3">
                                                     Your browser does not support the audio element.
                                                 </audio>
+                                                <div class="mt-3 mb-3" id="docxViewer2{{ $item['assignmentID'] }}"
+                                                    style="display: none; height: 800px; width: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc; padding: 1rem;">
+                                                </div>
 
                                             </center>
                                         </div>
@@ -397,22 +401,28 @@
                 reader.onload = function() {
                     console.log("here");
                     let rs = reader.result;
-                    console.log(file.type);
+                    let fileType = String(file.type);
+                    console.log(fileType);
 
-                    if (file.type === "application/pdf") {
+                    if (file.type === "application/pdf" || file.type === "image/jpeg" || file.type === "image/png") {
                         var output = document.getElementById(`pdfViewer2${id}`);
                         var output2 = document.getElementById(`linkViewer2${id}`);
                         var output3 = document.getElementById(`videoViewer2${id}`);
                         var output4 = document.getElementById(`audioPlayer1${id}`);
+                        var output5 = document.getElementById(`docxViewer2${id}`);
 
                         output.removeAttribute("style");
                         output.setAttribute("style", "height: 800px; width: 100%;");
                         output2.setAttribute("style", "display:none;");
                         output3.setAttribute("style", "display:none;");
                         output4.setAttribute("style", "display:none;");
+                        output5.setAttribute("style", "display:none;");
                         output.src = rs;
-                    } else if (file.type === "video/mp4" || file.type === "video/webm") {
+                    } else if (file.type === "video/mp4" || file.type === "video/webm" || fileType.includes("video")) {
+                        const videoURL = URL.createObjectURL(file);
+
                         var output = document.getElementById(`videoViewer2${id}`);
+                        var videoSource2 = document.getElementById(`videoSource2${id}`);
                         var output2 = document.getElementById(`linkViewer2${id}`);
                         var output3 = document.getElementById(`pdfViewer2${id}`);
                         var output4 = document.getElementById(`audioPlayer1${id}`);
@@ -421,8 +431,20 @@
                         output2.setAttribute("style", "display:none;");
                         output3.setAttribute("style", "display:none;");
                         output4.setAttribute("style", "display:none;");
-                        output.src = rs;
-                    } else if (file.type === "audio/mpeg") {
+                        var output5 = document.getElementById(`docxViewer2${id}`);
+                        output5.setAttribute("style", "display:none;");
+                        videoSource2.src = videoURL;
+
+                        output.load();
+                        output.play().catch((error) => {
+                            console.error("Video playback failed:", error);
+                        });
+
+                        // Optional: Clean up the blob URL after the video is no longer needed
+                        output.onended = function() {
+                            URL.revokeObjectURL(videoURL);
+                        };
+                    } else if (file.type === "audio/mpeg" || fileType.includes("audio")) {
 
                         var output = document.getElementById(`audioPlayer1${id}`);
                         var output2 = document.getElementById(`linkViewer2${id}`);
@@ -433,7 +455,47 @@
                         output2.setAttribute("style", "display:none;");
                         output3.setAttribute("style", "display:none;");
                         output4.setAttribute("style", "display:none;");
+                        var output5 = document.getElementById(`docxViewer2${id}`);
+                        output5.setAttribute("style", "display:none;");
                         output.src = rs;
+                    } else if (file.type ===
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.type ===
+                        "application/powerpoint") {
+
+
+                        var outputContainer = document.getElementById(`docxViewer2${id}`);
+                        var output2 = document.getElementById(`pdfViewer2${id}`);
+                        var output3 = document.getElementById(`videoViewer2${id}`);
+                        var output4 = document.getElementById(`audioPlayer1${id}`);
+                        var output5 = document.getElementById(`linkViewer2${id}`);
+
+                        outputContainer.removeAttribute("style");
+                        outputContainer.setAttribute("style",
+                            "display: none; height: 800px; width: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc; padding: 1rem;"
+                        );
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        output5.setAttribute("style", "display:none;");
+
+                        const reader2 = new FileReader();
+
+                        reader2.onload = function(events) {
+                            const arrayBuffer = events.target.result;
+
+                            mammoth.convertToHtml({
+                                    arrayBuffer: arrayBuffer
+                                })
+                                .then(function(result) {
+                                    outputContainer.innerHTML = result.value;
+                                    outputContainer.style.display = "block";
+                                })
+                                .catch(function(err) {
+                                    console.error("Error converting .docx:", err);
+                                });
+                        };
+
+                        reader2.readAsArrayBuffer(file);
                     } else {
                         console.warn("Unsupported file type:", file.type);
                     }

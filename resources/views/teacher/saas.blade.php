@@ -196,7 +196,7 @@
                                                     {{ (new DateTime($item->dueFrom))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ (new DateTime($item->dueTo))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                    {{ (new DateTime($item->dueTo))->format('Y-m-d h:i A') }}
                                                 </td>
                                                 <td>
                                                     @if ($item->filePath)

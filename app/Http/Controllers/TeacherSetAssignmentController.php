@@ -59,13 +59,12 @@ class TeacherSetAssignmentController extends Controller
             }
 
             if ($request->btnSetAss) {
-                // dd($request);
                 $newAss = new Assignments();
                 $newAss->title = $request->title;
                 $newAss->sessionID = $request->sessionNumber;
                 $newAss->studentID = $request->studentName;
                 $newAss->teacherID = $user['userID'];
-                $newAss->dueFrom = date('Y-m-d H:i:s', strtotime($request->date . " " . $request->startTime));
+                $newAss->dueFrom = date('Y-m-d H:i:s', strtotime(now()));
                 $newAss->dueTo = date('Y-m-d H:i:s', strtotime($request->date . " " . $request->endTime));
                 $newAss->dueDate = $request->date;
                 $newAss->submissionType = $request->submissionType;
@@ -98,7 +97,7 @@ class TeacherSetAssignmentController extends Controller
                         $newAss->sessionID = $request->sessionNumber;
                         $newAss->studentID = $request->studentName;
                         $newAss->teacherID = $user['userID'];
-                        $newAss->dueFrom = date('Y-m-d H:i:s', strtotime($request->date . " " . $request->startTime));
+                        $newAss->dueFrom = date('Y-m-d H:i:s', strtotime(now()));
                         $newAss->dueTo = date('Y-m-d H:i:s', strtotime($request->date . " " . $request->endTime));
                         $newAss->dueDate = $request->date;
                         $newAss->submissionType = "online";
