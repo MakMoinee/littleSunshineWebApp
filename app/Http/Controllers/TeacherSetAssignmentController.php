@@ -94,6 +94,7 @@ class TeacherSetAssignmentController extends Controller
 
                         $newAss = new Assignments();
                         $newAss->title = $request->title;
+                        $newAss->instructions = $request->instructions;
                         $newAss->sessionID = $request->sessionNumber;
                         $newAss->studentID = $request->studentName;
                         $newAss->teacherID = $user['userID'];

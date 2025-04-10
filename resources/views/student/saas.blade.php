@@ -256,9 +256,14 @@
                         <div class="row">
                             <div class="col-md-12 text-dark">
                                 <h3>Instruction:</h3>
-                                <p> Please open the given booklet last session, and take a video of the student reading
-                                    the
-                                    booklet.</p>
+                                @if ($item['instructions'])
+                                    <p>{{ $item['instructions'] }}</p>
+                                @else
+                                    <p> Please open the given booklet last session, and take a video of the student
+                                        reading
+                                        the
+                                        booklet.</p>
+                                @endif
                             </div>
                         </div>
                         <div class="row">

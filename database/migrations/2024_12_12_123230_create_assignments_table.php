@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('studentID');
             $table->integer('sessionID');
             $table->string('title', 255);
+            $table->string('instructions', 255)->nullable(true);
             $table->date('dueDate');
             $table->timestamp('dueFrom');
             $table->timestamp('dueTo');

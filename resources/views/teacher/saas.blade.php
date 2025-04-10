@@ -122,12 +122,27 @@
                                     <input type="hidden" class="form-control mt-2" name="sessionNumber"
                                         placeholder="Session #" style="display:none" value="0">
 
+                                    <div class="row mt-3 mb-2">
+                                        <div class="col-md-12">
+                                            <span class="text-dark">Instructions</span>
+                                            <textarea name="instructions" id="" cols="30" rows="5" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
                                     <input type="text" class="form-control input-field mt-2" name="title"
                                         placeholder="Assignment Title">
 
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
 
+                                            <span class="text-dark">
+                                                <b>Files that can uploaded are: PDF, JPG, PNG, MP3, MP4</b>
+                                            </span>
+                                        </div>
+                                    </div>
                                     <div class="row mt-2">
                                         <div class="col-md-12 d-flex">
+                                            <br>
                                             <button class="btn btn-success text-white me-2" id="btnOpen"
                                                 type="button" onclick="openFile()">Upload A
                                                 File</button>
