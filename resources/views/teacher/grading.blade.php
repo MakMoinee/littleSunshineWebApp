@@ -2300,7 +2300,7 @@
                             "video")) {
 
                         var output = document.getElementById(`videoViewer3`);
-                        var videoSource2 = document.getElementById(`videoSource2`);
+                        var videoSource3 = document.getElementById(`videoSource3`);
                         var output2 = document.getElementById(`linkViewer3`);
                         var output3 = document.getElementById(`pdfViewer3`);
                         var output4 = document.getElementById(`audioPlayer3`);
@@ -2311,7 +2311,7 @@
                         output4.setAttribute("style", "display:none;");
                         var output5 = document.getElementById(`docxViewer3`);
                         output5.setAttribute("style", "display:none;");
-                        videoSource2.src = sub['document'];
+                        videoSource3.src = sub['document'];
 
                         output.load();
                         output.play().catch((error) => {
