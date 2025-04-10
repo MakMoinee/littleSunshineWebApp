@@ -167,7 +167,8 @@
 
                                     <button name="btnSetAssWithFile" value="yes" type="submit"
                                         class="btn btn-primary set-button mt-2"
-                                        style="background-color:#00394f !important;"> SET</button>
+                                        style="background-color:#00394f !important;" onclick="validateFile()">
+                                        SET</button>
                                 </div>
                             </form>
                         </div>
@@ -301,6 +302,21 @@
         </div>
     </div>
     <script>
+        function validateFile() {
+            let evaluationFile = document.getElementById('mFile');
+            if (evaluationFile.value) {
+
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Please Add Assignment File',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }
+        }
+
         function openFile() {
             document.getElementById('mFile').click();
         }
