@@ -44,7 +44,9 @@ class TeacherGradingController extends Controller
                 if (count($data) > 0) {
                     $studentAss[$s['id']] =  $data;
                     foreach ($sortedSub as $ss) {
-                        $studentSub[$s['id']] = $ss;
+                        if($s['id']==$data[0]['assignmentID']){
+                            $studentSub[$data[0]['assignmentID']] = $ss;
+                        }
                     }
                 }
 

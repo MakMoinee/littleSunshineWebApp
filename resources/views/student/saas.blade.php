@@ -508,6 +508,7 @@
                 reader.readAsDataURL(file);
             }
         }
+        
     </script>
 
     @if (session()->pull('errorSubmit'))

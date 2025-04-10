@@ -297,7 +297,7 @@
                                                             <button class="btn btn-primary text-white"
                                                                 data-coreui-target="#previewModal"
                                                                 data-coreui-toggle="modal"
-                                                                onclick="previewAns({{ $ass['studentID'] }},'{{ $ass['filePath'] }}')">Preview</button>
+                                                                onclick="previewAns({{ $ass['assignmentID'] }},'{{ $ass['filePath'] }}')">Preview</button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -2158,8 +2158,25 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <label for="docu">Student Answer:<span class="text-danger"></span></label>
-                            <embed style="height: 450px; width: 100%;" class="embed-responsive mt-2" id="pdfViewer3"
-                                src="" type="application/pdf">
+                            <embed style="height: 450px; width: 100%; display:none;" class="embed-responsive mt-2"
+                                id="pdfViewer3" src="" type="application/pdf">
+
+                            <iframe style="height: 500px; width: 100%; display: none;" id="linkViewer3"
+                                width="560" height="315" src="" frameborder="0" allowfullscreen>
+                            </iframe>
+                            <video id="videoViewer3" controls style="height: 500px; width: 100%; display: none;">
+                                <source id="videoSource3" />
+                            </video>
+
+
+                            <audio class="mt-3 mb-3" controls style="height: 200px; width: 100%; display:none;"
+                                id="audioPlayer3">
+                                <source src="" type="audio/mp3">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <div class="mt-3 mb-3" id="docxViewer3"
+                                style="display: none; height: 800px; width: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc; padding: 1rem;">
+                            </div>
                         </div>
                     </div>
 
@@ -2233,34 +2250,143 @@
             }
 
             let sub = submissions[id];
-            if (sub) {
+            updateMyStudent(sub)
+        }
+
+        function updateMyStudent(sub) {
+            console.log("here")
+            
+            var output = document.getElementById(`pdfViewer3`);
+                var output2 = document.getElementById(`linkViewer3`);
+                var output3 = document.getElementById(`videoViewer3`);
+                var output4 = document.getElementById(`audioPlayer3`);
+                var output5 = document.getElementById(`docxViewer3`);
+
+                output.removeAttribute("style");
+                output2.removeAttribute("style");
+                output3.removeAttribute("style");
+                output4.removeAttribute("style");
+                output5.removeAttribute("style");
+
+                output.setAttribute("style", "display:none;");
+                output2.setAttribute("style", "display:none;");
+                output3.setAttribute("style", "display:none;");
+                output4.setAttribute("style", "display:none;");
+                output5.setAttribute("style", "display:none;");
+                let size = Object.keys(sub).length;
+            if (size > 0) {
                 console.log(sub);
-                let pdfViewer3 = document.getElementById('pdfViewer3');
-                pdfViewer3.src = sub['document'];
 
-                let subID = document.getElementById('subID');
-                subID.setAttribute("value", sub['id']);
+                if (sub['document']) {
 
-                if (sub['rating']) {
-                    let btnRating = document.getElementById('btnRating');
-                    btnRating.setAttribute("style", "display:none");
-                    let myRating = document.getElementById("myRating");
-                    myRating.setAttribute("style", "display:none");
-                    let myRating2 = document.getElementById("myRating2");
-                    myRating2.removeAttribute("style");
-                    myRating2.setAttribute("value", sub["rating"]);
+                    let yourFileType = getFileType(sub['document']);
+
+                    if (yourFileType.includes("pdf") || yourFileType.includes("image")) {
+                        var output = document.getElementById(`pdfViewer3`);
+                        var output2 = document.getElementById(`linkViewer3`);
+                        var output3 = document.getElementById(`videoViewer3`);
+                        var output4 = document.getElementById(`audioPlayer3`);
+                        var output5 = document.getElementById(`docxViewer3`);
+
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 800px; width: 100%;");
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        output5.setAttribute("style", "display:none;");
+                        output.src = sub['document'];
+                    } else if (yourFileType === "video/mp4" || yourFileType === "video/webm" || yourFileType.includes(
+                            "video")) {
+                        const videoURL = sub['document'];
+
+                        var output = document.getElementById(`videoViewer3`);
+                        var videoSource2 = document.getElementById(`videoSource2`);
+                        var output2 = document.getElementById(`linkViewer3`);
+                        var output3 = document.getElementById(`pdfViewer3`);
+                        var output4 = document.getElementById(`audioPlayer3`);
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 800px; width: 100%;");
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        var output5 = document.getElementById(`docxViewer3`);
+                        output5.setAttribute("style", "display:none;");
+                        videoSource2.src = videoURL;
+
+                        output.load();
+                        output.play().catch((error) => {
+                            console.error("Video playback failed:", error);
+                        });
+
+                        // Optional: Clean up the blob URL after the video is no longer needed
+                        output.onended = function() {
+                            URL.revokeObjectURL(videoURL);
+                        };
+                    } else if (yourFileType === "audio/mpeg" || yourFileType.includes("audio")) {
+
+                        var output = document.getElementById(`audioPlayer3`);
+                        var output2 = document.getElementById(`linkViewer3`);
+                        var output3 = document.getElementById(`pdfViewer3`);
+                        var output4 = document.getElementById(`videoViewer3`);
+                        output.removeAttribute("style");
+                        output.setAttribute("style", "height: 200px; width: 100%; background-color:black;");
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        var output5 = document.getElementById(`docxViewer3`);
+                        output5.setAttribute("style", "display:none;");
+                        output.src = sub['document'];
+                    } else if (yourFileType.includes(".docx")) {
+
+
+                        var outputContainer = document.getElementById(`docxViewer3`);
+                        var output2 = document.getElementById(`pdfViewer3`);
+                        var output3 = document.getElementById(`videoViewer3`);
+                        var output4 = document.getElementById(`audioPlayer3`);
+                        var output5 = document.getElementById(`linkViewer3`);
+
+                        outputContainer.removeAttribute("style");
+                        outputContainer.setAttribute("style",
+                            "display: none; height: 800px; width: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid #ccc; padding: 1rem;"
+                        );
+                        output2.setAttribute("style", "display:none;");
+                        output3.setAttribute("style", "display:none;");
+                        output4.setAttribute("style", "display:none;");
+                        output5.setAttribute("style", "display:none;");
+
+                        loadDocxFromUrl(sub['document'])
+                    } else {
+                        console.warn("Unsupported file type:", yourFileType);
+                    }
+
                 } else {
 
-                    let btnRating = document.getElementById('btnRating');
-                    btnRating.removeAttribute("style");
 
-                    let myRating = document.getElementById("myRating");
-                    myRating.removeAttribute("style");
-
-                    let myRating2 = document.getElementById('myRating2');
-                    myRating2.setAttribute("style", "display:none");
                 }
 
+
+
+            }
+        }
+
+
+        async function loadDocxFromUrl(url) {
+            try {
+                // Fetch the document as a blob
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+
+                // Convert the docx file to HTML using Mammoth
+                const {
+                    value: html
+                } = await mammoth.convertToHtml({
+                    arrayBuffer
+                });
+
+                // Display the resulting HTML in the preview area
+                document.getElementById("doc-preview").innerHTML = html;
+            } catch (error) {
+                console.error("Error loading document:", error);
             }
         }
 
@@ -2268,6 +2394,8 @@
             const audioExtensions = ['.mp3', '.wav', '.ogg', '.flac', '.aac', '.m4a'];
             const videoExtensions = ['.mp4', '.avi', '.mkv', '.webm', '.mov', '.flv'];
             const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp'];
+            const docExtensions = ['.docx'];
+            const pdfExtensions = ['.pdf'];
 
             const ext = url.split('.').pop().toLowerCase();
 
@@ -2277,6 +2405,10 @@
                 return 'video';
             } else if (imageExtensions.includes('.' + ext)) {
                 return 'image';
+            } else if (docExtensions.includes('.' + ext)) {
+                return 'docx';
+            } else if (pdfExtensions.includes('.' + ext)) {
+                return 'pdf';
             } else {
                 return 'unknown';
             }
@@ -2317,7 +2449,6 @@
             if (url.endsWith(".mp4")) {
                 return url; // You can use <video> tag for this
             }
-
             return url; // Unknown or unsupported format
         }
 
