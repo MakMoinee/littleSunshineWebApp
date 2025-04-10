@@ -121,8 +121,6 @@ class TeacherGradingController extends Controller
                     $adls[$s['id']] = json_decode($grade['adls'], true);
                 }
             }
-
-
             return view('teacher.grading', [
                 'students' => $allStudents,
                 'studentAss' => $studentAss,
