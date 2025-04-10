@@ -43,11 +43,6 @@ class TeacherGradingController extends Controller
                 $data = json_decode(DB::table('assignments')->where("studentID", '=', $s['id'])->get(), true);
                 if (count($data) > 0) {
                     $studentAss[$s['id']] =  $data;
-                    foreach ($sortedSub as $ss) {
-                        if($s['id']==$data[0]['assignmentID']){
-                            $studentSub[$data[0]['assignmentID']] = $ss;
-                        }
-                    }
                 }
 
                 $gCount = DB::table('grades')->where("studentID", '=', $s['id'])->count();
@@ -121,22 +116,14 @@ class TeacherGradingController extends Controller
                     $adls[$s['id']] = json_decode($grade['adls'], true);
                 }
             }
-            dd([
-                'students' => $allStudents,
-                'studentAss' => $studentAss,
-                'submissions' => $studentSub,
-                'grades' => $grades,
-                'workBehavior' => $workBehavior,
-                'socialSkills' => $socialSkills,
-                'cognitiveSkills' => $cognitiveSkills,
-                'fms' => $fms,
-                'gms' => $gms,
-                'adls' => $adls,
-            ]);
+
+            foreach ($sortedSub as $sosss) {
+                $sortedSub[$sosss["assignmentID"]] = $sosss;
+            }
             return view('teacher.grading', [
                 'students' => $allStudents,
                 'studentAss' => $studentAss,
-                'submissions' => $studentSub,
+                'submissions' => $sortedSub,
                 'grades' => $grades,
                 'workBehavior' => $workBehavior,
                 'socialSkills' => $socialSkills,
