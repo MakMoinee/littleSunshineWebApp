@@ -319,7 +319,7 @@
                         <a href="/student_eval" class="text-decoration-none">
                             <div class="card bg-mbg justify-content-center align-items-center" style="height: 210px;">
                                 <div class="card-body micon">
-                                    <img src="/studentEvaluation.png" class="mimage" alt="Post Evaluation Icon"
+                                    <img src="/studentEvaluation2.png" class="mimage" alt="Post Evaluation Icon"
                                         style="margin-left: -20px;height: 180px; width: 180px">
                                 </div>
                             </div>

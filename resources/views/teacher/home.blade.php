@@ -316,7 +316,7 @@
                                 <div class="card-body micon">
                                     <img src="/img/book.png" class="mimage" alt="Upload Story Book Icon"
                                         style="margin-left: -20px;">
-                                    <p>Upload Story Book</p>
+                                    <p>Upload Story Book or Video</p>
                                 </div>
                             </div>
                         </a>
