@@ -231,6 +231,7 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -250,6 +251,12 @@
                                                     {{ $item['meeting'] }}
                                                 @endif
                                             </td>
+                                            <td>
+                                                <button class="btn btn-danger"
+                                                    onclick="deleteMeeting({{ $item['id'] }})"
+                                                    data-target="#deleteScheduleModal"
+                                                    data-toggle="modal">Delete</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -259,7 +266,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        style="color:white !important;">Close</button>
+                        style="color:white !important;" id="btnCloseParentModal">Close</button>
                 </div>
             </div>
         </div>
@@ -285,6 +292,27 @@
     <!-- Template Javascript -->
     <script src="/new/js/main.js"></script>
 
+    <div class="modal fade " id="deleteScheduleModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteScheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="margin: 0; color: #333;">Are You Sure You Want To Delete this Schedules?</h3>
+                </div>
+                <form id="deleteSchedForm" action="/teacher_ss" method="post" enctype="multipart/form-data">
+                    @method('delete')
+                    @csrf
+                    <div class="modal-footer">
+                        <button class="btn btn-danger text-white" name="btnProceedDelete" value="yes">Yes,
+                            Proceed</button>
+                        <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     @if (session()->pull('errorSaveAss'))
         <script>
@@ -299,6 +327,36 @@
             }, 500);
         </script>
         {{ session()->forget('errorSaveAss') }}
+    @endif
+
+    @if (session()->pull('errorDelete'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Delete Schedule, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDelete') }}
+    @endif
+
+    @if (session()->pull('successDelete'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Deleted Schedule',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successDelete') }}
     @endif
 
 
@@ -357,6 +415,13 @@
 
             calendar.render();
         });
+
+        function deleteMeeting(id) {
+            let deleteSchedForm = document.getElementById("deleteSchedForm");
+            deleteSchedForm.action = `/teacher_ss/${id}`;
+            let btnCloseParentModal = document.getElementById("btnCloseParentModal");
+            btnCloseParentModal.click();
+        }
     </script>
 </body>
 

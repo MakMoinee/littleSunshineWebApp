@@ -145,8 +145,29 @@ class TeachSetScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put("users", $user);
+
+            if ($user['userType'] != "teacher") {
+                return redirect("/logout");
+            }
+
+            if ($request->btnProceedDelete) {
+                $deleteCount = DB::table('schedules')->where("id", "=", $id)->delete();
+
+
+                if ($deleteCount > 0) {
+                    session()->put("successDelete", true);
+                } else {
+                    session()->put("errorDelete", true);
+                }
+            }
+
+            return redirect("/teacher_ss");
+        }
+        return redirect("/");
     }
 }
