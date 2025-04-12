@@ -53,7 +53,13 @@ class EnrollController extends Controller
                 $evaluationFilename = "";
 
                 if ($evaluation) {
-                    $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/evaluations';
+                    $env = env('APP_ENV');
+                    if ($env == "stage") {
+
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/public' . '/data/evaluations';
+                    } else {
+                        $destinationPath = $_SERVER['DOCUMENT_ROOT'] . '/data/evaluations';
+                    }
                     $evaluationFilename = strtotime(now()) . "." . $evaluation->getClientOriginalExtension();
                     $isFile = $evaluation->move($destinationPath,  $evaluationFilename);
                     chmod($destinationPath, 0755);
