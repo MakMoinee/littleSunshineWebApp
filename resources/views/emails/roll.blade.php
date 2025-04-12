@@ -57,7 +57,7 @@
 
         <div class="info">
             <div><span class="label">Evaluation:</span></div>
-            <p>{{ $evaluation }}</p>
+            <p>{{ url($evaluation) }}</p>
         </div>
 
         <div class="footer">
