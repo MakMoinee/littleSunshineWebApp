@@ -181,12 +181,15 @@
                     @csrf
                     <div class="modal-header">
                         <h5>Create User</h5>
+
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"
+                            style="color:white !important; float: right;">Close</button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group text-dark">
-                                    <label for="username">Student:</label>
+                                    <label for="username">Student:<span class="text-danger">*</span></label>
                                     <br>
                                     <select required name="student" id="" class="form-control">
                                         @foreach ($allStudents as $item)
@@ -198,31 +201,21 @@
                                     </select>
                                 </div>
                                 <div class="form-group text-dark">
-                                    <label for="username">Username:</label>
-                                    <br>
-                                    <input required type="text" name="username" id=""
-                                        class="form-control">
+                                    <label for="notes" class="">Remarks/Notes:<span class="text-danger">*</span></label>
+                                    <textarea required name="notes" id="" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group text-dark">
-                                    <label for="password">Password:</label>
-                                    <br>
-                                    <input required type="password" name="password" id=""
-                                        class="form-control">
-                                </div>
-                                <div class="form-group text-dark">
-                                    <label for="confirmPass">Confirm Password:</label>
-                                    <br>
-                                    <input required type="password" name="confirmPass" id=""
-                                        class="form-control">
+                                    <div class="row">
+                                        <div class="col-lg-2 mx-auto">
+                                            <button type="submit" class="btn btn-primary">Accept</button>
+                                        </div>
+                                        <div class="col-lg-2 mx-auto">
+                                            <button type="button" class="btn btn-secondary">Reject</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                            style="color:white !important;">Close</button>
-                        <button type="submit" class="btn btn-danger" name="btnAddUser" value="yes"
-                            style="color:white !important;">Save</button>
                     </div>
                 </form>
             </div>
