@@ -35,8 +35,8 @@ class TeacherHomeController extends Controller
             foreach ($allScheds as $as) {
                 $idd = $as['id'];
                 $type = $as['classType'];
-                $startDet = (new DateTime($as['scheduleDate']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
-                $endDet = (new DateTime($as['scheduleTime']))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d');
+                $startDet = (new DateTime($as['scheduleDate']))->format('Y-m-d');
+                $endDet = (new DateTime($as['scheduleTime']))->format('Y-m-d');
                 $data = array();
                 $data = ["id" => $idd, "title" => $type, "start" => $startDet, "end" => $endDet];
                 array_push($events, $data);

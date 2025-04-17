@@ -100,7 +100,8 @@
                                             <th class="text-center">Details</th>
                                             <th>Student</th>
                                             <th class="text-center">Status</th>
-                                            <th></th>
+                                            <th>Session Created Date</th>
+                                            <th class="text-center"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -123,6 +124,10 @@
                                                     {{ $item->status }}
                                                 </td>
                                                 <td>
+                                                    {{ (new DateTime($item->created_at))->format('Y-m-d h:i A') }}
+                                                </td>
+                                                <td class="text-center">
+
                                                     <button onclick="deleteSess({{ $item->id }})"
                                                         class="btn btn-danger" data-toggle="modal"
                                                         data-target="#deleteSessionModal">
