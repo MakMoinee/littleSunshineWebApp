@@ -349,43 +349,126 @@
                     <div class="col-lg-4 mx-auto"></div>
                 </div>
             </div>
+
+            <button class="btn" id="showModal" style="display: none" data-coreui-target="#showDetailsModal"
+                data-coreui-toggle="modal"></button>
         </div>
     </div>
 
+    <div class="modal fade " id="showDetailsModal" tabindex="-1" role="dialog"
+        aria-labelledby="showDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="margin: 0; color: #333;">Your Schedule</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="table-responsive bg-white">
+                            <table class="table border mb-0">
+                                <thead class="table-light fw-semibold">
+                                    <tr class="align-middle">
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($mSched as $item)
+                                        <tr class="align-middle" id="t{{ $item['id'] }}" style="display: none">
+                                            <td class="text-dark">Session {{ $item['no'] }} Schedule -
+                                                {{ (new DateTime($item['scheduleTime']))->format('Y-m-d h:i A') }}
+                                            </td>
+                                            <td class="text-dark">
+                                                {{ $item['classType'] }}
+                                            </td>
+                                            <td>
+                                                @if ($item['meeting'] != '')
+                                                    <a href="{{ $item['meeting'] }}"
+                                                        class="text-decoration-none">Meeting Link Here</a>
+                                                @else
+                                                    {{ $item['meeting'] }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger"
+                                                    onclick="deleteMeeting({{ $item['id'] }})"
+                                                    data-coreui-target="#deleteScheduleModal"
+                                                    data-coreui-toggle="modal">Delete</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal"
+                        style="color:white !important;" id="btnCloseParentModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade " id="deleteScheduleModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteScheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="margin: 0; color: #333;">Are You Sure You Want To Delete this Schedules?</h3>
+                </div>
+                <form id="deleteSchedForm" action="/teacher_ss" method="post" enctype="multipart/form-data">
+                    @method('delete')
+                    @csrf
+                    <div class="modal-footer">
+                        <button class="btn btn-danger text-white" name="btnProceedDelete" value="yes">Yes,
+                            Proceed</button>
+                        <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal"
+                            style="color:white !important;">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="/assets/coreui.bundle.min.js.download"></script>
     <script src="/assets/simplebar.min.js.download"></script>
 
-    <script src="/assets/chart.min.js.download"></script>
     <script src="/assets/coreui-utils.js.download"></script>
-    <script src="/assets/main.js.download"></script>
     <script></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var mData = @json($events);
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth', // Show month view by default
                 selectable: true, // Allow date selection
                 editable: true, // Enable drag & drop
-                events: [ // Sample Events
-                    {
-                        title: 'Sample Event',
-                        start: '2024-02-01',
-                        end: '2024-02-03'
-                    }
-                ],
+                events: mData,
                 dateClick: function(info) {
                     window.location = `/teacher_home?sched=${info.dateStr}`;
                 },
                 eventClick: function(info) {
-                    if (confirm("Delete this event?")) {
-                        info.event.remove();
-                    }
+                    let showModal = document.getElementById('showModal');
+                    showModal.click();
+
+                    let id = info.event.id;
+                    let t = document.getElementById(`t${id}`);
+                    t.removeAttribute("style");
                 }
             });
 
             calendar.render();
         });
+
+        function deleteMeeting(id) {
+            let deleteSchedForm = document.getElementById("deleteSchedForm");
+            deleteSchedForm.action = `/teacher_ss/${id}`;
+            let btnCloseParentModal = document.getElementById("btnCloseParentModal");
+            btnCloseParentModal.click();
+        }
     </script>
 
     @if (session()->pull('errorExist'))
