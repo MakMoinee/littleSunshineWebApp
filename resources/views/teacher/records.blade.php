@@ -39,6 +39,9 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </head>
 
 <body>
@@ -89,6 +92,22 @@
                                         class="btn btn-primary btn-sm" class="add-button"
                                         style="margin-left: 10px;">Add</button>
                                 </div>
+                            </form>
+                            <br>
+                            <form action="/teacher_records" method="get">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <input required type="search" name="search" id="searchSession"
+                                            class="form-control">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <button type="submit" class="btn btn-secondary btn-sm mt-1">Search</button>
+                                        <button onclick="window.location.href='/teacher_records'" type="button"
+                                            class="btn btn-danger text-white btn-sm mt-1">Clear</button>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                         <div class="card-body bg-mbg">
@@ -153,8 +172,14 @@
                                         </ul>
 
                                     </div>
+                                    <button onclick="exportTableToPDF()" class="btn btn-primary mb-3">Export Current
+                                        Table Page to PDF</button>
+
                                 </div>
                             </div>
+
+                            <div id="table-clone-for-pdf" style="display: none;"></div>
+
                         </div>
                     </div>
                 </div>
@@ -210,6 +235,53 @@
         function deleteSess(id) {
             let recordForm = document.getElementById('recordForm');
             recordForm.action = `/teacher_records/${id}`;
+        }
+        async function exportTableToPDF() {
+            const {
+                jsPDF
+            } = window.jspdf;
+
+            // 1. Clone the original table
+            const originalTable = document.querySelector('.table-responsive');
+            const clonedTable = originalTable.cloneNode(true);
+
+            // 2. Remove the last <th> from header
+            clonedTable.querySelectorAll('thead tr').forEach(row => {
+                row.removeChild(row.lastElementChild);
+            });
+
+            // 3. Remove the last <td> from each row in tbody
+            clonedTable.querySelectorAll('tbody tr').forEach(row => {
+                row.removeChild(row.lastElementChild);
+            });
+
+            // 4. Put the cleaned table in a hidden container
+            const hiddenContainer = document.createElement('div');
+            hiddenContainer.style.position = 'absolute';
+            hiddenContainer.style.left = '-9999px'; // Hide off screen
+            hiddenContainer.style.padding = "15px";
+            hiddenContainer.appendChild(clonedTable);
+            document.body.appendChild(hiddenContainer);
+
+            try {
+                // 5. Use html2canvas on the cloned table
+                const canvas = await html2canvas(clonedTable, {
+                    scale: 2
+                });
+                const imgData = canvas.toDataURL('image/png');
+
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save("current-sessions.pdf");
+            } catch (error) {
+                console.error("PDF export failed:", error);
+            } finally {
+                // 6. Clean up
+                document.body.removeChild(hiddenContainer);
+            }
         }
     </script>
     @if (session()->pull('errorAddSession'))

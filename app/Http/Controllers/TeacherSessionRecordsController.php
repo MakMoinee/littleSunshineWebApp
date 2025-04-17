@@ -13,7 +13,7 @@ class TeacherSessionRecordsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         if (session()->exists('users')) {
             $user = session()->pull('users');
@@ -23,11 +23,22 @@ class TeacherSessionRecordsController extends Controller
                 return redirect("/logout");
             }
 
+            $search = $request->query("search");
+            if ($search) {
+                $allSessions = DB::table('sessions')
+                    ->where('teacherID', '=', $user['userID'])
+                    ->where('sessionID', '=', $search)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10);
+            } else {
+                $allSessions = DB::table('sessions')
+                    ->where('teacherID', '=', $user['userID'])
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10);
+            }
+
             $allStudents = json_decode(Students::all(), true);
-            $allSessions = DB::table('sessions')
-                ->where('teacherID', '=', $user['userID'])
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
+
 
             return view('teacher.records', ['students' => $allStudents, 'sessions' => $allSessions]);
         }
