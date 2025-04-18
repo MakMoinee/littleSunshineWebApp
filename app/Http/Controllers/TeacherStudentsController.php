@@ -48,10 +48,16 @@ class TeacherStudentsController extends Controller
                 }
             }
 
+            $t = [
+                "Marilex R. Moron",
+                "Timothy James Codesal",
+                "Jose Alphonso Serviño",
+            ];
 
 
 
-            return view('teacher.students', ['students' => $students, 'mUsers' => $mUsers, 'allStudents' => $allStudents, 'therapists' => $studentTherapist]);
+
+            return view('teacher.students', ['students' => $students, 'mUsers' => $mUsers, 'allStudents' => $allStudents, 'therapists' => $studentTherapist, 't' => $t]);
         }
         return redirect("/");
     }

@@ -113,19 +113,29 @@
                                                             <select required name="therapist" id=""
                                                                 class="form-control" onchange="triggerSelect()">
                                                                 <option value="">Select Therapist</option>
+
                                                                 @foreach ($therapists as $i)
-                                                                    @if ($i['studentID'] == $students[$item->userID]['id'])
-                                                                        <option value="{{ $i['id'] }}" selected>
-                                                                            {{ $i['assigned'] }} </option>
-                                                                    @else
-                                                                    @endif
+                                                                    @foreach ($t as $tt)
+                                                                        @if ($students[$item->userID]['id'] == $i['studentID'] && $i['assigned'] == $tt)
+                                                                            <option value="{{ $tt }}"
+                                                                                selected>
+                                                                                {{ $tt }}</option>
+                                                                        @else
+                                                                            <option value="{{ $tt }}">
+                                                                                {{ $tt }}</option>
+                                                                        @endif
+                                                                    @endforeach
                                                                 @endforeach
+
                                                             </select>
                                                         @else
                                                             <select required name="therapist" id=""
                                                                 class="form-control" onchange="triggerSelect()">
                                                                 <option value="">Select Therapist</option>
-                                                                <option value="sebastian">Sebastian</option>
+                                                                @foreach ($t as $tt)
+                                                                    <option value="{{ $tt }}">
+                                                                        {{ $tt }}</option>
+                                                                @endforeach
                                                             </select>
                                                         @endif
                                                         <input type="hidden" name="studentID"
@@ -136,7 +146,8 @@
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="/teacher_students/{{ $item->userID }}" method="post">
+                                                    <form action="/teacher_students/{{ $item->userID }}"
+                                                        method="post">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="btn btn-primary"
