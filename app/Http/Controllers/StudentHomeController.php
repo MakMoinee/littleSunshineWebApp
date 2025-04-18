@@ -41,6 +41,13 @@ class StudentHomeController extends Controller
                     $data = ["id" => $idd, "title" => $type, "start" => $startDet, "end" => $endDet];
                     array_push($events, $data);
                 }
+
+                foreach ($assignments as $key => $a) {
+                    $count = DB::table("submissions")->where('assignmentID', '=', $a['assignmentID'])->count();
+                    if ($count > 0) {
+                        unset($assignments[$key]);
+                    }
+                }
                 return view('student.home', ['schedules' => $schedules, 'assignments' => $assignments, 'events' => $events]);
             } else {
                 return redirect("/logout");
