@@ -50,12 +50,58 @@ class StudentGradingController extends Controller
                     if ($gCount == 0) {
                         $newGrades = new Grades();
                         $newGrades->studentID = $s['id'];
-                        $newGrades->workBehavior = null;
-                        $newGrades->socialSkills = null;
-                        $newGrades->cognitiveSkills = null;
-                        $newGrades->fms = null;
-                        $newGrades->gms = null;
-                        $newGrades->adls = null;
+                        $newGrades->workBehavior = json_encode([
+                            "attention" => "",
+                            "concentration" => "",
+                            "tolerance" => "",
+                            "impulse" => "",
+                            "sitting" => "",
+                        ]);
+                        $newGrades->socialSkills = json_encode([
+                            "name" => "",
+                            "eye" => "",
+                            "joint" => "",
+                            "verbal" => "",
+                            "cooperation" => "",
+                            "activeListening" => "",
+                            "flexibility" => "",
+                            "decision" => "",
+                            "manners" => "",
+                        ]);
+                        $newGrades->cognitiveSkills = json_encode([
+                            "match" => "",
+                            "sort" => "",
+                            "recognize" => "",
+                            "identify" => "",
+                            "instruction" => "",
+                        ]);
+                        $newGrades->fms = json_encode([
+                            "manipulation" => "",
+                            "coordination" => "",
+                            "tracing" => "",
+                            "imatating" => "",
+                            "copying" => "",
+                            "writing" => "",
+                            "coloring" => "",
+                            "painting" => "",
+                            "cutting" => "",
+                            "folding" => "",
+                            "strength" => "",
+                        ]);
+                        $newGrades->gms = json_encode([
+                            "planning" => "",
+                            "balance" => "",
+                            "body" => "",
+                            "strength" => "",
+                            "reaction" => "",
+                        ]);
+                        $newGrades->adls = json_encode([
+                            "feeding" => "",
+                            "dressing" => "",
+                            "grooming" => "",
+                            "bathing" => "",
+                            "meal" => "",
+                        ]);
                         $newGrades->save();
                     }
 
@@ -118,7 +164,7 @@ class StudentGradingController extends Controller
                         ]);
                         $newGrades->save();
                     }
-                    
+
                     if (count($grades) > 0) {
                         $grade =  $grades[0];
                         $workBehavior = json_decode($grade['workBehavior'], true);

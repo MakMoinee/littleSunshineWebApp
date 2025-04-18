@@ -341,25 +341,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
+            var mData = @json($events);
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth', // Show month view by default
                 selectable: true, // Allow date selection
                 editable: true, // Enable drag & drop
-                events: [ // Sample Events
-                    {
-                        title: 'Sample Event',
-                        start: '2024-02-01',
-                        end: '2024-02-03'
-                    }
-                ],
+                events: mData,
                 dateClick: function(info) {
                     window.location = `/student_home?sched=${info.dateStr}`;
                 },
                 eventClick: function(info) {
-                    if (confirm("Delete this event?")) {
-                        info.event.remove();
-                    }
+                    window.location = `/student_ss`;
+                    // if (confirm("Delete this event?")) {
+                    //     info.event.remove();
+                    // }
                 }
             });
 

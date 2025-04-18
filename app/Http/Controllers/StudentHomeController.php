@@ -26,7 +26,22 @@ class StudentHomeController extends Controller
                 $schedules = json_decode(DB::table('vwstudentschedules')->where('userID', '=', $user['userID'])->where('scheduleDate', '=', $sched)->get(), true);
                 $assignments = json_decode(DB::table('vwstudentassignments')->where('userID', '=', $user['userID'])->orderBy('created_at', 'desc')->get(), true);
 
-                return view('student.home', ['schedules' => $schedules, 'assignments' => $assignments]);
+                $allScheds = json_decode(DB::table('vwstudentschedules')
+                    ->where('userID', '=', $user['userID'])
+                    ->orderBy('created_at', 'desc')
+                    ->get(), true);
+
+                $events = array();
+                foreach ($allScheds as $as) {
+                    $idd = $as['id'];
+                    $type = $as['classType'];
+                    $startDet = (new DateTime($as['scheduleDate']))->format('Y-m-d');
+                    $endDet = (new DateTime($as['scheduleTime']))->format('Y-m-d');
+                    $data = array();
+                    $data = ["id" => $idd, "title" => $type, "start" => $startDet, "end" => $endDet];
+                    array_push($events, $data);
+                }
+                return view('student.home', ['schedules' => $schedules, 'assignments' => $assignments, 'events' => $events]);
             } else {
                 return redirect("/logout");
             }
