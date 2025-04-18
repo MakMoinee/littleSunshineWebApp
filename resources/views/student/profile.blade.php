@@ -276,7 +276,16 @@
                             <form action="/student_profile" method="post">
                                 @csrf
                                 <div class="card-body">
-                                    <div class="row d-flex">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            @if (count($therapist) > 0)
+                                                <h5>Assigned Therapist: <b>{{ $therapist[0]['assigned'] }}</b> </h5>
+                                            @else
+                                                <h5>Assigned Therapist: None </h5>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex mt-3">
                                         <div class="col-md-4 form-group">
                                             <label for="address" class="text-dark"><b>Address:</b><span
                                                     class="text-danger">*</span> </label>

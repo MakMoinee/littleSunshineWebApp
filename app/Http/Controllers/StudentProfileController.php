@@ -16,14 +16,17 @@ class StudentProfileController extends Controller
         if (session()->exists('users')) {
             $user = session()->pull('users');
             session()->put("users", $user);
+            $therapist = array();
             $students = json_decode(DB::table('students')->where('userID', '=', $user['userID'])->get(), true);
             if (count($students) > 0) {
                 $students = $students[0];
+                $therapist = json_decode(DB::table('therapists')->where('studentID', '=', $students['id'])->get(), true);
             } else {
                 $students = array();
+                $therapist = array();
             }
 
-            return view('student.profile', ['student' => $students, 'user' => $user]);
+            return view('student.profile', ['student' => $students, 'user' => $user, 'therapist' => $therapist]);
         }
         return redirect("/");
     }
