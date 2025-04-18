@@ -11,7 +11,7 @@
  Target Server Version : 80027
  File Encoding         : 65001
 
- Date: 10/04/2025 14:19:19
+ Date: 18/04/2025 15:49:27
 */
 
 SET NAMES utf8mb4;
@@ -27,6 +27,7 @@ CREATE TABLE `assignments`  (
   `studentID` int NOT NULL,
   `sessionID` int NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instructions` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `dueDate` date NOT NULL,
   `dueFrom` timestamp NOT NULL,
   `dueTo` timestamp NOT NULL,
@@ -35,12 +36,11 @@ CREATE TABLE `assignments`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`assignmentID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of assignments
 -- ----------------------------
-INSERT INTO `assignments` VALUES (1, 1, 2, 0, 'Sample', '2025-04-12', '2025-04-12 01:58:00', '2025-04-12 13:58:00', 'online', '/data/assignments/1743962325.pdf', '2025-04-06 17:58:45', '2025-04-06 17:58:45');
 
 -- ----------------------------
 -- Table structure for books
@@ -74,12 +74,11 @@ CREATE TABLE `evaluations`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of evaluations
 -- ----------------------------
-INSERT INTO `evaluations` VALUES (1, 3, 1, 'ss', '2025-04-10 06:12:09', '2025-04-10 06:12:09');
 
 -- ----------------------------
 -- Table structure for grades
@@ -97,13 +96,12 @@ CREATE TABLE `grades`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of grades
 -- ----------------------------
-INSERT INTO `grades` VALUES (3, 2, '{\"attention\":\"fair\",\"concentration\":\"good\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\"}', '{\"match\":\"\",\"sort\":\"good\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\"}', '2025-04-06 18:32:07', '2025-04-06 18:32:07');
-INSERT INTO `grades` VALUES (4, 3, '{\"attention\":\"\",\"concentration\":\"\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\"}', '{\"match\":\"\",\"sort\":\"\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\"}', '2025-04-09 20:38:34', '2025-04-09 20:38:34');
+INSERT INTO `grades` VALUES (2, 2, '{\"attention\":\"\",\"concentration\":\"\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\"}', '{\"match\":\"\",\"sort\":\"\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\"}', '2025-04-18 01:48:48', '2025-04-18 01:48:48');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -114,7 +112,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -127,9 +125,10 @@ INSERT INTO `migrations` VALUES (5, '2024_12_12_123914_create_students_table', 1
 INSERT INTO `migrations` VALUES (6, '2024_12_12_124155_create_teachers_table', 1);
 INSERT INTO `migrations` VALUES (7, '2024_12_12_171120_create_users_table', 1);
 INSERT INTO `migrations` VALUES (8, '2024_12_15_233131_create_books_table', 1);
+INSERT INTO `migrations` VALUES (9, '2025_02_20_085510_create_evaluations_table', 1);
 INSERT INTO `migrations` VALUES (10, '2025_03_19_185610_create_submissions_table', 1);
 INSERT INTO `migrations` VALUES (11, '2025_04_05_040201_create_grades_table', 1);
-INSERT INTO `migrations` VALUES (12, '2025_02_20_085510_create_evaluations_table', 2);
+INSERT INTO `migrations` VALUES (12, '2025_04_18_015505_create_therapists_table', 2);
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -149,7 +148,7 @@ CREATE TABLE `personal_access_tokens`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token` ASC) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type` ASC, `tokenable_id` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of personal_access_tokens
@@ -171,11 +170,12 @@ CREATE TABLE `schedules`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of schedules
 -- ----------------------------
+INSERT INTO `schedules` VALUES (1, 1, 1, 2, 'f2f', '2025-04-19', '2025-04-19 09:30:00', NULL, '2025-04-18 01:45:27', '2025-04-18 01:45:27');
 
 -- ----------------------------
 -- Table structure for sessions
@@ -191,13 +191,11 @@ CREATE TABLE `sessions`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES (2, 1, 1, 3, 'sadasd', 'Active', '2025-04-10 05:58:46', '2025-04-10 05:58:46');
-INSERT INTO `sessions` VALUES (4, 1, 1, 2, 'asdasd', 'Active', '2025-04-10 05:59:12', '2025-04-10 05:59:12');
 
 -- ----------------------------
 -- Table structure for students
@@ -216,16 +214,16 @@ CREATE TABLE `students`  (
   `diagnose_remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `course` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `imagePath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of students
 -- ----------------------------
-INSERT INTO `students` VALUES (2, 4, 'course1', 'Juan Dela Cruzz', 'sample', 'sa', 'sample@gmail.com', 'sample', '/data/evaluations/1743962220.pdf', '', 'course1', '/data/profiles/1743969335.png', '2025-04-06 17:57:00', '2025-04-06 17:57:00');
-INSERT INTO `students` VALUES (3, 0, 'course1', 'Mak Moinee', 'sample', '09060624132', 'sample@gmail.com', 'smaple', '/data/evaluations/1744227091.pdf', '', 'course1', NULL, '2025-04-09 19:31:31', '2025-04-09 19:31:31');
+INSERT INTO `students` VALUES (2, 2, 'course1', 'Kennen C Borbon', 'Kennen C Borbon', '09090464399', 'makmoinee@gmail.com', 'Door 10, San Jose Extension', '/data/evaluations/1744940687.pdf', '', 'course1', NULL, 'yes', '2025-04-18 01:44:47', '2025-04-18 01:44:47');
 
 -- ----------------------------
 -- Table structure for submissions
@@ -270,6 +268,24 @@ CREATE TABLE `teachers`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for therapists
+-- ----------------------------
+DROP TABLE IF EXISTS `therapists`;
+CREATE TABLE `therapists`  (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `studentID` int NOT NULL,
+  `assigned` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of therapists
+-- ----------------------------
+INSERT INTO `therapists` VALUES (1, 2, 'sebastian', '2025-04-18 02:13:10', '2025-04-18 02:13:10');
+
+-- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
@@ -282,12 +298,13 @@ CREATE TABLE `users`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`userID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'teacher', '$2y$12$vWqKKzDBkIl4Fpy6/5WWK.HqdmEynfxQcNAONBrHpWBnLdorjHJ0K', 'teacher', 'active', '2025-04-09 19:29:03', '2025-04-09 19:29:03');
+INSERT INTO `users` VALUES (1, 'teacher', '$2y$12$ntkjzsoC8R7lNUnwe5qyruvwtokpr1hnC4lTlqK5nVcHJ8rY2Nq5y', 'teacher', 'active', '2025-04-18 01:28:37', '2025-04-18 01:28:37');
+INSERT INTO `users` VALUES (2, 'user1744940749', '$2y$12$1d2aLNrN3Gyzd0z8bCgos.otw8uMkf1FIQqqtRSN9gLYqwM0CCXam', 'student', 'active', '2025-04-18 01:45:50', '2025-04-18 01:45:50');
 
 -- ----------------------------
 -- View structure for vweval
@@ -299,13 +316,19 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vweval` AS select `evalu
 -- View structure for vwmyeval
 -- ----------------------------
 DROP VIEW IF EXISTS `vwmyeval`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwmyeval` AS select `evaluations`.`id` AS `id`,`evaluations`.`sessionID` AS `sessionID`,`evaluations`.`evaluation` AS `evaluation`,`evaluations`.`created_at` AS `created_at`,`evaluations`.`updated_at` AS `updated_at`,`sessions`.`details` AS `details`,`students`.`userID` AS `userID`,`students`.`name` AS `name` from ((`evaluations` join `sessions` on((`evaluations`.`sessionID` = `sessions`.`id`))) join `students` on((`sessions`.`studentID` = `students`.`id`)));
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwmyeval` AS select `evaluations`.`id` AS `id`,`evaluations`.`sessionID` AS `sessionID`,`evaluations`.`evaluation` AS `evaluation`,`evaluations`.`created_at` AS `created_at`,`evaluations`.`updated_at` AS `updated_at`,`students`.`name` AS `name`,`students`.`userID` AS `userID` from (`evaluations` join `students` on((`evaluations`.`studentID` = `students`.`id`)));
+
+-- ----------------------------
+-- View structure for vwsessions
+-- ----------------------------
+DROP VIEW IF EXISTS `vwsessions`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwsessions` AS select `sessions`.`id` AS `id`,`sessions`.`teacherID` AS `teacherID`,`sessions`.`sessionID` AS `sessionID`,`sessions`.`studentID` AS `studentID`,`sessions`.`details` AS `details`,`sessions`.`status` AS `status`,`sessions`.`created_at` AS `created_at`,`sessions`.`updated_at` AS `updated_at`,`students`.`name` AS `name` from (`sessions` join `students`);
 
 -- ----------------------------
 -- View structure for vwstudentassignments
 -- ----------------------------
 DROP VIEW IF EXISTS `vwstudentassignments`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwstudentassignments` AS select `assignments`.`assignmentID` AS `assignmentID`,`assignments`.`teacherID` AS `teacherID`,`assignments`.`studentID` AS `studentID`,`assignments`.`sessionID` AS `sessionID`,`assignments`.`title` AS `title`,`assignments`.`dueDate` AS `dueDate`,`assignments`.`dueFrom` AS `dueFrom`,`assignments`.`dueTo` AS `dueTo`,`assignments`.`submissionType` AS `submissionType`,`assignments`.`filePath` AS `filePath`,`assignments`.`created_at` AS `created_at`,`assignments`.`updated_at` AS `updated_at`,`users`.`userID` AS `userID` from ((`users` join `students` on((`users`.`userID` = `students`.`userID`))) join `assignments` on((`students`.`id` = `assignments`.`studentID`)));
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwstudentassignments` AS select `assignments`.`assignmentID` AS `assignmentID`,`assignments`.`teacherID` AS `teacherID`,`assignments`.`studentID` AS `studentID`,`assignments`.`sessionID` AS `sessionID`,`assignments`.`title` AS `title`,`assignments`.`dueDate` AS `dueDate`,`assignments`.`dueFrom` AS `dueFrom`,`assignments`.`dueTo` AS `dueTo`,`assignments`.`submissionType` AS `submissionType`,`assignments`.`filePath` AS `filePath`,`assignments`.`created_at` AS `created_at`,`assignments`.`updated_at` AS `updated_at`,`users`.`userID` AS `userID`,`assignments`.`instructions` AS `instructions` from ((`users` join `students` on((`users`.`userID` = `students`.`userID`))) join `assignments` on((`students`.`id` = `assignments`.`studentID`)));
 
 -- ----------------------------
 -- View structure for vwstudentschedules
