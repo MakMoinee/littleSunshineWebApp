@@ -84,7 +84,8 @@
                                             <th>Username</th>
                                             <th class="text-center">Status</th>
                                             <th>Created Date</th>
-                                            <th class="text-center">Action</th>
+                                            <th class="text-center">Therapist</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -106,6 +107,35 @@
                                                     {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d') }}
                                                 </td>
                                                 <td class="text-center">
+                                                    <form action="/teacher_students" method="post">
+                                                        @csrf
+                                                        @if (count($therapists) > 0)
+                                                            <select required name="therapist" id=""
+                                                                class="form-control" onchange="triggerSelect()">
+                                                                <option value="">Select Therapist</option>
+                                                                @foreach ($therapists as $i)
+                                                                    @if ($i['studentID'] == $students[$item->userID]['id'])
+                                                                        <option value="{{ $i['id'] }}" selected>
+                                                                            {{ $i['assigned'] }} </option>
+                                                                    @else
+                                                                    @endif
+                                                                @endforeach
+                                                            </select>
+                                                        @else
+                                                            <select required name="therapist" id=""
+                                                                class="form-control" onchange="triggerSelect()">
+                                                                <option value="">Select Therapist</option>
+                                                                <option value="sebastian">Sebastian</option>
+                                                            </select>
+                                                        @endif
+                                                        <input type="hidden" name="studentID"
+                                                            value="{{ $students[$item->userID]['id'] }}">
+                                                        <button type="submit" name="btnSaveTherapist" value="yes"
+                                                            id="btnSaveTherapist" class="btn"
+                                                            style="display: none;">Save</button>
+                                                    </form>
+                                                </td>
+                                                <td>
                                                     <form action="/teacher_students/{{ $item->userID }}" method="post">
                                                         @method('delete')
                                                         @csrf
@@ -225,6 +255,10 @@
         </div>
     </div>
     <script>
+        function triggerSelect() {
+            document.getElementById('btnSaveTherapist').click();
+        }
+
         function openFile() {
             document.getElementById('mFile').click();
         }
@@ -281,6 +315,20 @@
         {{ session()->forget('errorSaveAss') }}
     @endif
 
+    @if (session()->pull('errorAddTherapist'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed To Add Therapist With User, Please Try Again Later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorAddTherapist') }}
+    @endif
     @if (session()->pull('errorSaveUser'))
         <script>
             setTimeout(() => {
@@ -310,6 +358,21 @@
             }, 500);
         </script>
         {{ session()->forget('successSaveUser') }}
+    @endif
+
+    @if (session()->pull('successAddTherapist'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Updated User With Therapist',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successAddTherapist') }}
     @endif
 
     @if (session()->pull('successDeleteUser'))

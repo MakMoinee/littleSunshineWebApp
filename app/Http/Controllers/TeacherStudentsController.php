@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\MyEmail;
 use App\Mail\RejectEmail;
+use App\Models\Therapist;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,11 +34,16 @@ class TeacherStudentsController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get(), true);
             $students =  array();
+            $studentTherapist = array();
             foreach ($mUsers as $s) {
                 if ($s->userID != 0) {
                     $data = json_decode(DB::table('students')->where('userID', '=', $s->userID)->get(), true);
                     if (count($data) > 0) {
                         $students[$s->userID] = $data[0];
+                        $therapist = json_decode(DB::table('therapists')->where('studentID', '=', $data[0]['id'])->get(), true);
+                        if (count($therapist) > 0) {
+                            $studentTherapist[$s->userID] = $therapist[0];
+                        }
                     }
                 }
             }
@@ -45,7 +51,7 @@ class TeacherStudentsController extends Controller
 
 
 
-            return view('teacher.students', ['students' => $students, 'mUsers' => $mUsers, 'allStudents' => $allStudents]);
+            return view('teacher.students', ['students' => $students, 'mUsers' => $mUsers, 'allStudents' => $allStudents, 'therapists' => $studentTherapist]);
         }
         return redirect("/");
     }
@@ -151,6 +157,28 @@ class TeacherStudentsController extends Controller
                     }
                 } else {
                     session()->put("errorDeleteUser", true);
+                }
+            } else if ($request->btnSaveTherapist) {
+                $tCount = DB::table('therapists')->where('studentID', '=', $request->studentID)->count();
+                if ($tCount > 0) {
+                    $updateCount = DB::table("therapists")->where('studentID', '=', $request->studentID)->update([
+                        "assigned" => $request->therapist,
+                    ]);
+                    if ($updateCount > 0) {
+                        session()->put("successAddTherapist", true);
+                    } else {
+                        session()->put("errorAddTherapist", true);
+                    }
+                } else {
+                    $newT = new Therapist();
+                    $newT->studentID = $request->studentID;
+                    $newT->assigned = $request->therapist;
+                    $isSave = $newT->save();
+                    if ($isSave) {
+                        session()->put("successAddTherapist", true);
+                    } else {
+                        session()->put("errorAddTherapist", true);
+                    }
                 }
             }
 
