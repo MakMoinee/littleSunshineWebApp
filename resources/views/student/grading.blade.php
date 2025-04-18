@@ -275,7 +275,10 @@
                                                     <td>
                                                         <h4>Social Skills</h4>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <label for="workBehaviorComment">Comment:</label><br>
+                                                        <b>{{ trim($socialSkills['comment'] ?? '') !== '' ? $socialSkills['comment'] : 'No Comment' }}</b>
+                                                    </td>
                                                 </tr>
                                                 <tr class="align-middle">
                                                     <td>
