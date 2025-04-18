@@ -25,13 +25,13 @@ class TeacherSessionRecordsController extends Controller
 
             $search = $request->query("search");
             if ($search) {
-                $allSessions = DB::table('sessions')
+                $allSessions = DB::table('vwsessions')
                     ->where('teacherID', '=', $user['userID'])
-                    ->where('sessionID', '=', $search)
+                    ->where('name', '=', $search)
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
             } else {
-                $allSessions = DB::table('sessions')
+                $allSessions = DB::table('vwsessions')
                     ->where('teacherID', '=', $user['userID'])
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
