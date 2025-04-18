@@ -56,6 +56,7 @@ class StudentGradingController extends Controller
                             "tolerance" => "",
                             "impulse" => "",
                             "sitting" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->socialSkills = json_encode([
                             "name" => "",
@@ -67,6 +68,7 @@ class StudentGradingController extends Controller
                             "flexibility" => "",
                             "decision" => "",
                             "manners" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->cognitiveSkills = json_encode([
                             "match" => "",
@@ -74,6 +76,7 @@ class StudentGradingController extends Controller
                             "recognize" => "",
                             "identify" => "",
                             "instruction" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->fms = json_encode([
                             "manipulation" => "",
@@ -87,6 +90,7 @@ class StudentGradingController extends Controller
                             "cutting" => "",
                             "folding" => "",
                             "strength" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->gms = json_encode([
                             "planning" => "",
@@ -94,6 +98,7 @@ class StudentGradingController extends Controller
                             "body" => "",
                             "strength" => "",
                             "reaction" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->adls = json_encode([
                             "feeding" => "",
@@ -101,6 +106,7 @@ class StudentGradingController extends Controller
                             "grooming" => "",
                             "bathing" => "",
                             "meal" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->save();
                     }
@@ -116,6 +122,7 @@ class StudentGradingController extends Controller
                             "tolerance" => "",
                             "impulse" => "",
                             "sitting" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->socialSkills = json_encode([
                             "name" => "",
@@ -127,6 +134,7 @@ class StudentGradingController extends Controller
                             "flexibility" => "",
                             "decision" => "",
                             "manners" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->cognitiveSkills = json_encode([
                             "match" => "",
@@ -134,6 +142,7 @@ class StudentGradingController extends Controller
                             "recognize" => "",
                             "identify" => "",
                             "instruction" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->fms = json_encode([
                             "manipulation" => "",
@@ -147,6 +156,7 @@ class StudentGradingController extends Controller
                             "cutting" => "",
                             "folding" => "",
                             "strength" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->gms = json_encode([
                             "planning" => "",
@@ -154,6 +164,7 @@ class StudentGradingController extends Controller
                             "body" => "",
                             "strength" => "",
                             "reaction" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->adls = json_encode([
                             "feeding" => "",
@@ -161,6 +172,7 @@ class StudentGradingController extends Controller
                             "grooming" => "",
                             "bathing" => "",
                             "meal" => "",
+                            "comment" => "",
                         ]);
                         $newGrades->save();
                     }

@@ -332,7 +332,12 @@
                                                                 <td>
                                                                     <h4>Work Behavior</h4>
                                                                 </td>
-                                                                <td></td>
+                                                                <td>
+                                                                    <label for="workBehaviorComment">Comment:</label>
+                                                                    <input type="text" name="workBehaviorComment"
+                                                                        id="" class="form-control"
+                                                                        value="{{ $workBehavior[$item['studentID']]['comment'] ?? '' }}">
+                                                                </td>
                                                             </tr>
                                                             <tr class="align-middle">
                                                                 <td>
@@ -554,7 +559,12 @@
                                                                 <td>
                                                                     <h4>Social Skills</h4>
                                                                 </td>
-                                                                <td></td>
+                                                                <td>
+                                                                    <label for="socialSkillsComment">Comment:</label>
+                                                                    <input type="text" name="socialSkillsComment"
+                                                                        id="" class="form-control"
+                                                                        value="{{ $socialSkills[$item['studentID']]['comment'] ?? '' }}">
+                                                                </td>
                                                             </tr>
                                                             <tr class="align-middle">
                                                                 <td>
@@ -950,7 +960,13 @@
                                                                 <td>
                                                                     <h4>Cognitive Skills</h4>
                                                                 </td>
-                                                                <td></td>
+                                                                <td>
+                                                                    
+                                                                    <label for="cognitiveSkillsComment">Comment:</label>
+                                                                    <input type="text" name="cognitiveSkillsComment"
+                                                                        id="" class="form-control"
+                                                                        value="{{ $cognitiveSkills[$item['studentID']]['comment'] ?? '' }}">
+                                                                </td>
                                                             </tr>
                                                             <tr class="align-middle">
                                                                 <td>
@@ -1174,7 +1190,13 @@
                                                                 <td>
                                                                     <h4>FMS</h4>
                                                                 </td>
-                                                                <td></td>
+                                                                <td>
+                                                                    
+                                                                    <label for="fmsComment">Comment:</label>
+                                                                    <input type="text" name="fmsComment"
+                                                                        id="" class="form-control"
+                                                                        value="{{ $fms[$item['studentID']]['comment'] ?? '' }}">
+                                                                </td>
                                                             </tr>
                                                             <tr class="align-middle">
                                                                 <td>
@@ -1654,7 +1676,13 @@
                                                                 <td>
                                                                     <h4>GMS</h4>
                                                                 </td>
-                                                                <td></td>
+                                                                <td>
+                                                                    
+                                                                    <label for="gmsComment">Comment:</label>
+                                                                    <input type="text" name="gmsComment"
+                                                                        id="" class="form-control"
+                                                                        value="{{ $gms[$item['studentID']]['comment'] ?? '' }}">
+                                                                </td>
                                                             </tr>
                                                             <tr class="align-middle">
                                                                 <td>
@@ -1879,7 +1907,12 @@
                                                                 <td>
                                                                     <h4>ADLs</h4>
                                                                 </td>
-                                                                <td></td>
+                                                                <td>
+                                                                    <label for="adlsComment">Comment:</label>
+                                                                    <input type="text" name="adlsComment"
+                                                                        id="" class="form-control"
+                                                                        value="{{ $adls[$item['studentID']]['comment'] ?? '' }}">
+                                                                </td>
                                                             </tr>
                                                             <tr class="align-middle">
                                                                 <td>

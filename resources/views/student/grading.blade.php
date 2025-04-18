@@ -205,7 +205,10 @@
                                                     <td>
                                                         <h4>Work Behavior</h4>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <label for="workBehaviorComment">Comment:</label><br>
+                                                        <b>{{ trim($workBehavior['comment'] ?? '') !== '' ? $workBehavior['comment'] : 'No Comment' }}</b>
+                                                    </td>
                                                 </tr>
                                                 <tr class="align-middle">
                                                     <td>
@@ -389,7 +392,11 @@
                                                     <td>
                                                         <h4>Cognitive Skills</h4>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+
+                                                        <label for="cognitiveSkillsComment">Comment:</label><br>
+                                                        <b>{{ trim($cognitiveSkills['comment'] ?? '') !== '' ? $cognitiveSkills['comment'] : 'No Comment' }}</b>
+                                                    </td>
                                                 </tr>
                                                 <tr class="align-middle">
                                                     <td>
@@ -458,7 +465,10 @@
                                                     <td>
                                                         <h4>FMS</h4>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <label for="fmsComment">Comment:</label><br>
+                                                        <b>{{ trim($fms['comment'] ?? '') !== '' ? $fms['comment'] : 'No Comment' }}</b>
+                                                    </td>
                                                 </tr>
                                                 <tr class="align-middle">
                                                     <td>
@@ -597,7 +607,11 @@
                                                     <td>
                                                         <h4>GMS</h4>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+
+                                                        <label for="gmsComment">Comment:</label><br>
+                                                        <b>{{ trim($gms['comment'] ?? '') !== '' ? $gms['comment'] : 'No Comment' }}</b>
+                                                    </td>
                                                 </tr>
                                                 <tr class="align-middle">
                                                     <td>
@@ -667,7 +681,10 @@
                                                     <td>
                                                         <h4>ADLs</h4>
                                                     </td>
-                                                    <td></td>
+                                                    <td >
+                                                        <label for="adlsComment">Comment:</label><br>
+                                                        <b>{{ trim($adls['comment'] ?? '') !== '' ? $adls['comment'] : 'No Comment' }}</b>
+                                                    </td>
                                                 </tr>
                                                 <tr class="align-middle">
                                                     <td>

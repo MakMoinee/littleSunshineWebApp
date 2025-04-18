@@ -55,6 +55,7 @@ class TeacherGradingController extends Controller
                         "tolerance" => "",
                         "impulse" => "",
                         "sitting" => "",
+                        "comment" => "",
                     ]);
                     $newGrades->socialSkills = json_encode([
                         "name" => "",
@@ -66,6 +67,7 @@ class TeacherGradingController extends Controller
                         "flexibility" => "",
                         "decision" => "",
                         "manners" => "",
+                        "comment" => "",
                     ]);
                     $newGrades->cognitiveSkills = json_encode([
                         "match" => "",
@@ -73,6 +75,7 @@ class TeacherGradingController extends Controller
                         "recognize" => "",
                         "identify" => "",
                         "instruction" => "",
+                        "comment" => "",
                     ]);
                     $newGrades->fms = json_encode([
                         "manipulation" => "",
@@ -86,6 +89,7 @@ class TeacherGradingController extends Controller
                         "cutting" => "",
                         "folding" => "",
                         "strength" => "",
+                        "comment" => "",
                     ]);
                     $newGrades->gms = json_encode([
                         "planning" => "",
@@ -93,6 +97,7 @@ class TeacherGradingController extends Controller
                         "body" => "",
                         "strength" => "",
                         "reaction" => "",
+                        "comment" => "",
                     ]);
                     $newGrades->adls = json_encode([
                         "feeding" => "",
@@ -100,6 +105,7 @@ class TeacherGradingController extends Controller
                         "grooming" => "",
                         "bathing" => "",
                         "meal" => "",
+                        "comment" => "",
                     ]);
                     $newGrades->save();
                 }
@@ -172,6 +178,7 @@ class TeacherGradingController extends Controller
                     "tolerance" => $request->tolerance != "" ? $request->tolerance : "",
                     "impulse" => $request->impulse != "" ? $request->impulse : "",
                     "sitting" => $request->sitting != "" ? $request->sitting : "",
+                    "comment" => $request->workBehaviorComment != "" ? $request->workBehaviorComment : "",
                 ]);
                 $socialSkills = json_encode([
                     "name" => $request->name != "" ? $request->name : "",
@@ -183,6 +190,7 @@ class TeacherGradingController extends Controller
                     "flexibility" => $request->flexibility != "" ? $request->flexibility : "",
                     "decision" => $request->decision != "" ? $request->decision : "",
                     "manners" => $request->manners != "" ? $request->manners : "",
+                    "comment" => $request->socialSkillsComment != "" ? $request->socialSkillsComment : "",
                 ]);
                 $cognitiveSkills = json_encode([
                     "match" => $request->match != "" ? $request->match : "",
@@ -190,6 +198,7 @@ class TeacherGradingController extends Controller
                     "recognize" => $request->recognize != "" ? $request->recognize : "",
                     "identify" => $request->identify != "" ? $request->identify : "",
                     "instruction" => $request->instruction != "" ? $request->instruction : "",
+                    "comment" => $request->cognitiveSkillsComment != "" ? $request->cognitiveSkillsComment : "",
                 ]);
                 $fms = json_encode([
                     "manipulation" => $request->manipulation != "" ? $request->manipulation : "",
@@ -203,6 +212,7 @@ class TeacherGradingController extends Controller
                     "cutting" => $request->cutting != "" ? $request->cutting : "",
                     "folding" => $request->folding != "" ? $request->folding : "",
                     "strength" => $request->strength != "" ? $request->strength : "",
+                    "comment" => $request->fmsComment != "" ? $request->fmsComment : "",
                 ]);
                 $gms = json_encode([
                     "planning" => $request->planning != "" ? $request->planning : "",
@@ -210,6 +220,7 @@ class TeacherGradingController extends Controller
                     "body" => $request->body != "" ? $request->body : "",
                     "strength" => $request->strength != "" ? $request->strength : "",
                     "reaction" => $request->reaction != "" ? $request->reaction : "",
+                    "comment" => $request->gmsComment != "" ? $request->gmsComment : "",
                 ]);
                 $adls = json_encode([
                     "feeding" => $request->feeding != "" ? $request->feeding : "",
