@@ -27,7 +27,9 @@ class TeacherSessionRecordsController extends Controller
             if ($search) {
                 $allSessions = DB::table('vwsessions')
                     ->where('teacherID', '=', $user['userID'])
-                    ->where('name', 'LIKE', "%" . $search . "%")
+                    ->when($search, function ($query, $search) {
+                        return $query->where('name', 'LIKE', "%{$search}%");
+                    })
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
             } else {
