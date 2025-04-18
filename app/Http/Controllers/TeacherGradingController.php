@@ -228,6 +228,7 @@ class TeacherGradingController extends Controller
                     "grooming" => $request->grooming != "" ? $request->grooming : "",
                     "bathing" => $request->bathing != "" ? $request->bathing : "",
                     "meal" => $request->meal != "" ? $request->meal : "",
+                    "comment" => $request->adlsComment != "" ? $request->adlsComment : "",
                 ]);
                 $updateCount = DB::table('grades')->where('studentID', '=', $request->sid)->update([
                     "workBehavior" => $workBehavior,
