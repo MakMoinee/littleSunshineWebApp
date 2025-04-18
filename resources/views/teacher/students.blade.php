@@ -201,16 +201,19 @@
                                     </select>
                                 </div>
                                 <div class="form-group text-dark">
-                                    <label for="notes" class="">Remarks/Notes:<span class="text-danger">*</span></label>
+                                    <label for="notes" class="">Remarks/Notes:<span
+                                            class="text-danger">*</span></label>
                                     <textarea required name="notes" id="" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group text-dark">
                                     <div class="row">
                                         <div class="col-lg-2 mx-auto">
-                                            <button type="submit" class="btn btn-primary">Accept</button>
+                                            <button type="submit" class="btn btn-primary" name="btnAcceptStudent"
+                                                value="yes">Accept</button>
                                         </div>
                                         <div class="col-lg-2 mx-auto">
-                                            <button type="button" class="btn btn-secondary">Reject</button>
+                                            <button type="submit" name="btnRejectStudent" value="yes"
+                                                class="btn btn-secondary">Reject</button>
                                         </div>
                                     </div>
                                 </div>

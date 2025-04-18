@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Account Credentials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .credentials {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Account Status for Your Child</h2>
+        <p>Dear Parent/Guardian,</p>
+        <p>Your child's application was rejected. Due to {{ $notes }} </p>
+
+        <p>You can try again applying with the updated information of your child. If you have any questions, feel free
+            to contact us.</p>
+
+        <p class="footer">Best regards,<br>Little Sunshine Team</p>
+    </div>
+</body>
+
+</html>

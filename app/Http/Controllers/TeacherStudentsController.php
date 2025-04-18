@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyEmail;
+use App\Mail\RejectEmail;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class TeacherStudentsController extends Controller
 {
@@ -101,6 +104,54 @@ class TeacherStudentsController extends Controller
                         session()->put("errorPassNotMatch", true);
                     }
                 }
+            } else if ($request->btnAcceptStudent) {
+
+                $suffix = strtotime(now());
+                $count = DB::table('users')->where('username', '=', "user" . $suffix)->count();
+                if ($count > 0) {
+                    session()->put("errorUserExist", true);
+                } else {
+                    $newUser = new Users();
+                    $newUser->username = "user" . $suffix;
+                    $newUser->password = Hash::make($suffix);
+                    $newUser->userType = "student";
+                    $newUser->status = "active";
+                    $isSave = $newUser->save();
+                    if ($isSave) {
+                        $userData = json_decode(DB::table('users')->where('username', '=', $newUser->username)->get(), true);
+                        $updateCount = DB::table('students')->where('id', '=', $request->student)->update([
+                            "userID" => $userData[0]['userID'],
+                            "remarks" => $request->notes,
+                        ]);
+                        if ($updateCount > 0) {
+                            $studentData = json_decode(DB::table('students')->where('id', '=', $request->student)->get(), true);
+                            if (count($studentData) > 0) {
+                                $this->sendEmail($studentData[0]['guardianEmail'], "Account Information", $newUser->username, $suffix);
+                            }
+                            session()->put("successSaveUser", true);
+                        } else {
+                            DB::table('users')->where('userID', '=', $userData[0]['userID'])->delete();
+                            session()->put("errorSaveUser", true);
+                        }
+                    } else {
+                        session()->put("errorSaveUser", true);
+                    }
+                }
+            } else if ($request->btnRejectStudent) {
+                $studentData = json_decode(DB::table('students')->where('id', '=', $request->student)->get(), true);
+                if (count($studentData) > 0) {
+
+                    $deleteCount = DB::table('students')->where('id', '=', $request->student)->delete();
+
+                    if ($deleteCount > 0) {
+                        $this->rejectEmail($studentData[0]["guardianEmail"], "Account Status", $request->notes);
+                        session()->put("successDeleteUser", true);
+                    } else {
+                        session()->put("errorDeleteUser", true);
+                    }
+                } else {
+                    session()->put("errorDeleteUser", true);
+                }
             }
 
             return redirect("/teacher_students");
@@ -158,5 +209,26 @@ class TeacherStudentsController extends Controller
             return redirect("/teacher_students");
         }
         return redirect("/");
+    }
+
+    function sendEmail($to, $subject,  $username, $password)
+    {
+        try {
+            Mail::to($to)->send(new MyEmail($subject,  $username, $password));
+            return 1;
+        } catch (\Exception $e) {
+            dd($e);
+            return 2;
+        }
+    }
+    function rejectEmail($to, $subject,  $notes)
+    {
+        try {
+            Mail::to($to)->send(new RejectEmail($subject,  $notes));
+            return 1;
+        } catch (\Exception $e) {
+            dd($e);
+            return 2;
+        }
     }
 }

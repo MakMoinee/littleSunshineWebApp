@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('diagnose_remarks', 255)->nullable();
             $table->string('course', 255);
             $table->string('imagePath', 255)->nullable(true);
+            $table->string('remarks', 255)->nullable(true);
             $table->timestamps();
         });
     }
