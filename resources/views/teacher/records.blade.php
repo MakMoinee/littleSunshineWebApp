@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <input required type="search" name="search" id="searchSession"
-                                            class="form-control">
+                                            class="form-control" value="{{ $search ?? '' }}">
                                     </div>
                                     <div class="col-lg-4">
                                         <button type="submit" class="btn btn-secondary btn-sm mt-1">Search</button>

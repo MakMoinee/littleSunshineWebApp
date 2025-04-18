@@ -42,7 +42,7 @@ class TeacherSessionRecordsController extends Controller
             $allStudents = json_decode(Students::all(), true);
 
 
-            return view('teacher.records', ['students' => $allStudents, 'sessions' => $allSessions]);
+            return view('teacher.records', ['students' => $allStudents, 'sessions' => $allSessions, 'search' => $search]);
         }
         return redirect("/");
     }
