@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Local
+ Source Server         : little_sunshine
  Source Server Type    : MySQL
- Source Server Version : 80027
- Source Host           : localhost:3306
+ Source Server Version : 80041
+ Source Host           : 16.176.5.160:3306
  Source Schema         : little_sunshine
 
  Target Server Type    : MySQL
- Target Server Version : 80027
+ Target Server Version : 80041
  File Encoding         : 65001
 
- Date: 18/04/2025 15:49:27
+ Date: 22/04/2025 16:30:07
 */
 
 SET NAMES utf8mb4;
@@ -36,11 +36,13 @@ CREATE TABLE `assignments`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`assignmentID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of assignments
 -- ----------------------------
+INSERT INTO `assignments` VALUES (2, 1, 2, 0, 'meow', 'meow meow meow', '2025-04-19', '2025-04-18 09:26:00', '2025-04-19 20:00:00', 'online', '/data/assignments/1744968360.jpg', '2025-04-18 09:26:00', '2025-04-18 09:26:00');
+INSERT INTO `assignments` VALUES (4, 1, 3, 0, 'teaching', 'teach', '2025-04-20', '2025-04-18 16:43:43', '2025-04-20 16:00:00', 'online', '/data/assignments/1744994623.jpg', '2025-04-18 16:43:43', '2025-04-18 16:43:43');
 
 -- ----------------------------
 -- Table structure for books
@@ -56,7 +58,7 @@ CREATE TABLE `books`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of books
@@ -74,7 +76,7 @@ CREATE TABLE `evaluations`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of evaluations
@@ -96,12 +98,14 @@ CREATE TABLE `grades`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of grades
 -- ----------------------------
-INSERT INTO `grades` VALUES (2, 2, '{\"attention\":\"\",\"concentration\":\"\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\"}', '{\"match\":\"\",\"sort\":\"\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\"}', '2025-04-18 01:48:48', '2025-04-18 01:48:48');
+INSERT INTO `grades` VALUES (1, 2, '{\"attention\":\"\",\"concentration\":\"\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\",\"comment\":\"asdasd\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\",\"comment\":\"sss\"}', '{\"match\":\"\",\"sort\":\"\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\",\"comment\":\"\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\",\"comment\":\"\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\",\"comment\":\"\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\"}', '2025-04-18 16:29:54', '2025-04-18 16:29:54');
+INSERT INTO `grades` VALUES (2, 1, '{\"attention\":\"good\",\"concentration\":\"good\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\",\"comment\":\"looooo\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\",\"comment\":\"hjaskdjhaskjaaaa\"}', '{\"match\":\"\",\"sort\":\"\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\",\"comment\":\"a\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\",\"comment\":\"s\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\",\"comment\":\"d\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\",\"comment\":\"f\"}', '2025-04-18 16:29:54', '2025-04-18 16:29:54');
+INSERT INTO `grades` VALUES (3, 3, '{\"attention\":\"\",\"concentration\":\"\",\"tolerance\":\"\",\"impulse\":\"\",\"sitting\":\"\",\"comment\":\"\"}', '{\"name\":\"\",\"eye\":\"\",\"joint\":\"\",\"verbal\":\"\",\"cooperation\":\"\",\"activeListening\":\"\",\"flexibility\":\"\",\"decision\":\"\",\"manners\":\"\",\"comment\":\"\"}', '{\"match\":\"\",\"sort\":\"\",\"recognize\":\"\",\"identify\":\"\",\"instruction\":\"\",\"comment\":\"\"}', '{\"manipulation\":\"\",\"coordination\":\"\",\"tracing\":\"\",\"imatating\":\"\",\"copying\":\"\",\"writing\":\"\",\"coloring\":\"\",\"painting\":\"\",\"cutting\":\"\",\"folding\":\"\",\"strength\":\"\",\"comment\":\"\"}', '{\"planning\":\"\",\"balance\":\"\",\"body\":\"\",\"strength\":\"\",\"reaction\":\"\",\"comment\":\"\"}', '{\"feeding\":\"\",\"dressing\":\"\",\"grooming\":\"\",\"bathing\":\"\",\"meal\":\"\",\"comment\":\"\"}', '2025-04-18 16:44:01', '2025-04-18 16:44:01');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -112,7 +116,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -148,7 +152,7 @@ CREATE TABLE `personal_access_tokens`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `personal_access_tokens_token_unique`(`token` ASC) USING BTREE,
   INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type` ASC, `tokenable_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of personal_access_tokens
@@ -175,7 +179,6 @@ CREATE TABLE `schedules`  (
 -- ----------------------------
 -- Records of schedules
 -- ----------------------------
-INSERT INTO `schedules` VALUES (1, 1, 1, 2, 'f2f', '2025-04-19', '2025-04-19 09:30:00', NULL, '2025-04-18 01:45:27', '2025-04-18 01:45:27');
 
 -- ----------------------------
 -- Table structure for sessions
@@ -191,11 +194,15 @@ CREATE TABLE `sessions`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
+INSERT INTO `sessions` VALUES (6, 1, 1, 1, 'Face to Face', 'Done', '2025-04-18 15:56:00', '2025-04-18 15:56:00');
+INSERT INTO `sessions` VALUES (8, 1, 1, 2, 'online', 'Done', '2025-04-18 15:56:09', '2025-04-18 15:56:09');
+INSERT INTO `sessions` VALUES (9, 1, 2, 2, 'ftf', 'Done', '2025-04-18 16:03:15', '2025-04-18 16:03:15');
+INSERT INTO `sessions` VALUES (10, 1, 1, 3, 'online', 'Done', '2025-04-20 11:09:56', '2025-04-20 11:09:56');
 
 -- ----------------------------
 -- Table structure for students
@@ -218,12 +225,13 @@ CREATE TABLE `students`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of students
 -- ----------------------------
-INSERT INTO `students` VALUES (2, 2, 'course1', 'Kennen C Borbon', 'Kennen C Borbon', '09090464399', 'makmoinee@gmail.com', 'Door 10, San Jose Extension', '/data/evaluations/1744940687.pdf', '', 'course1', NULL, 'yes', '2025-04-18 01:44:47', '2025-04-18 01:44:47');
+INSERT INTO `students` VALUES (2, 3, 'course2', 'Jonas Reeve', 'Jonah Mindoro', '09123456789', 'raveruzel@gmail.com', 'Cabuyao Laguna', '/data/evaluations/1744968098.pdf', '', 'course2', NULL, 'asd', '2025-04-18 09:21:38', '2025-04-18 09:21:38');
+INSERT INTO `students` VALUES (3, 4, 'course2', 'Ruzel Hernan', 'rhoda', '0921312479', 'c15-0640-114@uphsl.edu.ph', 'binan laguna', '/data/evaluations/1744994479.docx', '', 'course2', NULL, 'asd', '2025-04-18 16:41:19', '2025-04-18 16:41:19');
 
 -- ----------------------------
 -- Table structure for submissions
@@ -239,11 +247,15 @@ CREATE TABLE `submissions`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of submissions
 -- ----------------------------
+INSERT INTO `submissions` VALUES (1, 2, 1, '/data/submissions/1744967039.mkv', NULL, NULL, '2025-04-18 09:03:59', '2025-04-18 09:03:59');
+INSERT INTO `submissions` VALUES (2, 3, 2, '/data/submissions/1744968376.jpg', NULL, NULL, '2025-04-18 09:26:16', '2025-04-18 09:26:16');
+INSERT INTO `submissions` VALUES (3, 2, 3, '/data/submissions/1744994341.jpg', NULL, NULL, '2025-04-18 16:39:01', '2025-04-18 16:39:01');
+INSERT INTO `submissions` VALUES (4, 4, 4, '/data/submissions/1744994637.jpg', NULL, NULL, '2025-04-18 16:43:57', '2025-04-18 16:43:57');
 
 -- ----------------------------
 -- Table structure for teachers
@@ -261,7 +273,7 @@ CREATE TABLE `teachers`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of teachers
@@ -278,12 +290,14 @@ CREATE TABLE `therapists`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of therapists
 -- ----------------------------
-INSERT INTO `therapists` VALUES (1, 2, 'sebastian', '2025-04-18 02:13:10', '2025-04-18 02:13:10');
+INSERT INTO `therapists` VALUES (1, 1, 'Marilex R. Moron', '2025-04-18 05:29:58', '2025-04-18 05:29:58');
+INSERT INTO `therapists` VALUES (2, 2, 'Timothy James Codesal', '2025-04-18 09:23:57', '2025-04-18 09:23:57');
+INSERT INTO `therapists` VALUES (3, 3, 'Marilex R. Moron', '2025-04-18 16:42:30', '2025-04-18 16:42:30');
 
 -- ----------------------------
 -- Table structure for users
@@ -298,13 +312,14 @@ CREATE TABLE `users`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`userID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'teacher', '$2y$12$ntkjzsoC8R7lNUnwe5qyruvwtokpr1hnC4lTlqK5nVcHJ8rY2Nq5y', 'teacher', 'active', '2025-04-18 01:28:37', '2025-04-18 01:28:37');
-INSERT INTO `users` VALUES (2, 'user1744940749', '$2y$12$1d2aLNrN3Gyzd0z8bCgos.otw8uMkf1FIQqqtRSN9gLYqwM0CCXam', 'student', 'active', '2025-04-18 01:45:50', '2025-04-18 01:45:50');
+INSERT INTO `users` VALUES (1, 'teacher', '$2y$12$NPMnHiHeLk40Rx7W.E.7ouQSeJlztjQTJ0.sF6QuQGe7WW59ItrLy', 'teacher', 'active', '2025-04-18 02:32:53', '2025-04-18 02:32:53');
+INSERT INTO `users` VALUES (3, 'user1744968230', '$2y$12$ODhefXXG8joFKQgKpFDhk.V0NXSqZcCNv6YhskJBKilUiEnUj41Ce', 'student', 'active', '2025-04-18 09:23:50', '2025-04-18 09:23:50');
+INSERT INTO `users` VALUES (4, 'user1744994500', '$2y$12$GrDp7Uv5mkUDib.GUDq9d.IS9grdxy92Yh5frXsFZ1WA0fHHwygdu', 'student', 'active', '2025-04-18 16:41:41', '2025-04-18 16:41:41');
 
 -- ----------------------------
 -- View structure for vweval
@@ -322,7 +337,7 @@ CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwmyeval` AS select `eva
 -- View structure for vwsessions
 -- ----------------------------
 DROP VIEW IF EXISTS `vwsessions`;
-CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwsessions` AS select `sessions`.`id` AS `id`,`sessions`.`teacherID` AS `teacherID`,`sessions`.`sessionID` AS `sessionID`,`sessions`.`studentID` AS `studentID`,`sessions`.`details` AS `details`,`sessions`.`status` AS `status`,`sessions`.`created_at` AS `created_at`,`sessions`.`updated_at` AS `updated_at`,`students`.`name` AS `name` from (`sessions` join `students`);
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `vwsessions` AS select `sessions`.`id` AS `id`,`sessions`.`teacherID` AS `teacherID`,`sessions`.`sessionID` AS `sessionID`,`sessions`.`studentID` AS `studentID`,`sessions`.`details` AS `details`,`sessions`.`status` AS `status`,`sessions`.`created_at` AS `created_at`,`sessions`.`updated_at` AS `updated_at`,`students`.`name` AS `name` from (`sessions` join `students` on((`sessions`.`studentID` = `students`.`id`)));
 
 -- ----------------------------
 -- View structure for vwstudentassignments
