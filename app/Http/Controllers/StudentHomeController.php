@@ -48,7 +48,10 @@ class StudentHomeController extends Controller
                         unset($assignments[$key]);
                     }
                 }
-                return view('student.home', ['schedules' => $schedules, 'assignments' => $assignments, 'events' => $events]);
+
+                $studentInfo = json_decode(DB::table('students')->where('userID', '=', $user['userID'])->get(), true);
+                $studentInfo = count($studentInfo) > 0 ? $studentInfo[0] : [];
+                return view('student.home', ['schedules' => $schedules, 'assignments' => $assignments, 'events' => $events, 'studentInfo' => $studentInfo]);
             } else {
                 return redirect("/logout");
             }

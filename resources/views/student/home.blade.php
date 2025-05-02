@@ -381,6 +381,7 @@
 
     @if (session()->pull('successLogin'))
         <script>
+            let studentInfo = @json($studentInfo);
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
@@ -389,6 +390,14 @@
                     showConfirmButton: false,
                     timer: 800
                 });
+                setTimeout(() => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `Welcome ${studentInfo['name']}`,
+                        showConfirmButton: true,
+                    });
+                }, 1200);
             }, 500);
         </script>
         {{ session()->forget('successLogin') }}
